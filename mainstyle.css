@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=New+Amsterdam&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root{
+    --primary-color: #42c8c9;
+    --secondary-color: #d6abd8;
+    --text-dark: #020617;
+    --text-light: #94a3b8;
+    --extra-light: #e2e8f0;
+    --white: #ffffff;
+    --gradient-1: linear-gradient(to right, #eeb5c6, #b2b4e4, #b3b4e4);
+    --gradient-2: linear-gradient(to right, #eeb5c4, #beb0e1, #7ed6d8);
+    --max-width: 1200px;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.section_container{
+    max-width: var(--max-width);
+    margin: auto;
+    padding: 5rem 1rem;
+}
+
+.section_header{
+    position: relative;
+    isolation: isolate;
+    font-size: 2rem;
+    line-height: 2.75rem;
+    max-width: 400px;
+}
+
+.section_header::before{
+    position: absolute;
+    top: -3rem;
+    width: max-content;
+    font-size: 6rem;
+    font-weight: 800;
+    line-height: 6rem;
+    color: rgba(0, 0, 0, 0.05);
+    z-index: -1;
+}
+
+.btn{
+    padding: 0.75rem 1.5rem;
+    outline: none;
+    border: none;
+    font-size: 1rem;
+    color: var(--white);
+    background-color: var(--text-dark);
+    border-radius: 5px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.btn:hover{
+    background-color: var(--primary-color);
+}
+
+img{
+    display: flex;
+    width: 100%;
+}
+
+a{
+    text-decoration: none;
+    transition: 0.3s;
+
+}
+
+ul{
+    list-style: none;
+}
+
+html,body{
+    scroll-behavior: smooth;
+}
+
+body{
+    font-family: "Poppins", sans-serif;
+
+}
+
+header{
+    overflow: hidden;
+}
+
+nav{
+    position: fixed;
+    isolation: isolate;
+    top: 0;
+    width: 100%;
+    z-index: 9;
+}
+
+.nav_header{
+    padding: 1rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--text-dark);
+}
