@@ -11,9 +11,7 @@ let Account = {
     weight : null,
     age : null ,
     datejoined: new Date(),
-    weightLog : new Array()
-
-
+    weightLog : [[0,new Date()]]
 }
 
 let exercise = {
@@ -32,7 +30,9 @@ function PopulateUser(fUsername,fUserPassword,fFirstName,fLastName,fHeight,fWeig
     newUser.weight=fWeight;
     newUser.age=fage;
     newUser.datejoined = new Date()
-    weightLog.push(newUser.weight,newUser.datejoined);
+    newUser.weightLog.shift();
+    newUser.weightLog.push(newUser.weight,newUser.datejoined);
+    newUser.weightLog.push(newUser.weight,newUser.datejoined);
     return newUser
 }
 
