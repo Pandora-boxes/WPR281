@@ -3,15 +3,15 @@ let userList=[];
 let Account = {
     userName : "",
     userPassword :"",
-    favoriteExercises : [],
-    exercisesComplete : [],
+    favoriteExercises : new Array(),
+    exercisesComplete : new Array(),
     firstName : '',
     lastName : '',
     height : null,
     weight : null,
     age : null ,
     datejoined: new Date(),
-    weightLog : [[]],
+    weightLog : new Array()
 
 
 }
@@ -32,7 +32,8 @@ function PopulateUser(fUsername,fUserPassword,fFirstName,fLastName,fHeight,fWeig
     newUser.weight=fWeight;
     newUser.age=fage;
     newUser.datejoined = new Date()
-    weightLog.push([newUser.weight,newUser.datejoined]);
+    weightLog.push(newUser.weight,newUser.datejoined);
+    return newUser
 }
 
 function logExercise(fname,fDuration,fCBurnt){
@@ -45,4 +46,26 @@ function logExercise(fname,fDuration,fCBurnt){
         fObject.calariesBurnt = fCBurnt;
 
         fCurrentUser.exercisesComplete.push(fObject);
+}
+
+
+
+window.addEventListener('load', app);
+
+      function app() {
+        const JoinButton =document.getElementById('JoinButton');
+            function makeUser(){
+                userList.push(
+                PopulateUser(
+                prompt('enter a username'),
+                prompt('enter a password'),
+                prompt('enter a first name'),
+                prompt('enter a last name'),
+                prompt('enter a height'),
+                prompt('enter a weight'),
+                prompt('enter an age')))
+                loggedInUser = userList.length-1;
+                console.log(userList[loggedInUser])
+            }
+            JoinButton.addEventListener('click',makeUser);
 }
