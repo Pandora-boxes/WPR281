@@ -54,50 +54,69 @@ function stringValidation(checkVariable,checkUnique,checkMidSpace){
 
         checkVariable = checkVariable.trim();
 
-        if (checkVariable == "" || (verifiedUserName.indexOf(" ")!=-1 && checkMidSpace)){bValidation=false}
+        if (checkVariable == "" || (checkVariable.indexOf(" ")!=-1 && checkMidSpace)){bValidation=false}
         else{
-            let checkinglist = userList.filter(User => User.userName==verifiedUserName);
+            let checkinglist = userList.filter(User => User.userName==checkVariable);
 
             if (checkinglist.length>0 && checkUnique){bValidation=false}
         }     
     }
     return bValidation
 }
+function validateNumber(number){
+    return /^[0-9]+(\.)?[0-9]*$/.test(number)
+}
+
 function makeUser(){
-    
+
     //ensuring validity of usename entered 
     let bValid=true;
     let validUserName =prompt("Please enter a username");
 
-    while(stringValidation(validUserName,true,true)){
+    while(!stringValidation(validUserName,true,true)){
         validUserName = prompt('Username invalid or in use\nPlease enter a new username:');
     }
 
     validUserName=validUserName.trim();
 
     let validPassword = prompt("Please enter a password");
-    while(stringValidation(validPassword),false,true){
+    while(!stringValidation(validPassword,false,true)){
         validPassword = prompt('Password invalid\nPlease enter a new password:');
     }
     validPassword = validPassword.trim();
 
 
     let validFirstName = prompt('Please enter your first name');
-    while(stringValidation(validFirstName,false,false)){
+    while(!stringValidation(validFirstName,false,false)){
         validFirstName = prompt('Name invalid\nPlease enter a new first name:');
     }
     validFirstName =validFirstName.trim();
 
     let validSurname = prompt("Please enter your surname");
-    while(stringValidation(validSurname,false,false)){
+    while(!stringValidation(validSurname,false,false)){
         validSurname = prompt('Name invalid\nPlease enter a new Surnamename:');
     }
     validSurname=validSurname.trim();
     
-    userList.push(PopulateUser(verifiedUserName,validPassword,validFirstName,validSurname,
-    prompt('enter a height'),
-    prompt('enter a weight'),
-    prompt('enter an age')))
+    let validHeight = prompt('please enter your height in cm');
+    while(!validateNumber(validHeight)){
+        validHeight = prompt('please enter your height in cm')
+    }
+    validHeight=parseFloat(validHeight);
+
+    let validWeight = prompt('please enter your weight in kg');
+    while(!validateNumber(validWeight)){
+        validHeight = prompt('please enter your weight in kg')
+    }
+    validweight=parseFloat(validWeight);
+
+    let validAge = prompt('please enter your weight in cm');
+    while(!validateNumber(validAge)){
+        validAge = prompt('please enter your weight in cm')
+    }
+    validAge=parseFloat(validAge);
+
+    userList.push(PopulateUser(validUserName,validPassword,validFirstName,validSurname,validHeight,validWeight,validAge))
 
     loggedInUser = userList.length-1;
     console.log(userList[loggedInUser])
