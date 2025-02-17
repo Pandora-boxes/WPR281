@@ -55,9 +55,24 @@ window.addEventListener('load', app);
       function app() {
         const JoinButton =document.getElementById('JoinButton');
             function makeUser(){
+                let bValid=true;
+                let verifiedUserName =prompt("please enter a username");
+
+                do{
+                    bValid=true;
+                    let checkinglist = userList.filter(User => User.userName==verifiedUserName);
+
+                    if (checkinglist.length>0){
+                        bValid=false
+                        verifiedUserName =prompt("username already in use\nplease enter a username");
+                    };
+                }while(!bValid)
+
+
+
+
                 userList.push(
-                PopulateUser(
-                prompt('enter a username'),
+                PopulateUser(verifiedUserName,
                 prompt('enter a password'),
                 prompt('enter a first name'),
                 prompt('enter a last name'),
