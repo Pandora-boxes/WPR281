@@ -52,7 +52,7 @@ function stringValidation(checkVariable,checkUnique,checkMidSpace){
     let bValidation = true
     if (checkVariable == null){bValidation=false}else{
 
-        checkVariable = checkVariable.trim();
+        checkVariable = checkVariable.trim();         'LIAM KENNETH'             
 
         if (checkVariable == "" || (checkVariable.indexOf(" ")!=-1 && checkMidSpace)){bValidation=false}
         else{
@@ -63,6 +63,7 @@ function stringValidation(checkVariable,checkUnique,checkMidSpace){
     }
     return bValidation
 }
+
 function validateNumber(number){
     return /^[0-9]+(\.)?[0-9]*$/.test(number)
 }
@@ -110,9 +111,9 @@ function makeUser(){
     }
     validweight=parseFloat(validWeight);
 
-    let validAge = prompt('please enter your weight in cm');
+    let validAge = prompt('please enter your age');
     while(!validateNumber(validAge)){
-        validAge = prompt('please enter your weight in cm')
+        validAge = prompt('please enter your age')
     }
     validAge=parseFloat(validAge);
 
