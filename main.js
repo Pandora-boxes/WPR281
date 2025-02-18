@@ -52,7 +52,7 @@ function stringValidation(checkVariable,checkUnique,checkMidSpace){
     let bValidation = true
     if (checkVariable == null){bValidation=false}else{
 
-        checkVariable = checkVariable.trim();         'LIAM KENNETH'             
+        checkVariable = checkVariable.trim();           
 
         if (checkVariable == "" || (checkVariable.indexOf(" ")!=-1 && checkMidSpace)){bValidation=false}
         else{
