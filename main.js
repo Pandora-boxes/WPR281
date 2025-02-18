@@ -18,7 +18,8 @@ let Account = {
 let exercise = {
     exerciseName : "",
     exerciseDuration :null,
-    calariesBurnt : null
+    calariesBurnt : null,
+    exerciseDateTime : new Date()
 }
 
 function PopulateUser(fUsername,fUserPassword,fFirstName,fLastName,fHeight,fWeight,fage){
@@ -38,12 +39,13 @@ function PopulateUser(fUsername,fUserPassword,fFirstName,fLastName,fHeight,fWeig
 
 function logExercise(fname,fDuration,fCBurnt){
        
-        let fCurrentUser = userList[i];
+        let fCurrentUser = userList[loggedInUser];
         let fObject = Object.create(exercise);
 
         fObject.exerciseName = fname;
         fObject.exerciseDuration = fDuration;
         fObject.calariesBurnt = fCBurnt;
+        fObject.exerciseDateTime=new Date();
 
         fCurrentUser.exercisesComplete.push(fObject);
 }
@@ -66,6 +68,32 @@ function stringValidation(checkVariable,checkUnique,checkMidSpace){
 
 function validateNumber(number){
     return /^[0-9]+(\.)?[0-9]*$/.test(number)
+}
+
+function addWorkout(){
+    if (loggedInUser != -1){
+
+        let workoutName = prompt('please input the name of your workout')
+        while(!stringValidation(workoutName,false,false)){
+            workoutName = prompt('please input the name of your workout');
+        }
+        workoutName = workoutName.trim();
+
+        let workoutDuration = prompt('please input the duration of your workout in minutes')
+        while(!validateNumber(workoutDuration)){
+            workoutDuration = prompt('please input the duration of your workout in minutes')
+        }
+        workoutDuration = parseFloat(workoutDuration);
+
+        let calariesBurnt = prompt('please input the amount of caleries you burnt during your workout')
+        while(!validateNumber(calariesBurnt)){
+            calariesBurnt = prompt('please input the amount of caleries you burnt during your workout')
+        }
+        calariesBurnt = parseFloat(calariesBurnt);
+
+        logExercise(workoutName,workoutDuration,calariesBurnt);
+        console.log(userList[loggedInUser].exercisesComplete[userList[loggedInUser].exercisesComplete.length-1])
+    }   
 }
 
 function makeUser(){
@@ -127,5 +155,7 @@ window.addEventListener('load', app);
 
       function app() {
             const JoinButton =document.getElementById('JoinButton');
+            const workoutButton = document.getElementById('WorkoutButton');
+            workoutButton.addEventListener('click',addWorkout)
             JoinButton.addEventListener('click',makeUser);
         }
