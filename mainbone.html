@@ -9,36 +9,236 @@
     href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
     rel="stylesheet"/>
 
-    <script src="main.js"></script>
-
-</head>
-<body>
+     <!-- allows for scroll animation -->
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <link rel="stylesheet" href="mainstyle.css" />
+    <title>web project</title>
+  </head>
+  <body>
     <header>
-     <nav>
-        <div class="nav_header">
-            <div class="nav_logo">
-                <!-- <a href="#">
-                    <img src="DALL·E 2025-02-17 08.17.18 - A minimal and modern fitness logo with a cut-out design. The logo should feature a clean and sharp silhouette of a dumbbell or barbell in solid black,.webp"
-                    alt="logo" class="logo-black">
-                </a> -->
-            </div>
-            <div class = "nav_menu_btn" id="menu-btn">
-                <i class="ri-menu-line"></i>
-            </div>
+      <nav>
+        <div class="nav__header">
+          <div class="nav__logo">
+            <a href="#">
+              <img src="LOgo (2).png" alt="logo" class="logo-white" />
+              <img src="LOgo (2).png" alt="logo" class="logo-dark" />
+            </a>
+          </div>
+          <div class="nav__menu__btn" id="menu-btn">
+            <i class="ri-menu-line"></i>
+          </div>
         </div>
-        <ul class="nav_links" id="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#service">Services</a></li>
-            <li><a href="#class">Classes</a></li>
-            <li><a href="#contact">Blog</a></li>
-            <li><a href="#">Join Now</a></li>
+        <ul class="nav__links" id="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#jump">Recent</a></li>
+          <li><a href="#service">Services</a></li>
+          <li><a href="#report">Report</a></li>
+          <li><a href="#inspire">Achievements</a></li>
+          <li><a href="#">Join Now</a></li>
         </ul>
-        <div class="nav_btns">
-            <button class="btn">Join Now</button>
+        <!-- <div class="nav__btns"> idea
+          <button class="btn">Join Now</button>
+        </div> -->
+      </nav>
+      <div class="section__container header__container" id="home">
+        <div class="header__content">
+          <h1>Welcome</h1>
+          <h2>Let's chase some goals</h2>
+          <p>
+           Lorem ipsum, dolor sit amet
+          </p>
+          <!-- <div class="header__btn">
+            <button class="btn">More</button>
+          </div> -->
         </div>
-    </nav>
+        <div class="header__image">
+          <img src="" alt="header" />
+        </div>
+      </div>
     </header>
+
+    <!-- They can see their excercises, and can choose to resume -->
+     <!-- Called it jump because they can jump right back in, dont blame me (i see you) -->
+    <div class="jump" id="jump">
+      <div class="section__container jump__container">
+        <div class="jump__image" id="quoteDisplay">
+         <p id="generateQuote"></p>  
+         <!-- generates a random quote -->
+        </div>
+        <div class="jump__content">
+          <h2 class="section__header">Your Exercises</h2>
+          <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam reprehenderit nesciunt quaer
+          at officiis tempora dolorem iusto tenetur ad, ut commodi, quibusdam, autem accusamus eaque sint numquam debitis laudantium sequi consectetur.
+          </p>
+          <!-- if this section is too small, the circle might be cut off, dont know why? -->
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur ab vel 
+            ut voluptatibus iste vitae, nostrum molestiae, harum ipsam nemo temporibus quis voluptates earum, esse neque suscipit minima accusamus quidem!
+          </p>
+          <div class="jump__btn">
+            <button class="btn" id="resume__btn">Resume</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- gives them more to choose from -->
+    <section class="service" id="service">
+      <div class="section__container service__container">
+        <h2 class="section__header">Recommended</h2>
+        <div class="service__grid">
+          <div class="service__card">
+            <span>01</span>
+            <h4>Running</h4>
+            <p>
+              Improves cardiovascular endurance, burns calories, strengthens leg muscles, and boosts mental health.
+            </p>
+            <button class="btn" id="add__btn">Add</button>
+          </div>
+          <div class="service__card">
+            <span>02</span>
+            <h4>Lifting</h4>
+            <p>
+              Increases muscle strength and mass, improves bone density, and enhances metabolism.
+            </p>
+            <button class="btn" id="add__btn">Add</button>
+          </div>
+          <div class="service__card">
+            <span>03</span>
+            <h4>Push-ups</h4>
+            <p>
+              Builds upper body strength (chest, shoulders, triceps), engages the core, and enhances endurance.
+            </p>
+            <button class="btn" id="add__btn">Add</button>
+          </div>
+          <div class="service__card">
+            <span>04</span>
+            <h4>Burpees</h4>
+            <p>
+              A full-body workout that boosts cardio fitness, burns fat, builds strength, and improves agility.
+            </p>
+            <button class="btn" id="add__btn">Add</button>  
+          </div>
+          <div class="service__image">
+            <img src="duderunning.jpg" alt="service" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- report(it has seperate buttons for the user to select from) -->
+    <section class="report" id="report">
+      <div class="section__container report__container">
+        <h2 class="section__header">Report</h2>
+        <div class="report__grid">
+          <div class="report__card">
+            <div>
+              <h4>Calories burned</h4>
+              <p>See how much calories you have burned</p>
+            </div>
+            <span>
+              <a href="#"><i class="ri-arrow-right-fill"></i></a>
+            </span>
+          </div>
+          <div class="report__card">
+            <div>
+              <h4>Statistics</h4>
+              <p>See your productivity displayed on a chart</p>
+            </div></a>
+            <span>
+              <a href="#"><i class="ri-arrow-right-fill"></i></a>
+            </span>
+          </div>
+          
+          <div class="report__card">
+            <div>
+              <h4>Full Report</h4>
+              <p>See your full report since your journey with us</p>
+            </div>
+            <span>
+              <a href="#"><i class="ri-arrow-right-fill"></i></a>
+            </span>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Called it inspire because it'll have badges and their goals -->
+    <section class="inspire__container" id="inspire">
+      <div class="inspire__image">
+        <img src="BigDudeRunning.jpg" alt="inspire" />
+      </div>
+      <div class="inspire__content">
+        <h2 class="section__header">Your Achievements</h2>
+        <p id="badges">
+          Your milestones will be displayed here, and how close you are in achieving them
+        </p>
+    <!-- their achievements displays their badges how far they are with their goals -->
+      </div>
+    </section>
+
+    <!-- another section for if we want any more info -->
+   
+
+    <!-- maybe have a banner, or we can just call it something else -->
+    <section class="banner" id="contact">
+      <div class="banner__content">
+      
+        <p>
+      </div>
+      <!-- <div class="banner__image">
+        <img src="assets/banner.png" alt="banner" />
+      </div> -->
+    </section>
+
+
+    <!-- footer with more information on where to find us -->
+    <section class="footer">
+      <div class="section__container footer__container">
+        <div class="footer__col">
+          <a href="#" class="footer__logo">
+            <img src="LOGOwhite.png" alt="logo" />
+          </a>
+          <ul class="footer__links">
+            <li>
+              <a href="#">
+                <span><i class="ri-phone-line"></i></span> +27 73 980 9093
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span><i class="ri-map-pin-line"></i></span> Stellenbosch
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span><i class="ri-mail-line"></i></span> Momentum
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Quick Links</h4>
+          <ul class="footer__links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Classes</a></li>
+            <li><a href="#">Gallery</a></li>
+            <li><a href="#">Membership</a></li>
+          </ul>
+        </div>
+       
+      </div>
+      <div class="footer__bar">
+        Copyright © 2024 
+      </div>
+    </section>
+
     
-</body>
+    <script src="main.js"></script>
+  </body>
 </html>
