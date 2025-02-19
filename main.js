@@ -1,6 +1,12 @@
 let loggedInUser = -1;
 let userList=[];
-
+let exerciseList = []
+function Exercise(){
+    this.name='',
+    this.calariesBurntPerMinute=0.0,
+    this.description='',
+    this.
+}
 let Account = {
     userName : "",
     userPassword :"",
