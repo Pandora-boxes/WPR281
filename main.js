@@ -600,7 +600,6 @@ function loadMainBone(){
           <li><a href="#inspire">Achievements</a></li>
           <li><a href="#">Join Now</a></li>
         </ul>
-<<<<<<< HEAD
         <!-- <div class="nav__btns"> idea
           <button class="btn">Join Now</button>
         </div> -->
@@ -615,11 +614,6 @@ function loadMainBone(){
           <!-- <div class="header__btn">
             <button class="btn">More</button>
           </div> -->
-=======
-        <div class="nav_btns">
-            <button class="btn" id="JoinButton">Join Now</button>
-            <button class="btn" id="WorkoutButton">add Workout</button>
->>>>>>> 5699cce7669eb5e491183d51380eb832048d8f0b
         </div>
         <div class="header__image">
           <img src="" alt="header" />
