@@ -19,16 +19,18 @@
       <nav>
         <div class="nav__header">
           <div class="nav__logo">
-            <a href="#">
+           
               <img src="LOgo (2).png" alt="logo" class="logo-white" />
               <img src="LOgo (2).png" alt="logo" class="logo-dark" />
-            </a>
+            
           </div>
           <div class="nav__menu__btn" id="menu-btn">
             <i class="ri-menu-line"></i>
           </div>
         </div>
         <ul class="nav__links" id="nav-links">
+          <!-- these hrefs we dont have to change, it allows for automatic
+               scrolling to these sections on the home page -->
           <li><a href="#home">Home</a></li>
           <li><a href="#jump">Recent</a></li>
           <li><a href="#service">Services</a></li>
@@ -145,16 +147,16 @@
               <p>See how much calories you have burned</p>
             </div>
             <span>
-              <a href="#"><i class="ri-arrow-right-fill"></i></a>
+              <button class="calorieReport"><i class="ri-arrow-right-fill"></i></button>
             </span>
           </div>
           <div class="report__card">
             <div>
               <h4>Statistics</h4>
               <p>See your productivity displayed on a chart</p>
-            </div></a>
+            </div>
             <span>
-              <a href="#"><i class="ri-arrow-right-fill"></i></a>
+              <button class="chartReport"><i class="ri-arrow-right-fill"></i></button>
             </span>
           </div>
           
@@ -164,7 +166,7 @@
               <p>See your full report since your journey with us</p>
             </div>
             <span>
-              <a href="#"><i class="ri-arrow-right-fill"></i></a>
+              <button class="fullReport"><i class="ri-arrow-right-fill"></i></button>
             </span>
           </div>
           
@@ -230,11 +232,9 @@
         <div class="footer__col">
           <h4>Quick Links</h4>
           <ul class="footer__links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Classes</a></li>
-            <li><a href="#">Gallery</a></li>
-            <li><a href="#">Membership</a></li>
+            <li><button class="back_to_home">Home</button></li>
+            <li><button class="back_to_excercises">Excercises</button></li>
+            <li><button class="back_to_report">Report</button></li>
           </ul>
         </div>
        
