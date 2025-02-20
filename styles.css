@@ -23,7 +23,7 @@ body {
     text-align: center;
 }
 body {
-    background-image: url('/WPR_PROJECT/Attachments/Background.jpg');
+    background-image: url('/Background.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
