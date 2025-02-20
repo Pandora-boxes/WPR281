@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Momentum Landing 4</title>
+    <link rel="stylesheet" href="land4.css">
+    
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="/Logp.png" alt="Momentum Logo">  <span class="mom">Momentum</span>
+        </div>
+        <div class="menu">
+            <a href="#"><span>Login in</span></a>
+        </div>
+    </header>
+    <h1>Last few details</h1>
+
+
+    <form action="submit" method="POST" class="grid" id="detailsForm">
+        <section class="form">
+            <h2>What's your height?</h2>
+            <br>
+            <div class="input-container">
+                <label for="heightInput" id="heightLabel">Height (cm)</label>
+                <br>
+                <input type="number" id="heightInput" name="height" placeholder="___ cm" required>
+            </div>
+        </section>
+
+        <section class="form">
+            <h2>What's your weight?</h2>
+            <br>
+            <div class="input-container">
+                <label for="weightInput" id="weightLabel">Weight (kgs)</label>
+                <br>
+                <input type="number" id="weightInput" name="weight" placeholder="___ kgs" required>
+            </div>
+        </section>
+
+        <section class="form">
+            <h2>What's your name and surname?</h2>
+            <br>
+            <div class="input-container">
+                <label for="nameInput" id="nameLabel">Name</label>
+                <br>
+                <input type="text" id="nameInput" name="name" placeholder="Jon" required>
+                <br>
+                <label for="surnameInput" id="surnameLabel">Surname</label>  
+                <br>
+                <input type="text" id="surnameInput" name="surname" placeholder="Snow" required>
+            </div>
+        </section>
+
+        <section class="form">
+            <h2>What's your contact details?</h2>
+            <br>
+            <div class="input-container">
+                <label for="mobileInput" id="mobileLabel">Mobile Number</label>
+                <br>
+                <input type="tel" id="mobileInput" name="mobile" placeholder="093 734 5012" required>
+                <br>
+                <label for="emailInput" id="emailLabel">Email Address</label>
+                <br>
+                <input type="email" id="emailInput" name="email" placeholder="Jon.Snow@gmail.com" required>
+            </div>    
+        </section>
+        <div class="button">
+                <button type="submit" id="continueBtn" class="continue-btn" >Continue →</button>
+        </div>
+    </form> 
+
+    <br>
+    <br> 
+    <footer>
+        <div class="footer-content">
+            <div class="logo2">
+                <p>© Momentum 2025</p>
+                <img src="/Logp.png" alt="Momentum Logo"> 
+            </div>
+        </div>
+    </footer>
+</body>
+<script src="script_L4.js"></script>
+</html>
