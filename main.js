@@ -1,4 +1,4 @@
-const menuBtn = document.getElementById("menu-btn");
+/*const menuBtn = document.getElementById("menu-btn");
 const navLinks = document.getElementById("nav-links");
 const menuBtnIcon = menuBtn.querySelector("i");
 
@@ -102,14 +102,14 @@ document.addEventListener("DOMContentLoaded", function () {
   getRandomQuote(); // Show a random quote on page load
   setInterval(getRandomQuote, 8000);
 });
+*/
 let loggedInUser = -1;
 let userList=[];
 let exerciseList = []
 function Exercise(){
     this.name='',
     this.calariesBurntPerMinute=0.0,
-    this.description='',
-    this.
+    this.description=''
 }
 let Account = {
     userName : "",
@@ -261,11 +261,72 @@ function makeUser(){
     console.log(userList[loggedInUser])
 }
 
-window.addEventListener('load', app);
+window.addEventListener('load',loadIndex);
 
-      function app() {
-            const JoinButton =document.getElementById('JoinButton');
-            const workoutButton = document.getElementById('WorkoutButton');
-            workoutButton.addEventListener('click',addWorkout)
-            JoinButton.addEventListener('click',makeUser);
-        }
+    function loadIndex(){
+    let newpagebody =  `   <header>
+        <div class="logo">
+            <img src="/Logp.png" alt="Momentum Logo">  <span class="mom">Momentum</span>
+        </div>
+        <div class="menu">
+            <a href="#"><span>Login in</span></a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Become more than you are</h1>
+        <p>Train with us</p>
+    </section>
+
+    <section class="age-groups">
+        <a class="index-age-card">
+            <img src="/18-29.png" alt="Age 18-29">
+            <p>Age: 18-29</p>
+        </a>
+        <a class="index-age-card">
+            <img src="/30-39.png" alt="Age 30-39">
+            <p>Age: 30-39</p>
+        </a>
+        <a class="index-age-card">
+            <img src="/40-49.png" alt="Age 40-49">
+            <p>Age: 40-49</p>
+        </a>
+        <a class="index-age-card">
+            <img src="/50+.png" alt="Age 50+">
+            <p>Age: 50+</p>
+        </a>
+    </section>
+    <section class="terms-section">
+        <label>
+            <input type="checkbox" id="termsCheckbox">
+            By continuing, you agree to our <a href="#">Terms of service</a> and acknowledge our <a href="#">Privacy policy</a> and <a href="#">Cookie policy</a>
+        </label>
+        <br>
+        <label>
+            <input type="checkbox" id="updatesCheckbox">
+            I would like to receive updates about products, services, and special offers from Momentum via email
+        </label>
+        <br>
+        <div id="errorMessage" class="error-message" style="display: none;">
+            ❗ To continue, please accept our terms and policies
+        </div>
+    </section>
+    <footer>
+        <div class="footer-content">
+            <div class="logo2">
+                <p>© Momentum 2025</p>
+                <img src="/Logp.png" alt="Momentum Logo"> 
+            </div>
+        </div>
+    </footer>  `;
+
+    let newPageHeader = `<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Momentum Landing 1</title>
+    <link rel="stylesheet" href="styles.css">`;
+
+    let documentHead = document.querySelector('head');
+    let documentBody = document.querySelector('body');
+    documentHead.innerHTML=newPageHeader;
+    documentBody.innerHTML = newpagebody;
+};
