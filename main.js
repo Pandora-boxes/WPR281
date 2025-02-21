@@ -187,19 +187,20 @@ function validateNumber(number){
 
 function addUser(fusername,fUserPassword){
     
-    userList.push(PopulateUser(fusername,fUserPassword,usertemp.firstName,usertemp.lastName,usertemp.height,usertemp.weight,usertemp.age,usertemp.email,usertemp.PhoneNumber));
+    userList.push(PopulateUser(fusername,fUserPassword,usertemp.firstName,usertemp.lastName,usertemp.height,usertemp.weight,usertemp.age,usertemp.userEmail,usertemp.userPhoneNumber));
         loggedInUser =-1;
 }
 
 window.addEventListener('load',loadIndex);
 
 function loadIndex(){
+    usertemp=null;  
     let newpagebody =  `   <header>
         <div class="logo">
-            <img src="/Logp.png" alt="Momentum Logo">  <span class="mom">Momentum</span>
+            <img src="/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
         <div class="menu">
-            <a href="#"><span>Login in</span></a>
+            <a id="Login"><span>Login in</span></a>
         </div>
     </header>
 
@@ -264,7 +265,9 @@ function loadIndex(){
     let landing2Button2 = documentBody.querySelector('#age-card-2');
     let landing2Button3 = documentBody.querySelector('#age-card-3');
     let landing2Button4 = documentBody.querySelector('#age-card-4');
+    let loginButton = documentBody.querySelector('#Login');
 
+    loginButton.addEventListener('click',loadLogin);
     landing2Button1.addEventListener('click',e=>{
         usertemp = PopulateUser('','','','','','',"18-29",'','');
         loadLanding2()});
@@ -280,15 +283,16 @@ function loadIndex(){
     landing2Button4.addEventListener('click',e=>{
         usertemp = PopulateUser('','','','','','',"50+",'','');
         loadLanding2()});
+    
 };
 
 function loadLanding2(){
     let newpagebody = `    <header>
         <div class="logo">
-            <img src="/Logp.png" alt="Momentum Logo">  <span class="mom">Momentum</span>
+            <img src="/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
         <div class="menu">
-            <a href="#"><span>Login in</span></a>
+            <a id="Login"><span>Login in</span></a>
         </div>
     </header>
 
@@ -340,16 +344,21 @@ function loadLanding2(){
     documentBody.innerHTML = newpagebody;
 
     let landing3Button = documentBody.querySelector('.landing2-body-card');
+    let loginButton = documentBody.querySelector('#Login');
+    let logoButton = documentBody.querySelector('#logo');
+
+    logoButton.addEventListener('click',loadIndex);
+    loginButton.addEventListener('click',loadLogin);
     landing3Button.addEventListener('click',loadLanding3);
 }
 
 function loadLanding3(){
     let newpagebody =`<header>
         <div class="logo">
-            <img src="/Logp.png" alt="Momentum Logo">  <span class="mom">Momentum</span>
+            <img src="/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
         <div class="menu">
-            <a href="#"><span>Login in</span></a>
+            <a id="Login"><span>Login in</span></a>
         </div>
     </header>
 
@@ -395,16 +404,21 @@ function loadLanding3(){
     documentBody.innerHTML = newpagebody;
 
     let landing3Button = documentBody.querySelector('.landing3-goal-card');
+    let loginButton = documentBody.querySelector('#Login');
+    let logoButton = documentBody.querySelector('#logo');
+
+    logoButton.addEventListener('click',loadIndex);
+    loginButton.addEventListener('click',loadLogin);
     landing3Button.addEventListener('click',loadLanding4);
 }
 function loadLanding4(){
     let newpagebody = `
     <header>
         <div class="logo">
-            <img src="/Logp.png" alt="Momentum Logo">  <span class="mom">Momentum</span>
+            <img src="/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
         <div class="menu">
-            <a href="#"><span>Login in</span></a>
+            <a id="Login"><span>Login in</span></a>
         </div>
     </header>
     <h1>Last few details</h1>
@@ -485,6 +499,11 @@ function loadLanding4(){
     documentBody.innerHTML = newpagebody;
 
     let landing3Button = documentBody.querySelector('#detailsForm');
+    let loginButton = documentBody.querySelector('#Login');
+    let logoButton = documentBody.querySelector('#logo');
+
+    logoButton.addEventListener('click',loadIndex);
+    loginButton.addEventListener('click',loadLogin);
     landing3Button.addEventListener('submit',function(e) {
         e.preventDefault();
         if(this.checkValidity()) {
@@ -510,10 +529,10 @@ function loadLanding5(){
     `;
     let newpagebody = ` <header>
         <div class="logo">
-            <img src="/Logp.png" alt="Momentum Logo">  <span class="mom">Momentum</span>
+            <img src="/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
         <div class="menu">
-            <a href="#"><span>Login in</span></a>
+            <a id="Login"><span>Login in</span></a>
         </div>
     </header>
     <h1>Finally you must create a username and a password</h1>
@@ -557,9 +576,14 @@ function loadLanding5(){
     documentBody.innerHTML = newpagebody;
 
     let landing3Button = documentBody.querySelector('#detailsForm2');
+    let loginButton = documentBody.querySelector('#Login');
+    let logoButton = documentBody.querySelector('#logo');
+
+    logoButton.addEventListener('click',loadIndex);
+    loginButton.addEventListener('click',loadLogin);
     landing3Button.addEventListener('submit',function(e) {
         e.preventDefault();
-
+    
         let username = documentBody.querySelector('#usernameInput');
         if (!stringValidation(username.value,true,true)){
             username.value = null ;
@@ -570,9 +594,7 @@ function loadLanding5(){
             let password = documentBody.querySelector('#passwordInput')
             addUser(username.value,password.value);
             usertemp=null;
-            console.log(userList[userList.length-1]);
-            //send user to landingPage
-            loadMainBone();
+            loadIndex();
         }
     });
 };
@@ -593,12 +615,13 @@ function loadMainBone(){
         <ul class="nav__links" id="nav-links">
           <!-- these hrefs we dont have to change, it allows for automatic
                scrolling to these sections on the home page -->
-          <li><a href="#home">Home</a></li>
+          <li><a id="home">Home</a></li>
           <li><a href="#jump">Recent</a></li>
           <li><a href="#service">Services</a></li>
+          <li><a id="logOut">LogOut</a></li>
           <li><a href="#report">Report</a></li>
           <li><a href="#inspire">Achievements</a></li>
-          <li><a href="#">Join Now</a></li>
+          
         </ul>
         <!-- <div class="nav__btns"> idea
           <button class="btn">Join Now</button>
@@ -819,4 +842,104 @@ function loadMainBone(){
     documentHead.innerHTML=newPageHeader;
     documentBody.innerHTML = newpagebody;
 
+    let logOutButton = document.querySelector("#logOut");
+    logOutButton.addEventListener('click', e=>{
+        loggedInUser=-1;
+        loadIndex();
+    })
+
 };
+
+function loadLogin(){
+    console.log(userList);
+    usertemp=null;
+    let newPageHeader = `<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Momentum Landing 5</title>
+    <link rel="stylesheet" href="land5.css">
+    `;
+    let newpagebody = ` <header>
+        <div class="logo">
+            <img src="/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
+        </div>
+        <div class="menu">
+            <a ><span>Login in</span></a>
+        </div>
+    </header>
+    <h1>Enter your username and your password</h1>
+
+    <form action="submit" method="POST" class="grid" id="detailsForm2">
+        <section class="form">
+            <br>
+            <div class="input-container">
+                <label for="usernameInput" id="usernameLabel"><h2>Enter a username</h2></label>
+                <br>
+                <input type="text" id="usernameInput" name="username" placeholder="username" required>
+            </div>
+        </section>
+
+        <section class="form">
+            <br>
+            <div class="input-container">
+                <label for="passwordInput" id="passwordLabel"><h2>Enter a password</h2></label>
+                <br>
+                <input type="password" id="passwordInput" name="password" placeholder="@password123" required>
+            </div>
+        </section>
+
+        <div class="button">
+            <button type="submit" id="continueBtn" class="continue-btn" >Continue →</button>
+    </div>
+    </form>
+
+    <footer>
+        <div class="footer-content">
+            <div class="logo2">
+                <p>© Momentum 2025</p>
+                <img src="/Logp.png" alt="Momentum Logo"> 
+            </div>
+        </div>
+    </footer>`;
+
+    let documentHead = document.querySelector('head');
+    let documentBody = document.querySelector('body');
+    documentHead.innerHTML=newPageHeader;
+    documentBody.innerHTML = newpagebody;
+    
+
+    let landing3Button = documentBody.querySelector('#detailsForm2');
+    let logoButton = documentBody.querySelector('#logo');
+
+    logoButton.addEventListener('click',loadIndex);
+    landing3Button.addEventListener('submit',function(e) {
+        e.preventDefault();
+
+        let username = documentBody.querySelector('#usernameInput');
+        let password = documentBody.querySelector('#passwordInput');
+        let found = false;
+        for (let i = 0;i < userList.length ;i++){
+            if (userList[i].userName==username.value){
+                found =true;
+                if(userList[i].userPassword==password.value){
+                    loggedInUser=i;
+                }else{
+                    alert("incorrect username or password");
+                    password.value=null;
+                    username.value=null;
+                }
+                break;
+            }
+        }
+
+        if (!found){
+            alert("incorrect username or password");
+            password.value=null;
+            username.value=null;
+        }
+
+        if(this.checkValidity()) {
+            loadMainBone();
+        }
+    });
+};
+
