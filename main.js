@@ -310,6 +310,17 @@ let Account = {
     datejoined: new Date(),
     weightLog : [[0,new Date()]]
 }
+function addFavExercise(exerciseGroup,exerciseName){
+  let currentUser = userList[loggedInUser];
+  currentUser.favoriteExercises.push([exerciseGroup,exerciseName]);
+}
+function removeFavExercise(exerciseGroup,exerciseName){
+  let currentUser = userList[loggedInUser];
+  let arrayFavExercises = currentUser.favoriteExercises;
+  arrayFavExercises=arrayFavExercises.filter((e)=>e!=[exerciseGroup,exerciseName])
+  currentUser.favoriteExercises=arrayFavExercises;
+}
+
 
 function addExercise(exerciseGroup,exerciseName){
   let currentUser = userList[loggedInUser];
@@ -383,9 +394,17 @@ function addExercise(exerciseGroup,exerciseName){
 
   }
   currentUser.exercisesComplete.push([exerciseObj,new Date]);
-
-  
 };
+
+function exerciseTypeToOptionsList(exerciseGroup){
+  let outString='';
+let arrayOptions = exerciseList.filter(e=>e[0].exerciseGroup==exerciseGroup);
+arrayOptions=arrayOptions[0];
+arrayOptions.forEach(e => outString+=`<option value="${e.name}">${e.name}</option>\n`);
+console.log(outString);
+return outString;
+};
+exerciseTypeToOptionsList("Stretches")
 
 function PopulateUser(fUsername,fUserPassword,fFirstName,fLastName,fHeight,fWeight,fage,fEmail,fPhoneNumber){
     let newUser = Object.create(Account);
