@@ -404,7 +404,6 @@ arrayOptions.forEach(e => outString+=`<option value="${e.name}">${e.name}</optio
 console.log(outString);
 return outString;
 };
-exerciseTypeToOptionsList("Stretches")
 
 function PopulateUser(fUsername,fUserPassword,fFirstName,fLastName,fHeight,fWeight,fage,fEmail,fPhoneNumber){
     let newUser = Object.create(Account);
