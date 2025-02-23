@@ -454,7 +454,7 @@ function loadIndex(){
     usertemp=null;  
     let newpagebody =  `   <header>
         <div class="logo">
-            <img src="/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
+            <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
         <div class="menu">
             <a id="Login"><span>Login in</span></a>
@@ -468,19 +468,19 @@ function loadIndex(){
 
     <section class="age-groups">
         <a class="index-age-card" id="age-card-1">
-            <img src="/18-29.png" alt="Age 18-29">
+            <img src="images/18-29.png" alt="Age 18-29">
             <p>Age: 18-29</p>
         </a>
         <a class="index-age-card" id="age-card-2">
-            <img src="/30-39.png" alt="Age 30-39">
+            <img src="images/30-39.png" alt="Age 30-39">
             <p>Age: 30-39</p>
         </a>
         <a class="index-age-card" id="age-card-3">
-            <img src="/40-49.png" alt="Age 40-49">
+            <img src="images/40-49.png" alt="Age 40-49">
             <p>Age: 40-49</p>
         </a>
         <a class="index-age-card" id="age-card-4">
-            <img src="/50+.png" alt="Age 50+">
+            <img src="images/50+.png" alt="Age 50+">
             <p>Age: 50+</p>
         </a>
     </section>
@@ -503,7 +503,7 @@ function loadIndex(){
         <div class="footer-content">
             <div class="logo2">
                 <p>© Momentum 2025</p>
-                <img src="/Logp.png" alt="Momentum Logo"> 
+                <img src="images/Logp.png" alt="Momentum Logo"> 
             </div>
         </div>
     </footer>  `;
@@ -556,7 +556,7 @@ function loadIndex(){
 function loadLanding2(){
     let newpagebody = `    <header>
         <div class="logo">
-            <img src="/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
+            <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
         <div class="menu">
             <a id="Login"><span>Login in</span></a>
@@ -570,21 +570,21 @@ function loadLanding2(){
 
             <a class="landing2-body-card">
                 <div class="option">
-                    <img src="/Slim.webp" alt="Slim Body Type">
+                    <img src="images/Slim.webp" alt="Slim Body Type">
                     <span class="body">Slim</span>
                </div>
             </a>
 
             <a class="landing2-body-card">
                 <div class="option">
-                    <img src="/Average.webp" alt="Average Body Type">
+                    <img src="images/Average.webp" alt="Average Body Type">
                     <span class="body">Average</span>
                 </div>
             </a>
 
             <a class="landing2-body-card">
                 <div class="option">
-                    <img src="/Heavy.webp" alt="Heavy Body Type">
+                    <img src="images/Heavy.webp" alt="Heavy Body Type">
                     <span class="body">Heavy</span>
                 </div>
             </a>
@@ -596,7 +596,7 @@ function loadLanding2(){
         <div class="footer-content">
             <div class="logo2">
                 <p>© Momentum 2025</p>
-                <img src="/Logp.png" alt="Momentum Logo"> 
+                <img src="images/Logp.png" alt="Momentum Logo"> 
             </div>
         </div>
     </footer>
@@ -625,7 +625,7 @@ function loadLanding2(){
 function loadLanding3(){
     let newpagebody =`<header>
         <div class="logo">
-            <img src="/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
+            <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
         <div class="menu">
             <a id="Login"><span>Login in</span></a>
@@ -637,19 +637,19 @@ function loadLanding3(){
         <div class="goal-type-options">
             <a class="landing3-goal-card">
                 <div class="option">
-                    <img src="/Muscle Gain.png" alt="Muscle Gain Type">
+                    <img src="images/Muscle Gain.png" alt="Muscle Gain Type">
                     <span class="goal">Muscle Gain</span>
                 </div>
             </a>
             <a class="landing3-goal-card">
                 <div class="option">
-                    <img src="/Weight Loss.png" alt="Weight loss Type">
+                    <img src="images/Weight Loss.png" alt="Weight loss Type">
                     <span class="goal">Weight loss</span>
                 </div>
             </a>
             <a class="landing3-goal-card">
                 <div class="option">
-                    <img src="/Get Shredded.png" alt="Shredded Type">
+                    <img src="images/Get Shredded.png" alt="Shredded Type">
                     <span class="goal">Get Shredded</span>
                 </div>
             </a>
@@ -660,7 +660,7 @@ function loadLanding3(){
         <div class="footer-content">
             <div class="logo2">
                 <p>© Momentum 2025</p>
-                <img src="/Logp.png" alt="Momentum Logo"> 
+                <img src="images/Logp.png" alt="Momentum Logo"> 
             </div>
         </div>
     </footer>`;
@@ -687,7 +687,7 @@ function loadLanding4(){
     let newpagebody = `
     <header>
         <div class="logo">
-            <img src="/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
+            <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
         <div class="menu">
             <a id="Login"><span>Login in</span></a>
@@ -755,7 +755,7 @@ function loadLanding4(){
         <div class="footer-content">
             <div class="logo2">
                 <p>© Momentum 2025</p>
-                <img src="/Logp.png" alt="Momentum Logo"> 
+                <img src="images/Logp.png" alt="Momentum Logo"> 
             </div>
         </div>
     </footer>`;
@@ -801,7 +801,7 @@ function loadLanding5(){
     `;
     let newpagebody = ` <header>
         <div class="logo">
-            <img src="/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
+            <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
         <div class="menu">
             <a id="Login"><span>Login in</span></a>
@@ -837,7 +837,7 @@ function loadLanding5(){
         <div class="footer-content">
             <div class="logo2">
                 <p>© Momentum 2025</p>
-                <img src="/Logp.png" alt="Momentum Logo"> 
+                <img src="images/Logp.png" alt="Momentum Logo"> 
             </div>
         </div>
     </footer>`;
@@ -876,8 +876,8 @@ function loadMainBone(){
         <div class="nav__header">
           <div class="nav__logo">
            
-              <img src="LOgo (2).png" alt="logo" class="logo-white" />
-              <img src="LOgo (2).png" alt="logo" class="logo-dark" />
+              <img src="images/LOgo (2).png" alt="logo" class="logo-white" />
+              <img src="images/LOgo (2).png" alt="logo" class="logo-dark" />
             
           </div>
           <div class="nav__menu__btn" id="menu-btn">
@@ -980,7 +980,7 @@ function loadMainBone(){
             <button class="btn" id="add__btn">Add</button>  
           </div>
           <div class="service__image">
-            <img src="duderunning.jpg" alt="service" />
+            <img src="images/duderunning.jpg" alt="service" />
           </div>
         </div>
       </div>
@@ -1029,7 +1029,7 @@ function loadMainBone(){
     <!-- Called it inspire because it'll have badges and their goals -->
     <section class="inspire__container" id="inspire">
       <div class="inspire__image">
-        <img src="BigDudeRunning.jpg" alt="inspire" />
+        <img src="images/BigDudeRunning.jpg" alt="inspire" />
       </div>
       <div class="inspire__content">
         <h2 class="section__header">Your Achievements</h2>
@@ -1060,7 +1060,7 @@ function loadMainBone(){
       <div class="section__container footer__container">
         <div class="footer__col">
           <a href="#" class="footer__logo">
-            <img src="LOGOwhite.png" alt="logo" />
+            <img src="images/LOGOwhite.png" alt="logo" />
           </a>
           <ul class="footer__links">
             <li>
@@ -1236,7 +1236,7 @@ function loadLogin(){
     `;
     let newpagebody = ` <header>
         <div class="logo">
-            <img src="/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
+            <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
         <div class="menu">
             <a ><span>Login in</span></a>
@@ -1272,7 +1272,7 @@ function loadLogin(){
         <div class="footer-content">
             <div class="logo2">
                 <p>© Momentum 2025</p>
-                <img src="/Logp.png" alt="Momentum Logo"> 
+                <img src="images/Logp.png" alt="Momentum Logo"> 
             </div>
         </div>
     </footer>`;
