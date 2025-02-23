@@ -310,7 +310,8 @@ let Account = {
     datejoined: new Date(),
     weightLog : [[0,new Date()]],
     achivements:[]
-}
+};
+
 function addFavExercise(exerciseGroup,exerciseName){
   let currentUser = userList[loggedInUser];
   currentUser.favoriteExercises.push([exerciseGroup,exerciseName]);
