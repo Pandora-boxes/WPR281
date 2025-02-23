@@ -523,23 +523,33 @@ function loadIndex(){
     let landing2Button3 = documentBody.querySelector('#age-card-3');
     let landing2Button4 = documentBody.querySelector('#age-card-4');
     let loginButton = documentBody.querySelector('#Login');
-
+    let checkbox = documentBody.querySelector("#termsCheckbox");
+  
     loginButton.addEventListener('click',loadLogin);
     landing2Button1.addEventListener('click',e=>{
         usertemp = PopulateUser('','','','','','',"18-29",'','');
-        loadLanding2()});
+        if(checkbox.checked==true)loadLanding2()
+          else alert("please agree to our terms and conditions before continuing")
+        });
     
     landing2Button2.addEventListener('click',e=>{
         usertemp = PopulateUser('','','','','','','30-39','','');
-        loadLanding2()});
+        if(checkbox.checked==true){loadLanding2()}
+          else alert("please agree to our terms and conditions before continuing")
+      });
 
     landing2Button3.addEventListener('click',e=>{
         usertemp = PopulateUser('','','','','','',"40-49",'','');
-        loadLanding2()});
+        if(checkbox.checked==true)loadLanding2()
+          else alert("please agree to our terms and conditions before continuing")
+      });
 
     landing2Button4.addEventListener('click',e=>{
         usertemp = PopulateUser('','','','','','',"50+",'','');
-        loadLanding2()});
+        if(checkbox.checked==true)loadLanding2()
+          else alert("please agree to our terms and conditions before continuing")
+      
+      });
     
 };
 
