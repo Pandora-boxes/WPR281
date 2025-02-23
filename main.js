@@ -308,7 +308,8 @@ let Account = {
     weight : null,
     age : null ,
     datejoined: new Date(),
-    weightLog : [[0,new Date()]]
+    weightLog : [[0,new Date()]],
+    achivements:[];
 }
 function addFavExercise(exerciseGroup,exerciseName){
   let currentUser = userList[loggedInUser];
