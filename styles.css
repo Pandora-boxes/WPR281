@@ -146,7 +146,7 @@ h1 {
     margin: 0 auto;
 }
 
-.age-card {
+.index-age-card {
     background: #222;
     border-radius: 0.625rem;
     padding: 0.9375rem;
@@ -157,16 +157,16 @@ h1 {
     transition: transform 0.2s ease-in-out;
 }
 
-.age-card:hover {
+.index-age-card:hover {
     transform: scale(1.05); 
 }
 
-.age-card img {
+.index-age-card img {
     width: 100%;
     border-radius: 0.625rem;
 }
 
-.age-card p {
+.index-age-card p {
     margin-top: 0.625rem;
     font-size: 1.125rem;
 }
@@ -198,7 +198,7 @@ h1 {
     max-width: 75rem;
     padding: 0 1.25rem;
 }
-.age-card p {
+.index-age-card p {
     margin-top: 10px;
     font-size: 18px;
     font-weight: bold;

@@ -42,7 +42,7 @@ body::before {
     background-color: rgba(0, 0, 0, 0.8);
     z-index: -1;
 }
-.goal-card {
+.landing3-goal-card {
     background: #222;
     border-radius: 0.625rem;
     padding: 0.938rem;
@@ -52,16 +52,16 @@ body::before {
     color: white;
     transition: transform 0.2s ease-in-out;
 }
-.goal-card:hover {
+.landing3-goal-card:hover {
     transform: scale(1.05); 
 }
 
-.goal-card img {
+.landing3-goal-card img {
     width: 100%;
     border-radius: 0.625rem;
 }
 
-.goal-card p {
+.landing3-goal-card p {
     margin-top: 0.625rem;
     font-size: 1.125rem;
     font-weight: bold;
