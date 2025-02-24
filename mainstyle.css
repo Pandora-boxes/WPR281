@@ -21,15 +21,15 @@
 .section__container {
   max-width: var(--max-width);
   margin: auto;
-  padding: 5rem 1rem;
+  padding: 500% 100%;
 }
 
 .section__header {
   position: relative;
   isolation: isolate;
-  font-size: 2rem;
-  line-height: 2.75rem;
-  max-width: 400px;
+  font-size: 200%;
+  line-height: 275%;
+  max-width: 2500%;
 }
 
 .section__header::before {
