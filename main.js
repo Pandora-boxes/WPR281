@@ -9,147 +9,156 @@ let exerciseList = [
   cardio= [
     {
       name: "Jogging",
-      time: 15,
-      distance: 1,
-      speed: 6,
-      caloriesBurned: 250,
+      time: 0,
+      distance: 0,
+      speed: 0,
+      caloriesBurned: 0,
       intensity: "Moderate",
       exerciseGroup: "Cardio"
     },
     {
       name: "Cycling",
-      time: 30,
-      distance: 10,
-      speed: 20,
-      caloriesBurned: 400,
+      time: 0,
+      distance: 0,
+      speed: 0,
+      caloriesBurned: 0,
       intensity: "High",
       exerciseGroup: "Cardio"
     },
     {
       name: "JumpRope",
-      time: 10,
-      reps: 1000,
-      speed: 100,
-      caloriesBurned: 150,
+      time: 0,
+      reps: 0,
+      speed: 0,
+      caloriesBurned: 0,
       intensity: "High",
       exerciseGroup: "Cardio"
     },
     {
       name: "Rowing",
-      time: 20,
-      distance: 4,
-      speed: 12,
-      caloriesBurned: 300,
+      time: 0,
+      distance: 0,
+      speed: 0,
+      caloriesBurned: 0,
       intensity: "Moderate",
       exerciseGroup: "Cardio"
     },
     {
       name: "Swimming",
-      time: 25,
-      distance: 1,
-      speed: 2,
-      caloriesBurned: 350,
+      time: 0,
+      distance: 0,
+      speed: 0,
+      caloriesBurned: 0 ,
       intensity: "High",
       exerciseGroup: "Cardio"
     },
     {
       name: "StairClimbing",
-      time: 15,
-      distance: 50,
-      speed: 3,
+      time: 0,
+      distance: 0,
+      speed: 0,
       caloriesBurned: 200,
       intensity: "Moderate",
       exerciseGroup: "Cardio"
     },
     {
-      name: "Sprints",
-      time: 1,
+      name: "Sprints 100m",
+      time: 0,
       distance: 100,
-      speed: 30,
-      caloriesBurned: 50,
+      speed: 0,
+      caloriesBurned: 0,
       intensity: "Max",
       exerciseGroup: "Cardio"
     },
     {
-      name: "BattleRopes",
-      time: 5,
-      reps: 300,
-      speed: 60,
-      caloriesBurned: 150,
-      intensity: "High",
+      name: "Sprints 200m",
+      time: 0,
+      distance: 200,
+      speed: 0,
+      caloriesBurned: 0,
+      intensity: "Max",
+      exerciseGroup: "Cardio"
+    },
+    {
+      name: "Sprints 400m",
+      time: 0,
+      distance: 400,
+      speed: 0,
+      caloriesBurned: 0,
+      intensity: "Max",
       exerciseGroup: "Cardio"
     }
   ],
   bodyWeightExercises= [
     {
       name: "PushUps",
-      time: 1,
-      reps: 30,
-      maxReps: 15,
-      caloriesBurned: 50,
+      time: 0,
+      reps: 0,
+      maxReps: 0,
+      caloriesBurned: 0,
       intensity: "Moderate",
       exerciseGroup: "BodyWeight"
     },
     {
       name: "PullUps",
-      time: 1,
-      reps: 10,
-      maxReps: 5,
-      caloriesBurned: 40,
+      time: 0,
+      reps: 0,
+      maxReps: 0,
+      caloriesBurned: 0,
       intensity: "High",
       exerciseGroup: "BodyWeight"
     },
     {
       name: "Squats",
-      time: 1,
-      reps: 50,
-      maxReps: 25,
-      caloriesBurned: 80,
+      time: 0,
+      reps: 0,
+      maxReps: 0,
+      caloriesBurned: 0,
       intensity: "Moderate",
       exerciseGroup: "BodyWeight"
     },
     {
       name: "Lunges",
-      time: 1,
-      reps: 30,
-      maxReps: 15,
-      caloriesBurned: 70,
+      time: 0,
+      reps: 0,
+      maxReps: 0,
+      caloriesBurned: 0,
       intensity: "Moderate",
       exerciseGroup: "BodyWeight"
     },
     {
       name: "Dips",
-      time: 1,
-      reps: 15,
-      maxReps: 10,
-      caloriesBurned: 60,
+      time: 0,
+      reps: 0,
+      maxReps: 0,
+      caloriesBurned: 0,
       intensity: "High",
       exerciseGroup: "BodyWeight"
     },
     {
       name: "Plank",
-      time: 1,
-      holdTime: 90,
-      maxHoldTime: 120,
-      caloriesBurned: 30,
+      time: 0,
+      holdTime: 0,
+      maxHoldTime: 0,
+      caloriesBurned: 0,
       intensity: "Moderate",
       exerciseGroup: "BodyWeight"
     },
     {
       name: "SitUps",
-      time: 1,
-      reps: 40,
-      maxReps: 20,
-      caloriesBurned: 50,
+      time: 0,
+      reps: 0,
+      maxReps: 0,
+      caloriesBurned: 0,
       intensity: "Moderate",
       exerciseGroup: "BodyWeight"
     },
     {
       name: "Burpees",
-      time: 1,
-      reps: 20,
-      maxReps: 10,
-      caloriesBurned: 120,
+      time: 0,
+      reps: 0,
+      maxReps: 0,
+      caloriesBurned: 0,
       intensity: "High",
       exerciseGroup: "BodyWeight"
     }
@@ -157,71 +166,71 @@ let exerciseList = [
   weightedLifts= [
     {
       name: "Deadlifts",
-      time: 1,
-      weight: 100,
-      reps: 5,
-      maxReps: 8,
-      caloriesBurned: 120,
+      time: 0,
+      weight: 0,
+      reps: 0,
+      maxReps: 0,
+      caloriesBurned: 0,
       intensity: "High",
       exerciseGroup: "WeightedLifts"
     },
     {
       name: "BenchPress",
-      time: 1,
-      weight: 80,
-      reps: 8,
-      maxReps: 10,
-      caloriesBurned: 100,
+      time: 0,
+      weight: 0,
+      reps: 0,
+      maxReps: 0,
+      caloriesBurned: 0,
       intensity: "High",
       exerciseGroup: "WeightedLifts"
     },
     {
       name: "OverheadPress",
-      time: 1,
-      weight: 50,
-      reps: 6,
-      maxReps: 8,
-      caloriesBurned: 80,
+      time: 0,
+      weight: 0,
+      reps: 0,
+      maxReps: 0,
+      caloriesBurned: 0,
       intensity: "Moderate",
       exerciseGroup: "WeightedLifts"
     },
     {
       name: "Squats",
-      time: 1,
-      weight: 90,
-      reps: 10,
-      maxReps: 12,
-      caloriesBurned: 100,
+      time: 0,
+      weight: 0,
+      reps: 0,
+      maxReps: 0,
+      caloriesBurned: 0,
       intensity: "High",
       exerciseGroup: "WeightedLifts"
     },
     {
       name: "BicepCurls",
-      time: 1,
-      weight: 15,
-      reps: 12,
-      maxReps: 15,
-      caloriesBurned: 60,
+      time: 0,
+      weight: 0,
+      reps: 0,
+      maxReps: 0,
+      caloriesBurned: 0,
       intensity: "Moderate",
       exerciseGroup: "WeightedLifts"
     },
     {
       name: "KettlebellSwings",
-      time: 1,
-      weight: 20,
-      reps: 20,
-      maxReps: 25,
-      caloriesBurned: 100,
+      time: 0,
+      weight: 0,
+      reps: 0,
+      maxReps: 0,
+      caloriesBurned: 0,
       intensity: "High",
       exerciseGroup: "WeightedLifts"
     },
     {
       name: "TireFlips",
-      time: 1,
-      weight: 150,
-      reps: 5,
-      maxReps: 8,
-      caloriesBurned: 150,
+      time: 0,
+      weight: 0,
+      reps: 0,
+      maxReps: 0,
+      caloriesBurned: 0,
       intensity: "High",
       exerciseGroup: "WeightedLifts"
     }
@@ -229,65 +238,65 @@ let exerciseList = [
   stretches= [
     {
       name: "StaticHamstringStretch",
-      time: 1,
-      holdTime: 30,
-      maxHoldTime: 60,
+      time: 0,
+      holdTime: 0,
+      maxHoldTime: 0,
       flexibilityGain: "Moderate",
       exerciseGroup: "Stretches"
     },
     {
       name: "DynamicHipFlexorStretch",
-      time: 1,
-      reps: 10,
-      maxReps: 20,
+      time: 0,
+      reps: 0,
+      maxHoldTime: 0,
       flexibilityGain: "High",
       exerciseGroup: "Stretches"
     },
     {
       name: "ShoulderStretch",
-      time: 1,
-      holdTime: 20,
-      maxHoldTime: 40,
+      time: 0,
+      holdTime: 0,
+      maxHoldTime: 0,
       flexibilityGain: "Low",
       exerciseGroup: "Stretches"
     },
     {
       name: "YogaPoseDownwardDog",
-      time: 1,
-      holdTime: 30,
-      maxHoldTime: 45,
+      time: 0,
+      holdTime: 0,
+      maxHoldTime: 0,
       flexibilityGain: "High",
       exerciseGroup: "Stretches"
     },
     {
       name: "FoamRollingQuads",
-      time: 1,
-      duration: 60,
-      maxDuration: 90,
+      time: 0,
+      duration: 0,
+      maxDuration: 0,
       flexibilityGain: "Moderate",
       exerciseGroup: "Stretches"
     },
     {
       name: "TaiChiSlowMovements",
-      time: 1,
-      reps: 15,
-      maxReps: 20,
+      time: 0,
+      reps: 0,
+      maxReps: 0,
       flexibilityGain: "High",
       exerciseGroup: "Stretches"
     },
     {
       name: "WallChestStretch",
-      time: 1,
-      holdTime: 30,
-      maxHoldTime: 45,
+      time: 0,
+      holdTime: 0,
+      maxHoldTime: 0 ,
       flexibilityGain: "Moderate",
       exerciseGroup: "Stretches"
     },
     {
       name: "SeatedForwardFold",
-      time: 1,
-      holdTime: 40,
-      maxHoldTime: 60,
+      time: 0,
+      holdTime: 0,
+      maxHoldTime: 0,
       flexibilityGain: "High",
       exerciseGroup: "Stretches"
     }
@@ -308,8 +317,26 @@ let Account = {
     weight : null,
     age : null ,
     datejoined: new Date(),
-    weightLog : [[0,new Date()]]
+    weightLog : [[0,new Date()]],
+    achivements: [],
+    usersBestList: exerciseList,
+    GoalDetails:{
+      type: null, //type of 
+      // [calories burnt, distance covered, weight lifted, time streching or exercises logged]
+      startDate: new Date(),
+      endDate: new Date(),// the date they enter in the form
+      goalTarget:null, // end goal
+      goalCounter:null //running total 
+    },
+    completedGoals:[],
+    missedGoals:[]
 }
+function updateWeight(newWeight){
+  let currentUser = userList[loggedInUser];
+  currentUser.weight=newWeight;
+  currentUser.weightLog.push([newWeight,new Date()])
+}
+
 function addFavExercise(exerciseGroup,exerciseName){
   let currentUser = userList[loggedInUser];
   currentUser.favoriteExercises.push([exerciseGroup,exerciseName]);
@@ -320,16 +347,81 @@ function removeFavExercise(exerciseGroup,exerciseName){
   arrayFavExercises=arrayFavExercises.filter((e)=>e!=[exerciseGroup,exerciseName])
   currentUser.favoriteExercises=arrayFavExercises;
 }
+function addGoal(){
+  let currentUser= userList[loggedInUser]
+  let Goal = currentUser.GoalDetails
+  let goalType = null // get user to input from the listed types
+  let goalEndDate = Date.setDate(new Date()+ null ) //user inputted amount of days takes the place of the null
+  let GoalTarget = null // get from user input
+  
+  if (GoalTarget>0 && Goal.type.length==0){
+    Goal.type = goalType;
+    Goal.startDate = new Date();
+    Goal.endDate=goalEndDate;
+    Goal.goalTarget= GoalTarget;
+    Goal.goalCounter = 0;
+  }
+};
+
+function checkGoal(){
+  let currentUser= userList[loggedInUser]
+  let Goal = currentUser.GoalDetails
+  if(Goal.type.length<=0){
+    // dont do anything if there is no goal set
+  }
+  else if (Goal.goalCounter>goalTarget){
+    //goal Achieved inform user
+    let tempObject={};
+    Object.assign(tempObject,Goal);
+    tempObject.completeDate=new Date();
+    currentUser.completedGoals.push(tempObject);
+
+    Goal.type = null;
+    Goal.startDate = null;
+    Goal.endDate=null;
+    Goal.goalTarget= null;
+    Goal.goalCounter = null;
+  }else if((Goal.goalEndDate-new Date())<0){
+    //goal failed inform user 
+    let tempObject={};
+    Object.assign(tempObject,Goal);
+    currentUser.missedGoals.push(tempObject);
+
+    Goal.type = null;
+    Goal.startDate = null;
+    Goal.endDate=null;
+    Goal.goalTarget= null;
+    Goal.goalCounter = null;
+  }
+}
 
 
 function addExercise(exerciseGroup,exerciseName){
   let currentUser = userList[loggedInUser];
   let selectedExercise = exerciseGroup ;// get input from user choice
+
+  // finding the object in the exercise list that relates to the one chosen by the user and making a new copy of it
   let filteredArray = exerciseList.filter((e)=>{
     return e[0].exerciseGroup == selectedExercise})
   filteredArray = Array.from(filteredArray[0]);
   filteredArray = filteredArray.filter((e)=>e.name == exerciseName);
+  let i=0;
+  let ii = 0;
+
+  //loop throught the users stored pbs for the one that represents the current exercise
+  for (i;i<currentUser.usersBestList.length;++i){
+    if(currentUser.usersBestList[i][0].exerciseGroup == exerciseGroup){
+    for (ii;ii<currentUser.usersBestList[i].length;++ii){
+      if(currentUser.userList[i][ii].name==exerciseName){
+        let index1=i;
+        let index2=ii;
+        break;
+      }
+    }
+    }
+  }
   let exerciseObj = {};
+  let UserbestOBJ = currentUser.usersBestList[index1][index2];
   Object.assign(exerciseObj,filteredArray[0]);
 
   let inputValue1=null;
@@ -337,7 +429,9 @@ function addExercise(exerciseGroup,exerciseName){
   let inputValue3=null;
   let inputValue4=null;
   let inputValue5=null;
-
+  let isUserBest = false;
+  // taking user input and storing it based off the exercise the user has chosen
+  // also checking for achievements and user personal bests
   switch (exerciseGroup){
     case "Cardio":
       inputValue1 = document.querySelector('#ExerciseInputValue1').value;
@@ -347,8 +441,54 @@ function addExercise(exerciseGroup,exerciseName){
 
       exerciseObj.time = inputValue1
       exerciseObj.distance=inputValue2
-      exerciseObj.speed=inputValue3
+      if(exerciseName=="JumpRope"){exerciseObj.reps=inputValue3}
+      else{
+        //updating goal details
+        if(currentUser.GoalDetails.type == "distance covered"){currentUser.GoalDetails.goalCounter+=inputValue1}
+  
+        exerciseObj.speed=inputValue3
+      }
       exerciseObj.caloriesBurned=inputValue4
+
+      // checking for user best
+      switch(exerciseName){
+        case "Jogging"||"Cycling"||"Rowing"||"Swimming"||"StairClimbing":
+          if (exerciseObj.distance>UserbestOBJ.distance){
+            UserbestOBJ.time = inputValue1
+            UserbestOBJ.distance=inputValue2
+            UserbestOBJ.speed=inputValue2/inputValue1
+            UserbestOBJ.caloriesBurned=inputValue4
+            isUserBest=true
+          }else if(UserbestOBJ.distance==exerciseObj.distance&&exerciseObj.time<UserbestOBJ.time){
+            UserbestOBJ.time = inputValue1
+            UserbestOBJ.distance=inputValue2
+            UserbestOBJ.speed=inputValue2/inputValue1
+            UserbestOBJ.caloriesBurned=inputValue4
+            isUserBest=true
+          }
+        break;
+        case "Sprints 100m"||"Sprints 200m"||"Sprints 400m":
+        if (exerciseObj.time<UserbestOBJ.time){
+          UserbestOBJ.time = inputValue1
+          UserbestOBJ.distance=inputValue2
+          UserbestOBJ.speed=inputValue2/inputValue1
+          UserbestOBJ.caloriesBurned=inputValue4
+          isUserBest=true
+        }
+        break;
+        case "JumpRope":
+          if (exerciseObj.time>UserbestOBJ.time){
+            UserbestOBJ.time = inputValue1
+            UserbestOBJ.reps=inputValue2
+            UserbestOBJ.speed=inputValue2/inputValue1
+            UserbestOBJ.caloriesBurned=inputValue4
+            isUserBest=true
+          }
+          break;
+
+        default:
+        break;
+      }
       break;
     
     case "BodyWeight":
@@ -359,9 +499,50 @@ function addExercise(exerciseGroup,exerciseName){
       inputValue4 = document.querySelector('#ExerciseInputValue4').value;
 
       exerciseObj.time= inputValue1;
-      exerciseObj.reps= inputValue2;
-      exerciseObj.maxReps= inputValue3;
+      if (exerciseName!="Plank"){
+        exerciseObj.reps= inputValue2;
+        exerciseObj.maxReps= inputValue3;
+      }else{
+        exerciseObj.holdTime= inputValue2;
+        exerciseObj.maxHoldTime= inputValue3;
+      }
       exerciseObj.caloriesBurned= inputValue4;
+
+      // checking for user best
+      switch(exerciseName){
+        case "PushUps"||"PullUps"||"Squats"||"Lunges"||"Dips"||"SitUps"||"Burpees":
+          if(exerciseObj.maxReps>UserbestOBJ.maxReps){
+            UserbestOBJ.time= inputValue1;
+            UserbestOBJ.reps= inputValue2;
+            UserbestOBJ.maxReps= inputValue3;
+            UserbestOBJ.caloriesBurned= inputValue4;
+            isUserBest=true;
+
+          }else if(exerciseObj.maxReps==UserbestOBJ.maxReps&&exerciseObj.reps>UserbestOBJ.reps){
+            UserbestOBJ.time= inputValue1;
+            UserbestOBJ.reps= inputValue2;
+            UserbestOBJ.maxReps= inputValue3;
+            UserbestOBJ.caloriesBurned= inputValue4;
+            isUserBest=true;
+          }else if(exerciseObj.maxReps==UserbestOBJ.maxReps&&exerciseObj.reps==UserbestOBJ.reps&&exerciseObj.time<UserbestOBJ.time){
+            UserbestOBJ.time= inputValue1;
+            UserbestOBJ.reps= inputValue2;
+            UserbestOBJ.maxReps= inputValue3;
+            UserbestOBJ.caloriesBurned= inputValue4;
+            isUserBest=true;
+          }
+          break;
+
+        case "Plank":
+          if(exerciseObj.maxHoldTime>UserbestOBJ.maxHoldTime||(exerciseObj.maxHoldTime==UserbestOBJ.maxHoldTime&&exerciseObj.time>UserbestOBJ.time)){
+            UserbestOBJ.time= inputValue1;
+            UserbestOBJ.holdTime= inputValue2;
+            UserbestOBJ.maxHoldTime= inputValue3;
+            UserbestOBJ.caloriesBurned= inputValue4;
+            isUserBest=true;
+          }
+        break;
+      }
       break;
     
     case "WeightedLifts":
@@ -376,6 +557,19 @@ function addExercise(exerciseGroup,exerciseName){
       exerciseObj.maxReps= inputValue3;
       exerciseObj.caloriesBurned= inputValue4;
       exerciseObj.weight=inputValue5;
+      //updating goal details
+      if(currentUser.GoalDetails.type == "weight lifted"){currentUser.GoalDetails.goalCounter+=inputValue1}
+  
+
+      // checking for user best
+      if(exerciseObj.weight>UserbestOBJ.weight||(exerciseObj.weight==UserbestOBJ.weight&&(exerciseObj.maxReps>UserbestOBJ.maxReps||(exerciseObj.maxReps==UserbestOBJ.maxReps&&exerciseObj.reps>UserbestOBJ.reps)))){
+        UserbestOBJ.time= inputValue1;
+        UserbestOBJ.reps= inputValue2;
+        UserbestOBJ.maxReps= inputValue3;
+        UserbestOBJ.caloriesBurned= inputValue4;
+        UserbestOBJ.weight=inputValue5;
+        isUserBest=true;
+      }
       break;
     
     case "Stretches":
@@ -384,15 +578,74 @@ function addExercise(exerciseGroup,exerciseName){
       inputValue3 = document.querySelector('#ExerciseInputValue3').value;
 
       exerciseObj.time= inputValue1;
-      exerciseObj.holdTime= inputValue2;
-      exerciseObj.maxHoldTime= inputValue3;
+      switch(exerciseName){
+        case "FoamRollingQuads":
+          exerciseObj.duration= inputValue2;
+          exerciseObj.maxDuration= inputValue3;
+          break
+        case "TaiChiSlowMovements":
+          exerciseObj.reps= inputValue2;
+          exerciseObj.maxReps= inputValue3;
+          break
+        default:
+          exerciseObj.holdTime= inputValue2;
+          exerciseObj.maxHoldTime= inputValue3;
+          break;
+      }
+      //updating goal details
+      if(currentUser.GoalDetails.type == "time streching"){currentUser.GoalDetails.goalCounter+=inputValue1}
+  
+      // checking for user best
+      switch(exerciseName){
+        case "FoamRollingQuads":
+          if(exerciseObj.maxDuration>UserbestOBJ.maxDuration){
+            UserbestOBJ.duration= inputValue2;
+            UserbestOBJ.maxDuration= inputValue3;
+            UserbestOBJ.time= inputValue1;
+          }
+        break;
+
+        case "TaiChiSlowMovements":
+          if(exerciseObj.maxReps>UserbestOBJ.maxReps){
+            UserbestOBJ.reps= inputValue2;
+            UserbestOBJ.maxReps= inputValue3;
+            UserbestOBJ.time= inputValue1;
+          }
+        break;
+
+        default:
+          if(exerciseObj.maxHoldTime>UserbestOBJ.maxHoldTime){
+            UserbestOBJ.holdTime= inputValue2;
+            UserbestOBJ.maxHoldTime= inputValue3;
+            UserbestOBJ.time= inputValue1;
+          }
+        break;
+
+
+      }
     break;
 
+    
+
     default:
+      // error catching making sure we get the right input in the correct format
       console.log("function call error Please check input variables are correct when debugging");
       break;
 
   }
+  
+  // rewarding the user and updating goals
+  if(currentUser.GoalDetails.type == "exercises logged"){currentUser.GoalDetails.goalCounter+=1}
+  else if(currentUser.GoalDetails.type == "calories burnt"&&exerciseGroup!="Stretches"){currentUser.GoalDetails.goalCounter+=exerciseObj.caloriesBurned}
+  checkGoal();
+  if (isUserBest){
+      // maybe play an animation for now alert 
+      alert("WELL DONE!!!! Thats a new personal best!! Keep it up!")
+    }
+    else{
+      //maybe play an animation for now alert
+      alert('Well done!! thats another step to your fitness goals!! keep it up!');
+    }
   currentUser.exercisesComplete.push([exerciseObj,new Date]);
 };
 
@@ -400,7 +653,18 @@ function exerciseTypeToOptionsList(exerciseGroup){
   let outString='';
 let arrayOptions = exerciseList.filter(e=>e[0].exerciseGroup==exerciseGroup);
 arrayOptions=arrayOptions[0];
-arrayOptions.forEach(e => outString+=`<option value="${e.name}">${e.name}</option>\n`);
+let tempArray = [];
+let outlist = [];
+arrayOptions.forEach(e => {
+  tempArray = arrayOptions.filter(element=>element==[exerciseGroup,e.name])
+  if (tempArray.length!=0){
+    outlist.unshift(`<option value="${e.name}">${e.name}</option>`)
+  } else{
+    outlist.push(`<option value="${e.name}">${e.name}</option>\n`)
+  }
+ });
+
+ arrayOptions.forEach(e => outString += e);
 console.log(outString);
 return outString;
 };
@@ -450,15 +714,25 @@ function addUser(fusername,fUserPassword){
 userList.push(PopulateUser('admin','admin','','','','','','',''));
 window.addEventListener('load',loadIndex);
 
+// for all load{page Name here} we take the html of a page as a string components
+//  and insert it into the current html page whilst replaceing all the current
+// html. this allows us to maintain the variables we are storing without having to
+// save them to a permanent storage medium. this only works for as long as the user 
+// does not refresh or reload the page!!!
+
+// we also use this to assign the events to inteactive components as they previously 
+// did not "exist" this also helps to keep all the code for the different pages more
+// or less constained
+//
 function loadIndex(){
     usertemp=null;  
     let newpagebody =  `   <header>
         <div class="logo">
-            <img src="/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
+            <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
-        <div class="menu">
-            <a id="Login"><span>Login in</span></a>
-        </div>
+        <button class="login-button">
+           Login in
+        </button>
     </header>
 
     <section class="hero">
@@ -468,19 +742,19 @@ function loadIndex(){
 
     <section class="age-groups">
         <a class="index-age-card" id="age-card-1">
-            <img src="/18-29.png" alt="Age 18-29">
+            <img src="images/18-29.png" alt="Age 18-29">
             <p>Age: 18-29</p>
         </a>
         <a class="index-age-card" id="age-card-2">
-            <img src="/30-39.png" alt="Age 30-39">
+            <img src="images/30-39.png" alt="Age 30-39">
             <p>Age: 30-39</p>
         </a>
         <a class="index-age-card" id="age-card-3">
-            <img src="/40-49.png" alt="Age 40-49">
+            <img src="images/40-49.png" alt="Age 40-49">
             <p>Age: 40-49</p>
         </a>
         <a class="index-age-card" id="age-card-4">
-            <img src="/50+.png" alt="Age 50+">
+            <img src="images/50+.png" alt="Age 50+">
             <p>Age: 50+</p>
         </a>
     </section>
@@ -503,7 +777,7 @@ function loadIndex(){
         <div class="footer-content">
             <div class="logo2">
                 <p>© Momentum 2025</p>
-                <img src="/Logp.png" alt="Momentum Logo"> 
+                <img src="images/Logp.png" alt="Momentum Logo"> 
             </div>
         </div>
     </footer>  `;
@@ -523,30 +797,40 @@ function loadIndex(){
     let landing2Button3 = documentBody.querySelector('#age-card-3');
     let landing2Button4 = documentBody.querySelector('#age-card-4');
     let loginButton = documentBody.querySelector('#Login');
-
+    let checkbox = documentBody.querySelector("#termsCheckbox");
+  
     loginButton.addEventListener('click',loadLogin);
     landing2Button1.addEventListener('click',e=>{
         usertemp = PopulateUser('','','','','','',"18-29",'','');
-        loadLanding2()});
+        if(checkbox.checked==true)loadLanding2()
+          else alert("please agree to our terms and conditions before continuing")
+        });
     
     landing2Button2.addEventListener('click',e=>{
         usertemp = PopulateUser('','','','','','','30-39','','');
-        loadLanding2()});
+        if(checkbox.checked==true){loadLanding2()}
+          else alert("please agree to our terms and conditions before continuing")
+      });
 
     landing2Button3.addEventListener('click',e=>{
         usertemp = PopulateUser('','','','','','',"40-49",'','');
-        loadLanding2()});
+        if(checkbox.checked==true)loadLanding2()
+          else alert("please agree to our terms and conditions before continuing")
+      });
 
     landing2Button4.addEventListener('click',e=>{
         usertemp = PopulateUser('','','','','','',"50+",'','');
-        loadLanding2()});
+        if(checkbox.checked==true)loadLanding2()
+          else alert("please agree to our terms and conditions before continuing")
+      
+      });
     
 };
 
 function loadLanding2(){
     let newpagebody = `    <header>
         <div class="logo">
-            <img src="/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
+            <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
         <div class="menu">
             <a id="Login"><span>Login in</span></a>
@@ -560,21 +844,21 @@ function loadLanding2(){
 
             <a class="landing2-body-card">
                 <div class="option">
-                    <img src="/Slim.webp" alt="Slim Body Type">
+                    <img src="images/Slim.webp" alt="Slim Body Type">
                     <span class="body">Slim</span>
                </div>
             </a>
 
             <a class="landing2-body-card">
                 <div class="option">
-                    <img src="/Average.webp" alt="Average Body Type">
+                    <img src="images/Average.webp" alt="Average Body Type">
                     <span class="body">Average</span>
                 </div>
             </a>
 
             <a class="landing2-body-card">
                 <div class="option">
-                    <img src="/Heavy.webp" alt="Heavy Body Type">
+                    <img src="images/Heavy.webp" alt="Heavy Body Type">
                     <span class="body">Heavy</span>
                 </div>
             </a>
@@ -586,7 +870,7 @@ function loadLanding2(){
         <div class="footer-content">
             <div class="logo2">
                 <p>© Momentum 2025</p>
-                <img src="/Logp.png" alt="Momentum Logo"> 
+                <img src="images/Logp.png" alt="Momentum Logo"> 
             </div>
         </div>
     </footer>
@@ -615,7 +899,7 @@ function loadLanding2(){
 function loadLanding3(){
     let newpagebody =`<header>
         <div class="logo">
-            <img src="/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
+            <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
         <div class="menu">
             <a id="Login"><span>Login in</span></a>
@@ -627,19 +911,19 @@ function loadLanding3(){
         <div class="goal-type-options">
             <a class="landing3-goal-card">
                 <div class="option">
-                    <img src="/Muscle Gain.png" alt="Muscle Gain Type">
+                    <img src="images/Muscle Gain.png" alt="Muscle Gain Type">
                     <span class="goal">Muscle Gain</span>
                 </div>
             </a>
             <a class="landing3-goal-card">
                 <div class="option">
-                    <img src="/Weight Loss.png" alt="Weight loss Type">
+                    <img src="images/Weight Loss.png" alt="Weight loss Type">
                     <span class="goal">Weight loss</span>
                 </div>
             </a>
             <a class="landing3-goal-card">
                 <div class="option">
-                    <img src="/Get Shredded.png" alt="Shredded Type">
+                    <img src="images/Get Shredded.png" alt="Shredded Type">
                     <span class="goal">Get Shredded</span>
                 </div>
             </a>
@@ -650,7 +934,7 @@ function loadLanding3(){
         <div class="footer-content">
             <div class="logo2">
                 <p>© Momentum 2025</p>
-                <img src="/Logp.png" alt="Momentum Logo"> 
+                <img src="images/Logp.png" alt="Momentum Logo"> 
             </div>
         </div>
     </footer>`;
@@ -677,7 +961,7 @@ function loadLanding4(){
     let newpagebody = `
     <header>
         <div class="logo">
-            <img src="/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
+            <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
         <div class="menu">
             <a id="Login"><span>Login in</span></a>
@@ -745,7 +1029,7 @@ function loadLanding4(){
         <div class="footer-content">
             <div class="logo2">
                 <p>© Momentum 2025</p>
-                <img src="/Logp.png" alt="Momentum Logo"> 
+                <img src="images/Logp.png" alt="Momentum Logo"> 
             </div>
         </div>
     </footer>`;
@@ -791,7 +1075,7 @@ function loadLanding5(){
     `;
     let newpagebody = ` <header>
         <div class="logo">
-            <img src="/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
+            <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
         <div class="menu">
             <a id="Login"><span>Login in</span></a>
@@ -827,7 +1111,7 @@ function loadLanding5(){
         <div class="footer-content">
             <div class="logo2">
                 <p>© Momentum 2025</p>
-                <img src="/Logp.png" alt="Momentum Logo"> 
+                <img src="images/Logp.png" alt="Momentum Logo"> 
             </div>
         </div>
     </footer>`;
@@ -866,8 +1150,8 @@ function loadMainBone(){
         <div class="nav__header">
           <div class="nav__logo">
            
-              <img src="LOgo (2).png" alt="logo" class="logo-white" />
-              <img src="LOgo (2).png" alt="logo" class="logo-dark" />
+              <img src="images/LOgo (2).png" alt="logo" class="logo-white" />
+              <img src="images/LOgo (2).png" alt="logo" class="logo-dark" />
             
           </div>
           <div class="nav__menu__btn" id="menu-btn">
@@ -970,7 +1254,7 @@ function loadMainBone(){
             <button class="btn" id="add__btn">Add</button>  
           </div>
           <div class="service__image">
-            <img src="duderunning.jpg" alt="service" />
+            <img src="images/duderunning.jpg" alt="service" />
           </div>
         </div>
       </div>
@@ -1019,7 +1303,7 @@ function loadMainBone(){
     <!-- Called it inspire because it'll have badges and their goals -->
     <section class="inspire__container" id="inspire">
       <div class="inspire__image">
-        <img src="BigDudeRunning.jpg" alt="inspire" />
+        <img src="images/BigDudeRunning.jpg" alt="inspire" />
       </div>
       <div class="inspire__content">
         <h2 class="section__header">Your Achievements</h2>
@@ -1050,7 +1334,7 @@ function loadMainBone(){
       <div class="section__container footer__container">
         <div class="footer__col">
           <a href="#" class="footer__logo">
-            <img src="LOGOwhite.png" alt="logo" />
+            <img src="images/LOGOwhite.png" alt="logo" />
           </a>
           <ul class="footer__links">
             <li>
@@ -1102,6 +1386,8 @@ function loadMainBone(){
     let documentBody = document.querySelector('body');
     documentHead.innerHTML=newPageHeader;
     documentBody.innerHTML = newpagebody;
+    
+    checkGoal();
 
     let logOutButton = document.querySelector("#logOut");
     logOutButton.addEventListener('click', e=>{
@@ -1226,7 +1512,7 @@ function loadLogin(){
     `;
     let newpagebody = ` <header>
         <div class="logo">
-            <img src="/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
+            <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
         <div class="menu">
             <a ><span>Login in</span></a>
@@ -1262,7 +1548,7 @@ function loadLogin(){
         <div class="footer-content">
             <div class="logo2">
                 <p>© Momentum 2025</p>
-                <img src="/Logp.png" alt="Momentum Logo"> 
+                <img src="images/Logp.png" alt="Momentum Logo"> 
             </div>
         </div>
     </footer>`;
