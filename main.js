@@ -319,7 +319,7 @@ let Account = {
     datejoined: new Date(),
     weightLog : [[0,new Date()]],
     achivements: [],
-    usersBestList: new Array.from(exerciseList),
+    usersBestList: exerciseList,
     GoalDetails:{
       type: null, //type of 
       // [calories burnt, distance covered, weight lifted, time streching or exercises logged]
@@ -663,6 +663,7 @@ arrayOptions.forEach(e => {
     outlist.push(`<option value="${e.name}">${e.name}</option>\n`)
   }
  });
+
  arrayOptions.forEach(e => outString += e);
 console.log(outString);
 return outString;
