@@ -662,7 +662,57 @@ let phoneNumber = currentuser.userPhoneNumber;
 let height = currentuser.height;
 let weight = currentuser.weight;
 // weight log to graph
-let usersBests = currentuser.usersBestsList//lots of work here , inverse of the exercise input
+let usersBestsCardio = currentuser.usersBestsList[0].filter(element=>element.caloriesBurned>0||element.speed>0);
+let usersBestsbodyWeightExercises =currentuser.usersBestsList[1].filter(element=>element.caloriesBurned>0||element.time>0);
+let usersBestweightedLifts=currentuser.usersBestsList[2].filter(element=>element.caloriesBurned>0||element.weight>0);
+let usersBeststretches= currentuser.usersBestList[3].filter(element=>element.time>0);
+let bestArray = [];
+let string = '';
+usersBestsCardio.forEach(element=>{
+  let exerciseName=element.name;
+  switch(exerciseName){
+    case "Jogging"||"Cycling"||"Rowing"||"Swimming"||"StairClimbing"||"Sprints 100m"||"Sprints 200m"||"Sprints 400m":
+    string = `<div class="usersBestResultsContainer">
+            <p><h2>${exerciseName}<h2></p>
+            <p>Time:      ${element.time} seconds</p>
+            <p>Distance:  ${element.distance} meters</p>
+            <p>Speed:     ${element.speed.toFixed(2)} m/s </p>
+            </div>`
+    break;
+    case "JumpRope":
+      string = `<div class="usersBestResultsContainer">
+      <p><h2>${exerciseName}<h2></p>
+      <p>Time:      ${element.time} seconds</p>
+      <p>Jumps:  ${element.reps} jumps</p>
+      <p>Speed:     ${element.speed.toFixed(2)} jumps/s </p>
+      </div>`     
+      break;
+    }
+    bestArray.push(string);
+})
+usersBestsbodyWeightExercises.forEach(element=>{
+  let exerciseName=element.name;
+  switch(exerciseName){
+    case "PushUps"||"PullUps"||"Squats"||"Lunges"||"Dips"||"SitUps"||"Burpees":
+      string = `<div class="usersBestResultsContainer">
+                <p><h2>${exerciseName}<h2></p>
+                <p>Time:      ${element.time} minutes</p>
+                <p>Max Reps:  ${element.maxReps} reps</p>
+                <p>Rep:       ${element.reps} reps </p>
+                </div>`     
+          break;
+
+        case "Plank":
+          string = `<div class="usersBestResultsContainer">
+          <p><h2>${exerciseName}<h2></p>
+          <p>Time:           ${element.time} minutes</p>
+          <p>Max Hold Time:  ${element.maxReps} reps</p>
+          <p>Hold Time:      ${element.reps} reps </p>
+          </div>`   
+        break;
+      }
+    })
+//lots of work here , inverse of the exercise input
 // current goal graph
 let completedGoals = currentuser.completedGoals;
 let missedGoals = currentuser.missedGoals;
