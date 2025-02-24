@@ -651,22 +651,27 @@ function addExercise(exerciseGroup,exerciseName){
 };
 
 function userToFullDetails(){
+
+  document.getElementById("ReportOutputDiv").innerHTML='';
+
 let currentuser = userList[loggedInUser]
 let name= currentuser.firstName;
-let surname = currentuser.surname;
+let surname = currentuser.lastName;
 let email = currentuser.userEmail;
 let phoneNumber = currentuser.userPhoneNumber;
-let Height = currentuser.height;
+let height = currentuser.height;
 let weight = currentuser.weight;
-// weight log to gragh
+// weight log to graph
 let usersBests = currentuser.usersBestsList//lots of work here , inverse of the exercise input
 // current goal graph
 let completedGoals = currentuser.completedGoals;
 let missedGoals = currentuser.missedGoals;
 
-let completedGoalsHtmlOut= document.createElement(`Section class="CompletedGoals"`)
+let completedGoalsHtmlOut= document.createElement(`Section`)
+completedGoalsHtmlOut.setAttribute('class',"CompletedGoals")
 for (let i = 0 ; i<missedGoals.length;++i){
-let Content =  document.createElement('p class="CompletedGoalData')
+let Content =  document.createElement('p')
+Content.setAttribute('class',"CompletedGoalData")
 switch(completedGoals.type){
   case "calories burnt":
   Content.innerHTML+=`<H3>${completedGoals.type}</H3> \n <p>Target: ${completedGoals.goalTarget} calories</p>`
@@ -699,9 +704,11 @@ Content.innerHTML+=`<p>Completed within  ${completionPercent}% of the alocated t
 missedGoalsHtmlOut.appendChild(Content)
 }
 
-let missedGoalsHtmlOut= document.createElement(`Section class="MissedGoals"`)
+let missedGoalsHtmlOut= document.createElement(`Section`)
+missedGoalsHtmlOut.setAttribute('class',"missedGoals")
 for (let i = 0 ; i<missedGoals.length;++i){
-let Content =  document.createElement('p class="MissedGoalData')
+let Content =  document.createElement('p')
+Content.setAttribute('class',"MissedGoalData")
 switch(missedGoals.type){
   case "calories burnt":
   Content.innerHTML+=`<H3>${missedGoals.type}</H3> \n <p>Target: ${missedGoals.goalTarget} calories</p>`
@@ -734,15 +741,22 @@ Content.innerHTML+=`<p>Cut Off Date: ${missedGoals[i].endDate.getDate()+'/'+miss
 missedGoalsHtmlOut.appendChild(Content)
 }
 
-let outContainer = document.createElement(`div class="UserFullDetailsOutPut"`)
-outContainer.innerHTML+=`<p>Name: ${name}</p>\n`
-outContainer.innerHTML+=`<p>Surname: ${surname}</p>\n`
-outContainer.innerHTML+=`<p>Surname: ${email}</p> <button id="UpdateEmailBtn">Update</button>\n`
-outContainer.innerHTML+=`<p>Surname: ${phoneNumber}</p> <button id="UpdatePhoneBtn">Update</button>\n`
-outContainer.innerHTML+=`<p>Surname: ${height}</p> <button id="UpdateHeightBtn">Update</button>\n`
-outContainer.innerHTML+=`<p>Surname: ${weight}</p> <button id="UpdateWeightBtn">Update</button>\n`
-outContainer.innerHTML+=completedGoalsHtmlOut+`\n`;
-outContainer.innerHTML+=missedGoals;
+let outContainer = document.createElement(`div`)
+outContainer.setAttribute('class',"UserFullDetailsOutPut");
+
+outContainer.innerHTML+=`<p>Name:         ${name}</p>\n`
+outContainer.innerHTML+=`<p>Surname:      ${surname}</p>\n`
+outContainer.innerHTML+=`<p>Email:        ${email}</p>          <button id="UpdateEmailBtn">Update</button>  <input type="emailInput" id="EmailInput" name="name" placeholder="Jon" required>\n`
+outContainer.innerHTML+=`<p>Phone Number: ${phoneNumber}</p>    <button id="UpdatePhoneBtn">Update</button>  <input type="tel" id="TelInput" name="name" placeholder="Jon" required>\n`
+outContainer.innerHTML+=`<p>Height:       ${height}</p>         <button id="UpdateHeightBtn">Update</button> <input type="number" id="HeightInput" name="name" placeholder="Jon" required>\n`
+outContainer.innerHTML+=`<p>Weight:       ${weight}</p>         <button id="UpdateWeightBtn">Update</button> <input type="number" id="WeightInput" name="name" placeholder="Jon" required>\n`
+if(currentuser.completedGoals)
+outContainer.innerHTML+=completedGoalsHtmlOut.innerHTML+`\n`;
+outContainer.innerHTML+=missedGoals.innerHTML;
+
+document.getElementById("ReportOutputDiv").appendChild(outContainer)
+
+console.log(currentuser)
 
 };
 
@@ -810,7 +824,7 @@ function addUser(fusername,fUserPassword){
         loggedInUser =-1;
 }
 
-userList.push(PopulateUser('admin','admin','','','','','','',''));
+userList.push(PopulateUser('admin','admin','Admin','Admin','','','','',''));
 window.addEventListener('load',loadIndex);
 
 // for all load{page Name here} we take the html of a page as a string components
@@ -1390,12 +1404,14 @@ function loadMainBone(){
               <p>See your full report since your journey with us</p>
             </div>
             <span>
-              <button class="fullReport"><i class="ri-arrow-right-fill"></i></button>
+              <button class="fullReport" id="FullReportButton"><i class="ri-arrow-right-fill"></i></button>
             </span>
           </div>
           
         </div>
       </div>
+      <div id="ReportOutputDiv">
+      <div>
     </section>
 
 
@@ -1488,6 +1504,8 @@ function loadMainBone(){
     
     checkGoal();
 
+    let fullReportButton =document.getElementById("FullReportButton")
+    fullReportButton.addEventListener('click',userToFullDetails)
     let logOutButton = document.querySelector("#logOut");
     logOutButton.addEventListener('click', e=>{
         loggedInUser=-1;
