@@ -1799,37 +1799,305 @@ function populateAdminAccount() {
   loggedInUser = 0; 
 
   let adminUser = userList[loggedInUser];
-
-  adminUser.usersBestList = JSON.parse(JSON.stringify(exerciseList)); 
-
   
-  adminUser.usersBestList.cardio.forEach(exercise => {
-      exercise.time = 30; 
-      exercise.distance = 5; 
-      exercise.speed = 10; 
-      exercise.caloriesBurned = 200; 
-  });
+  adminUser.usersBestList=t exerciseList = [
+    cardio= [
+      {
+        name: "Jogging",
+        time: 0,
+        distance: 0,
+        speed: 0,
+        caloriesBurned: 0,
+        intensity: "Moderate",
+        exerciseGroup: "Cardio"
+      },
+      {
+        name: "Cycling",
+        time: 0,
+        distance: 0,
+        speed: 0,
+        caloriesBurned: 0,
+        intensity: "High",
+        exerciseGroup: "Cardio"
+      },
+      {
+        name: "JumpRope",
+        time: 0,
+        reps: 0,
+        speed: 0,
+        caloriesBurned: 0,
+        intensity: "High",
+        exerciseGroup: "Cardio"
+      },
+      {
+        name: "Rowing",
+        time: 0,
+        distance: 0,
+        speed: 0,
+        caloriesBurned: 0,
+        intensity: "Moderate",
+        exerciseGroup: "Cardio"
+      },
+      {
+        name: "Swimming",
+        time: 0,
+        distance: 0,
+        speed: 0,
+        caloriesBurned: 0 ,
+        intensity: "High",
+        exerciseGroup: "Cardio"
+      },
+      {
+        name: "StairClimbing",
+        time: 0,
+        distance: 0,
+        speed: 0,
+        caloriesBurned: 200,
+        intensity: "Moderate",
+        exerciseGroup: "Cardio"
+      },
+      {
+        name: "Sprints 100m",
+        time: 0,
+        distance: 100,
+        speed: 0,
+        caloriesBurned: 0,
+        intensity: "Max",
+        exerciseGroup: "Cardio"
+      },
+      {
+        name: "Sprints 200m",
+        time: 0,
+        distance: 200,
+        speed: 0,
+        caloriesBurned: 0,
+        intensity: "Max",
+        exerciseGroup: "Cardio"
+      },
+      {
+        name: "Sprints 400m",
+        time: 0,
+        distance: 400,
+        speed: 0,
+        caloriesBurned: 0,
+        intensity: "Max",
+        exerciseGroup: "Cardio"
+      }
+    ],
+    bodyWeightExercises= [
+      {
+        name: "PushUps",
+        time: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "Moderate",
+        exerciseGroup: "BodyWeight"
+      },
+      {
+        name: "PullUps",
+        time: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "High",
+        exerciseGroup: "BodyWeight"
+      },
+      {
+        name: "Squats",
+        time: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "Moderate",
+        exerciseGroup: "BodyWeight"
+      },
+      {
+        name: "Lunges",
+        time: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "Moderate",
+        exerciseGroup: "BodyWeight"
+      },
+      {
+        name: "Dips",
+        time: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "High",
+        exerciseGroup: "BodyWeight"
+      },
+      {
+        name: "Plank",
+        time: 0,
+        holdTime: 0,
+        maxHoldTime: 0,
+        caloriesBurned: 0,
+        intensity: "Moderate",
+        exerciseGroup: "BodyWeight"
+      },
+      {
+        name: "SitUps",
+        time: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "Moderate",
+        exerciseGroup: "BodyWeight"
+      },
+      {
+        name: "Burpees",
+        time: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "High",
+        exerciseGroup: "BodyWeight"
+      }
+    ],
+    weightedLifts= [
+      {
+        name: "Deadlifts",
+        time: 0,
+        weight: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "High",
+        exerciseGroup: "WeightedLifts"
+      },
+      {
+        name: "BenchPress",
+        time: 0,
+        weight: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "High",
+        exerciseGroup: "WeightedLifts"
+      },
+      {
+        name: "OverheadPress",
+        time: 0,
+        weight: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "Moderate",
+        exerciseGroup: "WeightedLifts"
+      },
+      {
+        name: "Squats",
+        time: 0,
+        weight: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "High",
+        exerciseGroup: "WeightedLifts"
+      },
+      {
+        name: "BicepCurls",
+        time: 0,
+        weight: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "Moderate",
+        exerciseGroup: "WeightedLifts"
+      },
+      {
+        name: "KettlebellSwings",
+        time: 0,
+        weight: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "High",
+        exerciseGroup: "WeightedLifts"
+      },
+      {
+        name: "TireFlips",
+        time: 0,
+        weight: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "High",
+        exerciseGroup: "WeightedLifts"
+      }
+    ],
+    stretches= [
+      {
+        name: "StaticHamstringStretch",
+        time: 0,
+        holdTime: 0,
+        maxHoldTime: 0,
+        flexibilityGain: "Moderate",
+        exerciseGroup: "Stretches"
+      },
+      {
+        name: "DynamicHipFlexorStretch",
+        time: 0,
+        reps: 0,
+        maxHoldTime: 0,
+        flexibilityGain: "High",
+        exerciseGroup: "Stretches"
+      },
+      {
+        name: "ShoulderStretch",
+        time: 0,
+        holdTime: 0,
+        maxHoldTime: 0,
+        flexibilityGain: "Low",
+        exerciseGroup: "Stretches"
+      },
+      {
+        name: "YogaPoseDownwardDog",
+        time: 0,
+        holdTime: 0,
+        maxHoldTime: 0,
+        flexibilityGain: "High",
+        exerciseGroup: "Stretches"
+      },
+      {
+        name: "FoamRollingQuads",
+        time: 0,
+        duration: 0,
+        maxDuration: 0,
+        flexibilityGain: "Moderate",
+        exerciseGroup: "Stretches"
+      },
+      {
+        name: "TaiChiSlowMovements",
+        time: 0,
+        reps: 0,
+        maxReps: 0,
+        flexibilityGain: "High",
+        exerciseGroup: "Stretches"
+      },
+      {
+        name: "WallChestStretch",
+        time: 0,
+        holdTime: 0,
+        maxHoldTime: 0 ,
+        flexibilityGain: "Moderate",
+        exerciseGroup: "Stretches"
+      },
+      {
+        name: "SeatedForwardFold",
+        time: 0,
+        holdTime: 0,
+        maxHoldTime: 0,
+        flexibilityGain: "High",
+        exerciseGroup: "Stretches"
+      }
+    ]
 
-  adminUser.usersBestList.bodyWeightExercises.forEach(exercise => {
-      exercise.time = 20; 
-      exercise.reps = 15; 
-      exercise.maxReps = 20; 
-      exercise.caloriesBurned = 100; 
-  });
 
-  adminUser.usersBestList.weightedLifts.forEach(exercise => {
-      exercise.time = 25; 
-      exercise.weight = 50; 
-      exercise.reps = 10; 
-      exercise.maxReps = 12; 
-      exercise.caloriesBurned = 150; 
-  });
-
-  adminUser.usersBestList.stretches.forEach(exercise => {
-      exercise.time = 10; 
-      exercise.holdTime = 30; 
-      exercise.maxHoldTime = 60;
-  });
 
  
   loggedInUser = -1;
