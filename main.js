@@ -730,7 +730,7 @@ function loadIndex(){
         <div class="logo">
             <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
-        <button class="login-button">
+        <button class="login-button" id="Login">
            Login in
         </button>
     </header>
@@ -832,9 +832,9 @@ function loadLanding2(){
         <div class="logo">
             <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
-        <div class="menu">
-            <a id="Login"><span>Login in</span></a>
-        </div>
+        <button class="login-button" id="Login">
+           Login in
+        </button>
     </header>
 
     <div class="container">
@@ -901,9 +901,9 @@ function loadLanding3(){
         <div class="logo">
             <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
-        <div class="menu">
-            <a id="Login"><span>Login in</span></a>
-        </div>
+        <button class="login-button" id="Login">
+           Login in
+        </button>
     </header>
 
     <div class="container">
@@ -963,9 +963,9 @@ function loadLanding4(){
         <div class="logo">
             <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
-        <div class="menu">
-            <a id="Login"><span>Login in</span></a>
-        </div>
+        <button class="login-button" id="Login">
+           Login in
+        </button>
     </header>
     <h1>Last few details</h1>
 
@@ -1077,9 +1077,9 @@ function loadLanding5(){
         <div class="logo">
             <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
-        <div class="menu">
-            <a id="Login"><span>Login in</span></a>
-        </div>
+        <button class="login-button" id="Login">
+           Login in
+        </button>
     </header>
     <h1>Finally you must create a username and a password</h1>
 
