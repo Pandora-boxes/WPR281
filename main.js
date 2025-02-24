@@ -321,7 +321,7 @@ let Account = {
     achivements: [],
     usersBestList: exerciseList,
     GoalDetails:{
-      type: null, //type of 
+      type: "", //type of 
       // [calories burnt, distance covered, weight lifted, time streching or exercises logged]
       startDate: new Date(),
       endDate: new Date(),// the date they enter in the form
@@ -341,6 +341,7 @@ function addFavExercise(exerciseGroup,exerciseName){
   let currentUser = userList[loggedInUser];
   currentUser.favoriteExercises.push([exerciseGroup,exerciseName]);
 }
+
 function removeFavExercise(exerciseGroup,exerciseName){
   let currentUser = userList[loggedInUser];
   let arrayFavExercises = currentUser.favoriteExercises;
@@ -376,7 +377,7 @@ function checkGoal(){
     tempObject.completeDate=new Date();
     currentUser.completedGoals.push(tempObject);
 
-    Goal.type = null;
+    Goal.type = "";
     Goal.startDate = null;
     Goal.endDate=null;
     Goal.goalTarget= null;
@@ -387,7 +388,7 @@ function checkGoal(){
     Object.assign(tempObject,Goal);
     currentUser.missedGoals.push(tempObject);
 
-    Goal.type = null;
+    Goal.type = "";
     Goal.startDate = null;
     Goal.endDate=null;
     Goal.goalTarget= null;
@@ -649,6 +650,124 @@ function addExercise(exerciseGroup,exerciseName){
   currentUser.exercisesComplete.push([exerciseObj,new Date]);
 };
 
+function userToFullDetails(){
+let currentuser = userList[loggedInUser]
+let name= currentuser.firstName;
+let surname = currentuser.surname;
+let email = currentuser.userEmail;
+let phoneNumber = currentuser.userPhoneNumber;
+let height = currentuser.height;
+let weight = currentuser.weight;
+// weight log to gragh
+let usersBests = currentuser.usersBestsList//lots of work here , inverse of the exercise input
+// current goal graph
+let completedGoals = currentuser.completedGoals;
+let missedGoals = currentuser.missedGoals;
+
+let completedGoalsHtmlOut= document.createElement(`Section`)
+completedGoalsHtmlOut.setAttribute('class',"CompletedGoals")
+for (let i = 0 ; i<missedGoals.length;++i){
+let Content =  document.createElement('p class="CompletedGoalData')
+switch(completedGoals.type){
+  case "calories burnt":
+  Content.innerHTML+=`<H3>${completedGoals.type}</H3> \n <p>Target: ${completedGoals.goalTarget} calories</p>`
+  break;
+
+  case "distance covered":
+  Content.innerHTML+=`<H3>${completedGoals.type}</H3> \n <p>Target: ${completedGoals.goalTarget} m</p>`
+  break;
+
+  case "weight lifted":
+  Content.innerHTML+=`<H3>${completedGoals.type}</H3> \n <p>Target: ${completedGoals.goalTarget} kg's</p>`
+  break;
+
+  case "time streching":
+  Content.innerHTML+=`<H3>${completedGoals.type}</H3> \n <p>Target: ${completedGoals.goalTarget} minutes</p>`
+  break;
+
+  case "exercises logged":
+  Content.innerHTML+=`<H3>${completedGoals.type}</H3> \n <p>Target: ${completedGoals.goalTarget} exercises</p>`
+  break;
+
+  default:
+  break
+}
+let completionPercent =((missedGoals.endDate-completedGoals.completeDate)/(missedGoals.endDate-completedGoals.startDate)*100).toFixed(1);
+Content.innerHtml+=`<p>Start Date: ${completedGoals[i].startDate.getDate()+'/'+completedGoals[i].startDate.getMonth()+1+"/"+completedGoals[i].startDate.getYear()}</p>`
+Content.innerHTML+=`<p>Cut Off Date: ${completedGoals[i].endDate.getDate()+'/'+completedGoals[i].endDate.getMonth()+1+"/"+completedGoals[i].endDate.getYear()}</p>`
+Content.innerHTML+=`<p>Completed within  ${completionPercent}% of the alocated time</p>`
+
+missedGoalsHtmlOut.appendChild(Content)
+}
+
+let missedGoalsHtmlOut= document.createElement(`Section`)
+missedGoalsHtmlOut.setAttribute('class',"missedGoals")
+for (let i = 0 ; i<missedGoals.length;++i){
+let Content =  document.createElement('p class="MissedGoalData')
+switch(missedGoals.type){
+  case "calories burnt":
+  Content.innerHTML+=`<H3>${missedGoals.type}</H3> \n <p>Target: ${missedGoals.goalTarget} calories</p>`
+  break;
+
+  case "distance covered":
+  Content.innerHTML+=`<H3>${missedGoals.type}</H3> \n <p>Target: ${missedGoals.goalTarget} m</p>`
+  break;
+
+  case "weight lifted":
+  Content.innerHTML+=`<H3>${missedGoals.type}</H3> \n <p>Target: ${missedGoals.goalTarget} kg's</p>`
+  break;
+
+  case "time streching":
+  Content.innerHTML+=`<H3>${missedGoals.type}</H3> \n <p>Target: ${missedGoals.goalTarget} minutes</p>`
+  break;
+
+  case "exercises logged":
+  Content.innerHTML+=`<H3>${missedGoals.type}</H3> \n <p>Target: ${missedGoals.goalTarget} exercises</p>`
+  break;
+
+  default:
+  break
+}
+let completionPercent =(missedGoals.goalCounter/missedGoals.goalTarget*100).toFixed(1);
+Content.innerHTML+=`<p>Completion %: ${completionPercent}%</p>`
+Content.innerHtml+=`<p>Start Date: ${missedGoals[i].startDate.getDate()+'/'+missedGoals[i].startDate.getMonth()+1+"/"+missedGoals[i].startDate.getYear()}</p>`
+Content.innerHTML+=`<p>Cut Off Date: ${missedGoals[i].endDate.getDate()+'/'+missedGoals[i].endDate.getMonth()+1+"/"+missedGoals[i].endDate.getYear()}</p>`
+
+missedGoalsHtmlOut.appendChild(Content)
+}
+
+let outContainer = document.createElement(`div`)
+outContainer.setAttribute('class',"UserFullDetailsOutPut");
+outContainer.innerHTML+=`<p>Name:         ${name}</p>\n`
+outContainer.innerHTML+=`<p>Surname:      ${surname}</p>\n`
+outContainer.innerHTML+=`<p>Email:        ${email}</p>          <button id="UpdateEmailBtn">Update</button>  <input type="emailInput" id="EmailInput" name="name" placeholder="Jon" required>\n`
+outContainer.innerHTML+=`<p>Phone Number: ${phoneNumber}</p>    <button id="UpdatePhoneBtn">Update</button>  <input type="tel" id="TelInput" name="name" placeholder="Jon" required>\n`
+outContainer.innerHTML+=`<p>Height:       ${height}</p>         <button id="UpdateHeightBtn">Update</button> <input type="number" id="HeightInput" name="name" placeholder="Jon" required>\n`
+outContainer.innerHTML+=`<p>Weight:       ${weight}</p>         <button id="UpdateWeightBtn">Update</button> <input type="number" id="WeightInput" name="name" placeholder="Jon" required>\n`
+outContainer.innerHTML+=completedGoalsHtmlOut+`\n`;
+outContainer.innerHTML+=missedGoals;
+
+let btnEmail= document.getElementById("UpdateEmailBtn");
+let btnPhoneNumber= document.getElementById("UpdateEmailBtn");
+let btnHeight= document.getElementById("UpdateEmailBtn");
+let btnWeight= document.getElementById("UpdateEmailBtn");
+
+btnEmail.addEventListener('click',e=>{
+  currentuser.userEmail=document.getElementById('EmailInput')
+})
+btnPhoneNumber.addEventListener('click',e=>{
+  currentuser.userPhoneNumber=document.getElementById('TelInput')
+})
+btnHeight.addEventListener('click',e=>{
+  currentuser.height=document.getElementById('HeightInput')
+})
+btnWeight.addEventListener('click',e=>{
+  updateWeight(document.getElementById('WeightInput'))
+})
+
+};
+
+
 function exerciseTypeToOptionsList(exerciseGroup){
   let outString='';
 let arrayOptions = exerciseList.filter(e=>e[0].exerciseGroup==exerciseGroup);
@@ -711,6 +830,7 @@ function addUser(fusername,fUserPassword){
     userList.push(PopulateUser(fusername,fUserPassword,usertemp.firstName,usertemp.lastName,usertemp.height,usertemp.weight,usertemp.age,usertemp.userEmail,usertemp.userPhoneNumber));
         loggedInUser =-1;
 }
+
 userList.push(PopulateUser('admin','admin','','','','','','',''));
 window.addEventListener('load',loadIndex);
 
@@ -1291,12 +1411,14 @@ function loadMainBone(){
               <p>See your full report since your journey with us</p>
             </div>
             <span>
-              <button class="fullReport"><i class="ri-arrow-right-fill"></i></button>
+              <button class="fullReport" id="FullReportButton"><i class="ri-arrow-right-fill"></i></button>
             </span>
           </div>
           
         </div>
       </div>
+      <div id="ReportOutputDiv">
+      <div>
     </section>
 
 
@@ -1389,6 +1511,8 @@ function loadMainBone(){
     
     checkGoal();
 
+    let fullReportButton =document.getElementById("FullReportButton")
+    fullReportButton.addEventListener('click',userToFullDetails())
     let logOutButton = document.querySelector("#logOut");
     logOutButton.addEventListener('click', e=>{
         loggedInUser=-1;
