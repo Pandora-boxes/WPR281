@@ -713,7 +713,7 @@ function addUser(fusername,fUserPassword){
         loggedInUser =-1;
 }
 userList.push(PopulateUser('admin','admin','','','','','','',''));
-window.addEventListener('load',loadMainBone);
+window.addEventListener('load',loadIndex);
 
 // for all load{page Name here} we take the html of a page as a string components
 //  and insert it into the current html page whilst replaceing all the current
@@ -1502,56 +1502,151 @@ document.addEventListener("DOMContentLoaded", function () {
   setInterval(getRandomQuote, 8000);
 });
 
-let exerciseInput = document.getElementById("add__btn");
-console.log(exerciseInput);
-exerciseInput.addEventListener("click",);
+LoadExerciseForm("cardio")
+function LoadExerciseForm(exerciseGroupInput) {
 
-console.log(createExerciseDOM("cardio"));
-console.log(exerciseList[0].cardio[0].name)
 
-function createExerciseDOM(exerciseInputGroup) {
   let container = document.createElement('div')
-  container.setAttribute('class', 'form-container');
+  container.setAttribute("class", "form-container show")
+
   let head = document.createElement('h3')
-
   let form = document.createElement('form')
+  container.appendChild(head)
+  let select = document.createElement('select')
 
-  switch (exerciseInputGroup){
+
+  let exerciseInput1Label = document.createElement('label')
+      exerciseInput1Label.setAttribute('for', "ExerciseInputValue1")
+      let exerciseInput1 = document.createElement('input')
+      exerciseInput1.setAttribute('type', 'number')
+      exerciseInput1.setAttribute('id', 'ExerciseInputValue1')
+      exerciseInput1.setAttribute("required", '')
+
+      let exerciseInput2Label = document.createElement('label')
+      exerciseInput2Label.setAttribute('for', "ExerciseInputValue2")
+      let exerciseInput2 = document.createElement('input')
+      exerciseInput2.setAttribute('type', 'number')
+      exerciseInput2.setAttribute('id', 'ExerciseInputValue2')
+      exerciseInput2.setAttribute("required", '')
+
+      let exerciseInput3Label = document.createElement('label')
+      exerciseInput3Label.setAttribute('for', "ExerciseInputValue3")
+      let exerciseInput3 = document.createElement('input')
+      exerciseInput3.setAttribute('type', 'number')
+      exerciseInput3.setAttribute('id', 'ExerciseInputValue3')
+      exerciseInput3.setAttribute("required", '')
+
+      let exerciseInput4Label = document.createElement('label')
+      exerciseInput4Label.setAttribute('for', "ExerciseInputValue4")
+      let exerciseInput4 = document.createElement('input')
+      exerciseInput4.setAttribute('type', 'number')
+      exerciseInput4.setAttribute('id', 'ExerciseInputValue4')
+      exerciseInput4.setAttribute("required", '')
+
+      let exerciseInput5Label = document.createElement('label')
+      exerciseInput5Label.setAttribute('for', "ExerciseInputValue5")
+      let exerciseInput5 = document.createElement('input')
+      exerciseInput5.setAttribute('type', 'number')
+      exerciseInput5.setAttribute('id', 'ExerciseInputValue5')
+      exerciseInput5.setAttribute("required", '')
+
+  // taking user input and storing it based off the exercise the user has chosen
+  // also checking for achievements and user personal bests
+  switch (exerciseGroupInput){
     case "cardio":
-      head.innerHTML = "Cardio Exercises"
-      container.appendChild(head)
-      console.log(exerciseList[0].cardio[0].name)
+      head.textContent= "Cardio"
+      form.setAttribute('id','cardioForm')
+      exerciseInput1Label.textContent = "Time (min)";
+      exerciseInput2Label.textContent = "Distance you ran"
+      exerciseInput3Label.textContent = "Reps or speed"
+      exerciseInput4Label.textContent = "Calories you burned"
 
-      
-        // let label = document.createElement('label');
-        // label.setAttribute('for', `${exerciseList.exerciseInputGroup.}`)
-        // let input = document.createElement(`input`);
-        
-       
-      break;
-
-    case "BodyWeight":
-      head.innerHTML = "Body Weight Exercises"
-      container.appendChild(head)
-      
-      
+      select.appendChild(exerciseTypeToOptionsList("cardio"))
+      console.log(select.innerHTML)
+      form.appendChild(select)
+      form.appendChild(exerciseInput1Label)
+      form.appendChild(exerciseInput1)
+      form.appendChild(exerciseInput2Label)
+      form.appendChild(exerciseInput2)
+      form.appendChild(exerciseInput3Label)
+      form.appendChild(exerciseInput3)
+      form.appendChild(exerciseInput4Label)
+      form.appendChild(exerciseInput4)
       break;
     
+    case "BodyWeight":
+      head.textContent = "Body Weight Exercises"
+    form.setAttribute('id','bodyWeightForm')
+    exerciseInput1Label.textContent = "Time (min)";
+    exerciseInput2Label.textContent = "Reps/Hold time"
+    exerciseInput3Label.textContent = "Max reps/Max Hold Time"
+    exerciseInput4Label.textContent = "Calories you burned"
+      select.appendChild(exerciseTypeToOptionsList("bodyWeightExercises"))
+      form.appendChild(select)
+      form.appendChild(exerciseInput1Label)
+      form.appendChild(exerciseInput1)
+      form.appendChild(exerciseInput2Label)
+      form.appendChild(exerciseInput2)
+      form.appendChild(exerciseInput3Label)
+      form.appendChild(exerciseInput3)
+      form.appendChild(exerciseInput4Label)
+      form.appendChild(exerciseInput4)
     case "WeightedLifts":
-      head.innerHTML = "Weight Lifting"
-      container.appendChild(head)
-      break;
+      
+    head.textContent = "Weight Lifting"
+    form.setAttribute('id','weightLiftForm')
+    exerciseInput1Label.textContent = "Time (min)";
+    exerciseInput2Label.textContent = "Reps"
+    exerciseInput3Label.textContent = "Max reps"
+    exerciseInput4Label.textContent = "Calories you burned"
+    exerciseInput5Label.textContent = "Weight in kg"
+
+      select.appendChild(exerciseTypeToOptionsList("weightedLifts"))
+      form.appendChild(select)
+
+      form.appendChild(exerciseInput1Label)
+      form.appendChild(exerciseInput1)
+      form.appendChild(exerciseInput2Label)
+      form.appendChild(exerciseInput2)
+      form.appendChild(exerciseInput3Label)
+      form.appendChild(exerciseInput3)
+      form.appendChild(exerciseInput4Label)
+      form.appendChild(exerciseInput4)
+      form.appendChild(exerciseInput5Label)
+      form.appendChild(exerciseInput5)
     
     case "Stretches":
-      head.innerHTML = "Stretches"
-      container.appendChild(head)
-      
+
+    head.textContent = "Streches"
+    form.setAttribute('id','stretchesForm')
+    exerciseInput1Label.textContent = "Time (min)";
+    exerciseInput2Label.textContent = "Duration/Reps/HoldTime"
+    exerciseInput3Label.textContent = "Max Duration/Max Reps/ Max HoldTime"
+      select.appendChild(exerciseTypeToOptionsList("stretches"))
+
+      form.appendChild(select)
+      form.appendChild(exerciseInput1Label)
+      form.appendChild(exerciseInput1)
+      form.appendChild(exerciseInput2Label)
+      form.appendChild(exerciseInput2)
+      form.appendChild(exerciseInput3Label)
+      form.appendChild(exerciseInput3)
     break;
     }
+    let button = document.createElement('button')
+    button.setAttribute('type', "submit")
+    form.appendChild(button)
     
-}
+    function clearcontent() {
+     document.getElementByClassName(`jump`).innerHTML = "";
+  }
+  clearcontent()
+  jumpContiner.appendChild(container);
 
+
+ }
 };
+
 
 function loadLogin(){
     console.log(userList);
