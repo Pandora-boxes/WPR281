@@ -302,7 +302,8 @@ let exerciseList = [
     }
   ]
 ]
-  
+
+
 
 let Account = {
     userName : "",
@@ -321,12 +322,12 @@ let Account = {
     achivements: [],
     usersBestList: exerciseList,
     GoalDetails:{
-      type: null, //type of 
+      type: "", //type of 
       // [calories burnt, distance covered, weight lifted, time streching or exercises logged]
       startDate: new Date(),
       endDate: new Date(),// the date they enter in the form
-      goalTarget:null, // end goal
-      goalCounter:null //running total 
+      goalTarget:0, // end goal
+      goalCounter:0 //running total 
     },
     completedGoals:[],
     missedGoals:[]
@@ -712,7 +713,7 @@ function addUser(fusername,fUserPassword){
         loggedInUser =-1;
 }
 userList.push(PopulateUser('admin','admin','','','','','','',''));
-window.addEventListener('load',loadIndex);
+window.addEventListener('load',loadMainBone);
 
 // for all load{page Name here} we take the html of a page as a string components
 //  and insert it into the current html page whilst replaceing all the current
@@ -1227,7 +1228,7 @@ function loadMainBone(){
             <p>
               Improves cardiovascular endurance, burns calories, strengthens leg muscles, and boosts mental health.
             </p>
-            <button class="btn" id="add__btn">Add</button>
+            <button class="btn" id="add__btn" value="Cardio">Add</button>
           </div>
           <div class="service__card">
             <span>02</span>
@@ -1235,7 +1236,7 @@ function loadMainBone(){
             <p>
               Increases muscle strength and mass, improves bone density, and enhances metabolism.
             </p>
-            <button class="btn" id="add__btn">Add</button>
+            <button class="btn" id="add__btn" value="Lifting">Add</button>
           </div>
           <div class="service__card">
             <span>03</span>
@@ -1243,7 +1244,7 @@ function loadMainBone(){
             <p>
               Builds upper body strength (chest, shoulders, triceps), engages the core, and enhances endurance.
             </p>
-            <button class="btn" id="add__btn">Add</button>
+            <button class="btn" id="add__btn" value="Body-Weight-Exercises">Add</button>
           </div>
           <div class="service__card">
             <span>04</span>
@@ -1251,7 +1252,7 @@ function loadMainBone(){
             <p>
               A full-body workout that boosts cardio fitness, burns fat, builds strength, and improves agility.
             </p>
-            <button class="btn" id="add__btn">Add</button>  
+            <button class="btn" id="add__btn" value="Stretches">Add</button>  
           </div>
           <div class="service__image">
             <img src="images/duderunning.jpg" alt="service" />
@@ -1500,6 +1501,56 @@ document.addEventListener("DOMContentLoaded", function () {
   getRandomQuote(); // Show a random quote on page load
   setInterval(getRandomQuote, 8000);
 });
+
+let exerciseInput = document.getElementById("add__btn");
+console.log(exerciseInput);
+exerciseInput.addEventListener("click",);
+
+console.log(createExerciseDOM("cardio"));
+console.log(exerciseList[0].cardio[0].name)
+
+function createExerciseDOM(exerciseInputGroup) {
+  let container = document.createElement('div')
+  container.setAttribute('class', 'form-container');
+  let head = document.createElement('h3')
+
+  let form = document.createElement('form')
+
+  switch (exerciseInputGroup){
+    case "cardio":
+      head.innerHTML = "Cardio Exercises"
+      container.appendChild(head)
+      console.log(exerciseList[0].cardio[0].name)
+
+      
+        // let label = document.createElement('label');
+        // label.setAttribute('for', `${exerciseList.exerciseInputGroup.}`)
+        // let input = document.createElement(`input`);
+        
+       
+      break;
+
+    case "BodyWeight":
+      head.innerHTML = "Body Weight Exercises"
+      container.appendChild(head)
+      
+      
+      break;
+    
+    case "WeightedLifts":
+      head.innerHTML = "Weight Lifting"
+      container.appendChild(head)
+      break;
+    
+    case "Stretches":
+      head.innerHTML = "Stretches"
+      container.appendChild(head)
+      
+    break;
+    }
+    
+}
+
 };
 
 function loadLogin(){
