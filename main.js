@@ -331,6 +331,11 @@ let Account = {
     completedGoals:[],
     missedGoals:[]
 }
+function updateWeight(newWeight){
+  let currentUser = userList[loggedInUser];
+  currentUser.weight=newWeight;
+  currentUser.weightLog.push([newWeight,new Date()])
+}
 
 function addFavExercise(exerciseGroup,exerciseName){
   let currentUser = userList[loggedInUser];
