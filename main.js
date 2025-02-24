@@ -656,7 +656,7 @@ let name= currentuser.firstName;
 let surname = currentuser.surname;
 let email = currentuser.userEmail;
 let phoneNumber = currentuser.userPhoneNumber;
-let Height = currentuser.height;
+let height = currentuser.height;
 let weight = currentuser.weight;
 // weight log to gragh
 let usersBests = currentuser.usersBestsList//lots of work here , inverse of the exercise input
@@ -664,7 +664,8 @@ let usersBests = currentuser.usersBestsList//lots of work here , inverse of the 
 let completedGoals = currentuser.completedGoals;
 let missedGoals = currentuser.missedGoals;
 
-let completedGoalsHtmlOut= document.createElement(`Section class="CompletedGoals"`)
+let completedGoalsHtmlOut= document.createElement(`Section`)
+completedGoalsHtmlOut.setAttribute('class',"CompletedGoals")
 for (let i = 0 ; i<missedGoals.length;++i){
 let Content =  document.createElement('p class="CompletedGoalData')
 switch(completedGoals.type){
@@ -699,7 +700,8 @@ Content.innerHTML+=`<p>Completed within  ${completionPercent}% of the alocated t
 missedGoalsHtmlOut.appendChild(Content)
 }
 
-let missedGoalsHtmlOut= document.createElement(`Section class="MissedGoals"`)
+let missedGoalsHtmlOut= document.createElement(`Section`)
+missedGoalsHtmlOut.setAttribute('class',"missedGoals")
 for (let i = 0 ; i<missedGoals.length;++i){
 let Content =  document.createElement('p class="MissedGoalData')
 switch(missedGoals.type){
@@ -735,14 +737,32 @@ missedGoalsHtmlOut.appendChild(Content)
 }
 
 let outContainer = document.createElement(`div class="UserFullDetailsOutPut"`)
-outContainer.innerHTML+=`<p>Name: ${name}</p>\n`
-outContainer.innerHTML+=`<p>Surname: ${surname}</p>\n`
-outContainer.innerHTML+=`<p>Surname: ${email}</p> <button id="UpdateEmailBtn">Update</button>\n`
-outContainer.innerHTML+=`<p>Surname: ${phoneNumber}</p> <button id="UpdatePhoneBtn">Update</button>\n`
-outContainer.innerHTML+=`<p>Surname: ${height}</p> <button id="UpdateHeightBtn">Update</button>\n`
-outContainer.innerHTML+=`<p>Surname: ${weight}</p> <button id="UpdateWeightBtn">Update</button>\n`
+outContainer.innerHTML+=`<p>Name:         ${name}</p>\n`
+outContainer.innerHTML+=`<p>Surname:      ${surname}</p>\n`
+outContainer.innerHTML+=`<p>Email:        ${email}</p>          <button id="UpdateEmailBtn">Update</button>  <input type="emailInput" id="EmailInput" name="name" placeholder="Jon" required>\n`
+outContainer.innerHTML+=`<p>Phone Number: ${phoneNumber}</p>    <button id="UpdatePhoneBtn">Update</button>  <input type="tel" id="TelInput" name="name" placeholder="Jon" required>\n`
+outContainer.innerHTML+=`<p>Height:       ${height}</p>         <button id="UpdateHeightBtn">Update</button> <input type="number" id="HeightInput" name="name" placeholder="Jon" required>\n`
+outContainer.innerHTML+=`<p>Weight:       ${weight}</p>         <button id="UpdateWeightBtn">Update</button> <input type="number" id="WeightInput" name="name" placeholder="Jon" required>\n`
 outContainer.innerHTML+=completedGoalsHtmlOut+`\n`;
 outContainer.innerHTML+=missedGoals;
+
+let btnEmail= document.getElementById("UpdateEmailBtn");
+let btnPhoneNumber= document.getElementById("UpdateEmailBtn");
+let btnHeight= document.getElementById("UpdateEmailBtn");
+let btnWeight= document.getElementById("UpdateEmailBtn");
+
+btnEmail.addEventListener('click',e=>{
+  currentuser.userEmail=document.getElementById('EmailInput')
+})
+btnPhoneNumber.addEventListener('click',e=>{
+  currentuser.userPhoneNumber=document.getElementById('TelInput')
+})
+btnHeight.addEventListener('click',e=>{
+  currentuser.height=document.getElementById('HeightInput')
+})
+btnWeight.addEventListener('click',e=>{
+  updateWeight(document.getElementById('WeightInput'))
+})
 
 };
 
@@ -1390,12 +1410,14 @@ function loadMainBone(){
               <p>See your full report since your journey with us</p>
             </div>
             <span>
-              <button class="fullReport"><i class="ri-arrow-right-fill"></i></button>
+              <button class="fullReport" id="FullReportButton"><i class="ri-arrow-right-fill"></i></button>
             </span>
           </div>
           
         </div>
       </div>
+      <div id="ReportOutputDiv">
+      <div>
     </section>
 
 
@@ -1488,6 +1510,8 @@ function loadMainBone(){
     
     checkGoal();
 
+    let fullReportButton =document.getElementById("FullReportButton")
+    fullReportButton.addEventListener('click',userToFullDetails())
     let logOutButton = document.querySelector("#logOut");
     logOutButton.addEventListener('click', e=>{
         loggedInUser=-1;
