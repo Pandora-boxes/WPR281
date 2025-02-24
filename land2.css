@@ -7,16 +7,17 @@
     --white: #ffffff;
     --gradient-1: linear-gradient(to right, #7ded9f, #2f33b8, #e0e0e2);
     --gradient-2: linear-gradient(to right, #4fcb51, #28a4a9, #7ed6d8);
-    --max-width: 1200px;
+    --max-width: 100vw;  
 }
+
 .login-button {
-    padding: 15px 30px;
-    border: 2px solid #2c2c2c;
+    padding: 1vw 2vw;
+    border: 0.2vw solid #2c2c2c;   
     background-color: #1a1a1a;
     color: #ffffff;
-    font-size: 1.2rem;
+    font-size: 1.2rem;  
     cursor: pointer;
-    border-radius: 30px;
+    border-radius: 3vw;   
     transition: all 0.4s ease;
     outline: none;
     position: relative;
@@ -47,6 +48,7 @@
     border-color: #666666;
     background: #292929;
 }
+
 html, body {
     min-height: 100vh;
     margin: 0;
@@ -80,10 +82,11 @@ body::before {
     background-color: rgba(0, 0, 0, 0.8);
     z-index: -1;
 }
+
 .landing2-body-card {
     background: #222;
-    border-radius: 10px;
-    padding: 15px;
+    border-radius: 1vw;   
+    padding: 1.5vw;   
     text-align: center;
     display: block; 
     text-decoration: none;
@@ -96,39 +99,39 @@ body::before {
 
 .landing2-body-card img {
     width: 100%;
-    border-radius: 10px;
+    border-radius: 1vw; 
 }
 
 .landing2-body-card p {
-    margin-top: 10px;
-    font-size: 18px;
+    margin-top: 1vw;  
+    font-size: 1.8vw;  
     font-weight: bold;
 }
 
 header {
     display: flex;
     justify-content: space-between;
-    padding: 1vh;
+    padding: 1vh;  
     background: rgb(0, 0, 0);
 }
 header, section {
     position: relative;
     z-index: 1;
 }
-.mom{
-    font-size: 2rem;
+.mom {
+    font-size: 2vw;  
     font-weight: bold;
     color: #2f33b8;
 }
 .logo {
     display: flex;
     align-items: center;
-    gap: 0.625rem;
+    gap: 1vw; 
     color: white;
 }
 
 .logo img {
-    height: 10vh;
+    height: 10vh;  
     width: auto;
     vertical-align: middle;
 }
@@ -138,22 +141,22 @@ header, section {
 }
 
 .mid {
-    margin: 3.125rem 0;
+    margin: 3.125vh 0;  
 }
 
-h1{
-    font-size: 3rem;
+h1 {
+    font-size: 3vw;  
 }
 
 .container {
     max-width: 20vw;
-    margin: 3.125rem auto;
+    margin: 3.125vh auto;  
 }
 
 .body-type-options {
     display: flex;
     flex-direction: column;
-    gap: 0.938rem;
+    gap: 1vw;  
 }
 
 .option {
@@ -161,31 +164,33 @@ h1{
     align-items: center;
     justify-content: space-between;
     background-color: #222;
-    border-radius: 0.625rem;
+    border-radius: 0.625vw;  
     cursor: pointer;
     transition: background 0.3s;
 }
-.body{
-    padding: 1.875rem;
+
+.body {
+    padding: 1.875vh;  
 }
+
 .option:hover {
     background-color: #333;
 }
 
 .option img {
-    height: 20vh;
+    height: 20vh;  
     width: auto;
-    border-radius: 0.313rem;
+    border-radius: 0.313vw;  
 }
 .option span {
-    font-size: 1.125rem;
+    font-size: 1.125vw; 
     font-weight: bold;
-    margin-left: 20px;
+    margin-left: 2vw;  
 }
 
 /* Footer styles */
 .logo2 img {
-    width: 3vw;
+    width: 3vw;  
     height: auto;
 }
 .logo2 {
@@ -197,10 +202,690 @@ footer {
     width: 100%;
 }
 .footer-content {
-    max-width: 1200px;
+    max-width: 1200px; 
     margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 20px;
+    padding: 0 2vw;  
+}
+
+/* Extra Large */
+@media (min-width: 62.5vw) {
+    :root {
+        --max-width: 100vw;  
+    }
+    
+    .login-button {
+        padding: 1vw 2vw;
+        border: 0.2vw solid #2c2c2c;   
+        font-size: 1.2rem;  
+        border-radius: 3vw;   
+    }
+      
+    .login-button::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transform: scale(0);
+    }
+      
+    .login-button:hover::after {
+        transform: scale(4);
+    }
+      
+    
+    html, body {
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
+    
+    body {
+        margin: 0;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    body::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .landing2-body-card {
+        border-radius: 1vw;   
+        padding: 1.5vw;   
+    }
+    .landing2-body-card:hover {
+        transform: scale(1.05); 
+    }
+    
+    .landing2-body-card img {
+        width: 100%;
+        border-radius: 1vw; 
+    }
+    
+    .landing2-body-card p {
+        margin-top: 1vw;  
+        font-size: 1.8vw;  
+    }
+    
+    header {
+        padding: 1vh;  
+    }
+
+    .mom {
+        font-size: 2vw;  
+    }
+    .logo {
+        gap: 1vw; 
+    }
+    
+    .logo img {
+        height: 10vh;  
+        width: auto;
+        vertical-align: middle;
+    }
+    .mid {
+        margin: 3.125vh 0;  
+    }
+    
+    h1 {
+        font-size: 3vw;  
+    }
+    
+    .container {
+        max-width: 20vw;
+        margin: 3.125vh auto;  
+    }
+    
+    .body-type-options {
+        gap: 1vw;  
+    }
+    
+    .option {
+        border-radius: 0.625vw;  
+    }
+    
+    .body {
+        padding: 1.875vh;  
+    }
+    
+    .option img {
+        height: 20vh;  
+        width: auto;
+        border-radius: 0.313vw;  
+    }
+    .option span {
+        font-size: 1.125vw; 
+        margin-left: 2vw;  
+    }
+    
+    /* Footer styles */
+    .logo2 img {
+        width: 3vw;  
+        height: auto;
+    }
+
+    footer {
+        width: 100%;
+    }
+    .footer-content {
+        max-width: 1200px; 
+        margin: 0 auto;
+        padding: 0 2vw;  
+    }
+    
+}
+
+/* Large  */
+@media (max-width: 62.45vw) {
+    :root {
+        --max-width: 100vw;  
+    }
+    
+    .login-button {
+        padding: 1vw 2vw;
+        border: 0.2vw solid #2c2c2c;   
+        font-size: 1.2rem;  
+        border-radius: 3vw;   
+    }
+      
+    .login-button::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transform: scale(0);
+    }
+      
+    .login-button:hover::after {
+        transform: scale(4);
+    }
+      
+    
+    html, body {
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
+    
+    body {
+        margin: 0;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    body::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .landing2-body-card {
+        border-radius: 1vw;   
+        padding: 1.5vw;   
+    }
+    .landing2-body-card:hover {
+        transform: scale(1.05); 
+    }
+    
+    .landing2-body-card img {
+        width: 100%;
+        border-radius: 1vw; 
+    }
+    
+    .landing2-body-card p {
+        margin-top: 1vw;  
+        font-size: 1.8vw;  
+    }
+    
+    header {
+        padding: 1vh;  
+    }
+
+    .mom {
+        font-size: 2vw;  
+    }
+    .logo {
+        gap: 1vw; 
+    }
+    
+    .logo img {
+        height: 10vh;  
+        width: auto;
+        vertical-align: middle;
+    }
+    .mid {
+        margin: 3.125vh 0;  
+    }
+    
+    h1 {
+        font-size: 3vw;  
+    }
+    
+    .container {
+        max-width: 20vw;
+        margin: 3.125vh auto;  
+    }
+    
+    .body-type-options {
+        gap: 1vw;  
+    }
+    
+    .option {
+        border-radius: 0.625vw;  
+    }
+    
+    .body {
+        padding: 1.875vh;  
+    }
+    
+    .option img {
+        height: 20vh;  
+        width: auto;
+        border-radius: 0.313vw;  
+    }
+    .option span {
+        font-size: 1.125vw; 
+        margin-left: 2vw;  
+    }
+    
+    /* Footer styles */
+    .logo2 img {
+        width: 3vw;  
+        height: auto;
+    }
+
+    footer {
+        width: 100%;
+    }
+    .footer-content {
+        max-width: 1200px; 
+        margin: 0 auto;
+        padding: 0 2vw;  
+    }
+    
+}
+
+/* Medium  */
+@media (max-width: 51.61vw) {
+    :root {
+        --max-width: 100vw;  
+    }
+    
+    .login-button {
+        padding: 1vw 2vw;
+        border: 0.2vw solid #2c2c2c;   
+        font-size: 1.2rem;  
+        border-radius: 3vw;   
+    }
+      
+    .login-button::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transform: scale(0);
+    }
+      
+    .login-button:hover::after {
+        transform: scale(4);
+    }
+      
+    
+    html, body {
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
+    
+    body {
+        margin: 0;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    body::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .landing2-body-card {
+        border-radius: 1vw;   
+        padding: 1.5vw;   
+    }
+    .landing2-body-card:hover {
+        transform: scale(1.05); 
+    }
+    
+    .landing2-body-card img {
+        width: 100%;
+        border-radius: 1vw; 
+    }
+    
+    .landing2-body-card p {
+        margin-top: 1vw;  
+        font-size: 1.8vw;  
+    }
+    
+    header {
+        padding: 1vh;  
+    }
+
+    .mom {
+        font-size: 2vw;  
+    }
+    .logo {
+        gap: 1vw; 
+    }
+    
+    .logo img {
+        height: 10vh;  
+        width: auto;
+        vertical-align: middle;
+    }
+    .mid {
+        margin: 3.125vh 0;  
+    }
+    
+    h1 {
+        font-size: 3vw;  
+    }
+    
+    .container {
+        max-width: 20vw;
+        margin: 3.125vh auto;  
+    }
+    
+    .body-type-options {
+        gap: 1vw;  
+    }
+    
+    .option {
+        border-radius: 0.625vw;  
+    }
+    
+    .body {
+        padding: 1.875vh;  
+    }
+    
+    .option img {
+        height: 20vh;  
+        width: auto;
+        border-radius: 0.313vw;  
+    }
+    .option span {
+        font-size: 1.125vw; 
+        margin-left: 2vw;  
+    }
+    
+    /* Footer styles */
+    .logo2 img {
+        width: 3vw;  
+        height: auto;
+    }
+
+    footer {
+        width: 100%;
+    }
+    .footer-content {
+        max-width: 1200px; 
+        margin: 0 auto;
+        padding: 0 2vw;  
+    }
+    
+}
+
+/* Small  */
+@media (max-width: 39.95vw) {
+    :root {
+        --max-width: 100vw;  
+    }
+    
+    .login-button {
+        padding: 1vw 2vw;
+        border: 0.2vw solid #2c2c2c;   
+        font-size: 1.2rem;  
+        border-radius: 3vw;   
+    }
+      
+    .login-button::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transform: scale(0);
+    }
+      
+    .login-button:hover::after {
+        transform: scale(4);
+    }
+      
+    
+    html, body {
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
+    
+    body {
+        margin: 0;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    body::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .landing2-body-card {
+        border-radius: 1vw;   
+        padding: 1.5vw;   
+    }
+    .landing2-body-card:hover {
+        transform: scale(1.05); 
+    }
+    
+    .landing2-body-card img {
+        width: 100%;
+        border-radius: 1vw; 
+    }
+    
+    .landing2-body-card p {
+        margin-top: 1vw;  
+        font-size: 1.8vw;  
+    }
+    
+    header {
+        padding: 1vh;  
+    }
+
+    .mom {
+        font-size: 2vw;  
+    }
+    .logo {
+        gap: 1vw; 
+    }
+    
+    .logo img {
+        height: 10vh;  
+        width: auto;
+        vertical-align: middle;
+    }
+    .mid {
+        margin: 3.125vh 0;  
+    }
+    
+    h1 {
+        font-size: 3vw;  
+    }
+    
+    .container {
+        max-width: 20vw;
+        margin: 3.125vh auto;  
+    }
+    
+    .body-type-options {
+        gap: 1vw;  
+    }
+    
+    .option {
+        border-radius: 0.625vw;  
+    }
+    
+    .body {
+        padding: 1.875vh;  
+    }
+    
+    .option img {
+        height: 20vh;  
+        width: auto;
+        border-radius: 0.313vw;  
+    }
+    .option span {
+        font-size: 1.125vw; 
+        margin-left: 2vw;  
+    }
+    
+    /* Footer styles */
+    .logo2 img {
+        width: 3vw;  
+        height: auto;
+    }
+
+    footer {
+        width: 100%;
+    }
+    .footer-content {
+        max-width: 1200px; 
+        margin: 0 auto;
+        padding: 0 2vw;  
+    }
+    
+}
+
+/* Extra Small  */
+@media (max-width: 25vw) {
+    :root {
+        --max-width: 100vw;  
+    }
+    
+    .login-button {
+        padding: 1vw 2vw;
+        border: 0.2vw solid #2c2c2c;   
+        font-size: 1.2rem;  
+        border-radius: 3vw;   
+    }
+      
+    .login-button::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transform: scale(0);
+    }
+      
+    .login-button:hover::after {
+        transform: scale(4);
+    }
+      
+    
+    html, body {
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
+    
+    body {
+        margin: 0;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    body::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .landing2-body-card {
+        border-radius: 1vw;   
+        padding: 1.5vw;   
+    }
+    .landing2-body-card:hover {
+        transform: scale(1.05); 
+    }
+    
+    .landing2-body-card img {
+        width: 100%;
+        border-radius: 1vw; 
+    }
+    
+    .landing2-body-card p {
+        margin-top: 1vw;  
+        font-size: 1.8vw;  
+    }
+    
+    header {
+        padding: 1vh;  
+    }
+
+    .mom {
+        font-size: 2vw;  
+    }
+    .logo {
+        gap: 1vw; 
+    }
+    
+    .logo img {
+        height: 10vh;  
+        width: auto;
+        vertical-align: middle;
+    }
+    .mid {
+        margin: 3.125vh 0;  
+    }
+    
+    h1 {
+        font-size: 3vw;  
+    }
+    
+    .container {
+        max-width: 20vw;
+        margin: 3.125vh auto;  
+    }
+    
+    .body-type-options {
+        gap: 1vw;  
+    }
+    
+    .option {
+        border-radius: 0.625vw;  
+    }
+    
+    .body {
+        padding: 1.875vh;  
+    }
+    
+    .option img {
+        height: 20vh;  
+        width: auto;
+        border-radius: 0.313vw;  
+    }
+    .option span {
+        font-size: 1.125vw; 
+        margin-left: 2vw;  
+    }
+    
+    /* Footer styles */
+    .logo2 img {
+        width: 3vw;  
+        height: auto;
+    }
+
+    footer {
+        width: 100%;
+    }
+    .footer-content {
+        max-width: 1200px; 
+        margin: 0 auto;
+        padding: 0 2vw;  
+    }
+    
 }
