@@ -321,7 +321,7 @@ let Account = {
     achivements: [],
     usersBestList: exerciseList,
     GoalDetails:{
-      type: null, //type of 
+      type: "", //type of 
       // [calories burnt, distance covered, weight lifted, time streching or exercises logged]
       startDate: new Date(),
       endDate: new Date(),// the date they enter in the form
@@ -341,6 +341,7 @@ function addFavExercise(exerciseGroup,exerciseName){
   let currentUser = userList[loggedInUser];
   currentUser.favoriteExercises.push([exerciseGroup,exerciseName]);
 }
+
 function removeFavExercise(exerciseGroup,exerciseName){
   let currentUser = userList[loggedInUser];
   let arrayFavExercises = currentUser.favoriteExercises;
@@ -376,7 +377,7 @@ function checkGoal(){
     tempObject.completeDate=new Date();
     currentUser.completedGoals.push(tempObject);
 
-    Goal.type = null;
+    Goal.type = "";
     Goal.startDate = null;
     Goal.endDate=null;
     Goal.goalTarget= null;
@@ -387,7 +388,7 @@ function checkGoal(){
     Object.assign(tempObject,Goal);
     currentUser.missedGoals.push(tempObject);
 
-    Goal.type = null;
+    Goal.type = "";
     Goal.startDate = null;
     Goal.endDate=null;
     Goal.goalTarget= null;
@@ -649,6 +650,103 @@ function addExercise(exerciseGroup,exerciseName){
   currentUser.exercisesComplete.push([exerciseObj,new Date]);
 };
 
+function userToFullDetails(){
+let currentuser = userList[loggedInUser]
+let name= currentuser.firstName;
+let surname = currentuser.surname;
+let email = currentuser.userEmail;
+let phoneNumber = currentuser.userPhoneNumber;
+let Height = currentuser.height;
+let weight = currentuser.weight;
+// weight log to gragh
+let usersBests = currentuser.usersBestsList//lots of work here , inverse of the exercise input
+// current goal graph
+let completedGoals = currentuser.completedGoals;
+let missedGoals = currentuser.missedGoals;
+
+let completedGoalsHtmlOut= document.createElement(`Section class="CompletedGoals"`)
+for (let i = 0 ; i<missedGoals.length;++i){
+let Content =  document.createElement('p class="CompletedGoalData')
+switch(completedGoals.type){
+  case "calories burnt":
+  Content.innerHTML+=`<H3>${completedGoals.type}</H3> \n <p>Target: ${completedGoals.goalTarget} calories</p>`
+  break;
+
+  case "distance covered":
+  Content.innerHTML+=`<H3>${completedGoals.type}</H3> \n <p>Target: ${completedGoals.goalTarget} m</p>`
+  break;
+
+  case "weight lifted":
+  Content.innerHTML+=`<H3>${completedGoals.type}</H3> \n <p>Target: ${completedGoals.goalTarget} kg's</p>`
+  break;
+
+  case "time streching":
+  Content.innerHTML+=`<H3>${completedGoals.type}</H3> \n <p>Target: ${completedGoals.goalTarget} minutes</p>`
+  break;
+
+  case "exercises logged":
+  Content.innerHTML+=`<H3>${completedGoals.type}</H3> \n <p>Target: ${completedGoals.goalTarget} exercises</p>`
+  break;
+
+  default:
+  break
+}
+let completionPercent =((missedGoals.endDate-completedGoals.completeDate)/(missedGoals.endDate-completedGoals.startDate)*100).toFixed(1);
+Content.innerHtml+=`<p>Start Date: ${completedGoals[i].startDate.getDate()+'/'+completedGoals[i].startDate.getMonth()+1+"/"+completedGoals[i].startDate.getYear()}</p>`
+Content.innerHTML+=`<p>Cut Off Date: ${completedGoals[i].endDate.getDate()+'/'+completedGoals[i].endDate.getMonth()+1+"/"+completedGoals[i].endDate.getYear()}</p>`
+Content.innerHTML+=`<p>Completed within  ${completionPercent}% of the alocated time</p>`
+
+missedGoalsHtmlOut.appendChild(Content)
+}
+
+let missedGoalsHtmlOut= document.createElement(`Section class="MissedGoals"`)
+for (let i = 0 ; i<missedGoals.length;++i){
+let Content =  document.createElement('p class="MissedGoalData')
+switch(missedGoals.type){
+  case "calories burnt":
+  Content.innerHTML+=`<H3>${missedGoals.type}</H3> \n <p>Target: ${missedGoals.goalTarget} calories</p>`
+  break;
+
+  case "distance covered":
+  Content.innerHTML+=`<H3>${missedGoals.type}</H3> \n <p>Target: ${missedGoals.goalTarget} m</p>`
+  break;
+
+  case "weight lifted":
+  Content.innerHTML+=`<H3>${missedGoals.type}</H3> \n <p>Target: ${missedGoals.goalTarget} kg's</p>`
+  break;
+
+  case "time streching":
+  Content.innerHTML+=`<H3>${missedGoals.type}</H3> \n <p>Target: ${missedGoals.goalTarget} minutes</p>`
+  break;
+
+  case "exercises logged":
+  Content.innerHTML+=`<H3>${missedGoals.type}</H3> \n <p>Target: ${missedGoals.goalTarget} exercises</p>`
+  break;
+
+  default:
+  break
+}
+let completionPercent =(missedGoals.goalCounter/missedGoals.goalTarget*100).toFixed(1);
+Content.innerHTML+=`<p>Completion %: ${completionPercent}%</p>`
+Content.innerHtml+=`<p>Start Date: ${missedGoals[i].startDate.getDate()+'/'+missedGoals[i].startDate.getMonth()+1+"/"+missedGoals[i].startDate.getYear()}</p>`
+Content.innerHTML+=`<p>Cut Off Date: ${missedGoals[i].endDate.getDate()+'/'+missedGoals[i].endDate.getMonth()+1+"/"+missedGoals[i].endDate.getYear()}</p>`
+
+missedGoalsHtmlOut.appendChild(Content)
+}
+
+let outContainer = document.createElement(`div class="UserFullDetailsOutPut"`)
+outContainer.innerHTML+=`<p>Name: ${name}</p>\n`
+outContainer.innerHTML+=`<p>Surname: ${surname}</p>\n`
+outContainer.innerHTML+=`<p>Surname: ${email}</p> <button id="UpdateEmailBtn">Update</button>\n`
+outContainer.innerHTML+=`<p>Surname: ${phoneNumber}</p> <button id="UpdatePhoneBtn">Update</button>\n`
+outContainer.innerHTML+=`<p>Surname: ${height}</p> <button id="UpdateHeightBtn">Update</button>\n`
+outContainer.innerHTML+=`<p>Surname: ${weight}</p> <button id="UpdateWeightBtn">Update</button>\n`
+outContainer.innerHTML+=completedGoalsHtmlOut+`\n`;
+outContainer.innerHTML+=missedGoals;
+
+};
+
+
 function exerciseTypeToOptionsList(exerciseGroup){
   let outString='';
 let arrayOptions = exerciseList.filter(e=>e[0].exerciseGroup==exerciseGroup);
@@ -711,6 +809,7 @@ function addUser(fusername,fUserPassword){
     userList.push(PopulateUser(fusername,fUserPassword,usertemp.firstName,usertemp.lastName,usertemp.height,usertemp.weight,usertemp.age,usertemp.userEmail,usertemp.userPhoneNumber));
         loggedInUser =-1;
 }
+
 userList.push(PopulateUser('admin','admin','','','','','','',''));
 window.addEventListener('load',loadIndex);
 
@@ -730,7 +829,7 @@ function loadIndex(){
         <div class="logo">
             <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
-        <button class="login-button">
+        <button class="login-button" id="Login">
            Login in
         </button>
     </header>
@@ -832,9 +931,9 @@ function loadLanding2(){
         <div class="logo">
             <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
-        <div class="menu">
-            <a id="Login"><span>Login in</span></a>
-        </div>
+        <button class="login-button" id="Login">
+           Login in
+        </button>
     </header>
 
     <div class="container">
@@ -901,9 +1000,9 @@ function loadLanding3(){
         <div class="logo">
             <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
-        <div class="menu">
-            <a id="Login"><span>Login in</span></a>
-        </div>
+        <button class="login-button" id="Login">
+           Login in
+        </button>
     </header>
 
     <div class="container">
@@ -963,9 +1062,9 @@ function loadLanding4(){
         <div class="logo">
             <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
-        <div class="menu">
-            <a id="Login"><span>Login in</span></a>
-        </div>
+        <button class="login-button" id="Login">
+           Login in
+        </button>
     </header>
     <h1>Last few details</h1>
 
@@ -1077,9 +1176,9 @@ function loadLanding5(){
         <div class="logo">
             <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
-        <div class="menu">
-            <a id="Login"><span>Login in</span></a>
-        </div>
+        <button class="login-button" id="Login">
+           Login in
+        </button>
     </header>
     <h1>Finally you must create a username and a password</h1>
 
