@@ -662,10 +662,12 @@ let phoneNumber = currentuser.userPhoneNumber;
 let height = currentuser.height;
 let weight = currentuser.weight;
 // weight log to graph
-let usersBestsCardio = currentuser.usersBestsList[0].filter(element=>element.caloriesBurned>0||element.speed>0);
-let usersBestsbodyWeightExercises =currentuser.usersBestsList[1].filter(element=>element.caloriesBurned>0||element.time>0);
-let usersBestweightedLifts=currentuser.usersBestsList[2].filter(element=>element.caloriesBurned>0||element.weight>0);
-let usersBeststretches= currentuser.usersBestList[3].filter(element=>element.time>0);
+console.log(currentuser.usersBestList[0][0]);
+let usersBestList = currentuser.usersBestsList;
+let usersBestsCardio = usersBestList[0].filter(element=>{element.caloriesBurned>0||element.speed>0});
+let usersBestsbodyWeightExercises =usersBestList[1].filter(element=>element.caloriesBurned>0||element.time>0);
+let usersBestweightedLifts=usersBestList[2].filter(element=>element.caloriesBurned>0||element.weight>0);
+let usersBeststretches= usersBestList[3].filter(element=>element.time>0);
 let bestArray = [];
 let string = '';
 usersBestsCardio.forEach(element=>{
