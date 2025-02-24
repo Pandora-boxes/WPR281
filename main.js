@@ -1793,3 +1793,49 @@ function loadLogin(){
     });
 };
 
+
+function populateAdminAccount() {
+
+  loggedInUser = 0; 
+
+  let adminUser = userList[loggedInUser];
+
+  adminUser.usersBestList = JSON.parse(JSON.stringify(exerciseList)); 
+
+  
+  adminUser.usersBestList.cardio.forEach(exercise => {
+      exercise.time = 30; 
+      exercise.distance = 5; 
+      exercise.speed = 10; 
+      exercise.caloriesBurned = 200; 
+  });
+
+  adminUser.usersBestList.bodyWeightExercises.forEach(exercise => {
+      exercise.time = 20; 
+      exercise.reps = 15; 
+      exercise.maxReps = 20; 
+      exercise.caloriesBurned = 100; 
+  });
+
+  adminUser.usersBestList.weightedLifts.forEach(exercise => {
+      exercise.time = 25; 
+      exercise.weight = 50; 
+      exercise.reps = 10; 
+      exercise.maxReps = 12; 
+      exercise.caloriesBurned = 150; 
+  });
+
+  adminUser.usersBestList.stretches.forEach(exercise => {
+      exercise.time = 10; 
+      exercise.holdTime = 30; 
+      exercise.maxHoldTime = 60;
+  });
+
+ 
+  loggedInUser = -1;
+
+  console.log("Admin account populated with data.");
+}
+
+
+populateAdminAccount();
