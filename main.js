@@ -750,12 +750,45 @@ outContainer.innerHTML+=`<p>Email:        ${email}</p>          <button id="Upda
 outContainer.innerHTML+=`<p>Phone Number: ${phoneNumber}</p>    <button id="UpdatePhoneBtn">Update</button>  <input type="tel" id="TelInput" name="name" placeholder="Jon" required>\n`
 outContainer.innerHTML+=`<p>Height:       ${height}</p>         <button id="UpdateHeightBtn">Update</button> <input type="number" id="HeightInput" name="name" placeholder="Jon" required>\n`
 outContainer.innerHTML+=`<p>Weight:       ${weight}</p>         <button id="UpdateWeightBtn">Update</button> <input type="number" id="WeightInput" name="name" placeholder="Jon" required>\n`
-if(currentuser.completedGoals)
+if(currentuser.completedGoals.length>0)
 outContainer.innerHTML+=completedGoalsHtmlOut.innerHTML+`\n`;
+if(currentuser.missedGoals.length>0)
 outContainer.innerHTML+=missedGoals.innerHTML;
 
 document.getElementById("ReportOutputDiv").appendChild(outContainer)
 
+let button = document.getElementById('UpdateEmailBtn')
+let input = document.getElementById('EmailInput')
+button.addEventListener('click',e=>{
+  if (input!=null&&input.value.length>0){
+    currentuser.userEmail=input.value;
+    userToFullDetails();
+  }
+})
+let button1 = document.getElementById('UpdatePhoneBtn')
+let input1 = document.getElementById('TelInput')
+button1.addEventListener('click',e=>{
+  if (input1!=null&&input1.value.length>0){
+    currentuser.userPhoneNumber=input1.value;
+    userToFullDetails();
+  }
+})
+let button2 = document.getElementById('UpdateHeightBtn')
+let input2 = document.getElementById('HeightInput')
+button2.addEventListener('click',e=>{
+  if (input2!=null&&input2.value>0){
+    currentuser.height=input2.value;
+    userToFullDetails();
+  }
+})
+let button3 = document.getElementById('UpdateWeightBtn')
+let input3 = document.getElementById('WeightInput')
+button3.addEventListener('click',e=>{
+  if (input3!=null&&input3.value>0){
+    updateWeight(input3.value)
+    userToFullDetails();
+  }
+})
 console.log(currentuser)
 
 };
@@ -1631,9 +1664,7 @@ function loadLogin(){
         <div class="logo">
             <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
-        <div class="menu">
-            <a ><span>Login in</span></a>
-        </div>
+        
     </header>
     <h1>Enter your username and your password</h1>
 
