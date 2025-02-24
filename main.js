@@ -736,7 +736,8 @@ Content.innerHTML+=`<p>Cut Off Date: ${missedGoals[i].endDate.getDate()+'/'+miss
 missedGoalsHtmlOut.appendChild(Content)
 }
 
-let outContainer = document.createElement(`div class="UserFullDetailsOutPut"`)
+let outContainer = document.createElement(`div`)
+outContainer.setAttribute('class',"UserFullDetailsOutPut");
 outContainer.innerHTML+=`<p>Name:         ${name}</p>\n`
 outContainer.innerHTML+=`<p>Surname:      ${surname}</p>\n`
 outContainer.innerHTML+=`<p>Email:        ${email}</p>          <button id="UpdateEmailBtn">Update</button>  <input type="emailInput" id="EmailInput" name="name" placeholder="Jon" required>\n`
