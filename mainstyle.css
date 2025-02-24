@@ -164,6 +164,7 @@ nav {
   font-weight: 800;
   line-height: 5rem;
   color: var(--secondary-color);
+  /* changes welcome to white(--white) */
   font-style: italic;
   text-align: center;
 }
@@ -177,6 +178,8 @@ nav {
   font-weight: 800;
   line-height: 10rem;
   color: rgba(0, 0, 0, 0.05);
+  /* rgba(255, 255, 255, 0.05); */
+  /* changes to light white(i know grey) */
   z-index: -1;
 }
 
@@ -186,6 +189,7 @@ nav {
   font-weight: 800;
   line-height: 5rem;
   color: var(--text-dark);
+  /* lets chase some goals(change to white) */
   font-style: italic;
   text-align: center;
 }
@@ -234,11 +238,13 @@ nav {
 
 .jump__content .section__header::before {
   content: "Jump Back In!";
+  /* change to light white */
 }
 
 .jump__content p {
   margin-top: 1rem;
   color: var(--text-light);
+  /* changes to white */
 }
 
 .jump__content p:nth-child(3) {
@@ -257,6 +263,7 @@ nav {
 .service__container .section__header::before {
   content: "Choose";
   color: rgba(255, 255, 255, 0.1);
+  /* changes to back of recommended */
 }
 
 .service__grid {
@@ -271,6 +278,7 @@ nav {
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke: 0.0625rem var(--white); 
   opacity: 0.75;
+  /* could change this to transparent but black */
 }
 
 .service__card h4 {
@@ -282,6 +290,7 @@ nav {
 
 .service__card p {
   color: var(--text-light);
+  /* changes the text in choose excer. */
 }
 
 .service__image {
@@ -294,6 +303,7 @@ nav {
 
 .report__container .section__header::before {
   content: "Track progress";
+  /* light white */
 }
 
 .report__grid {
