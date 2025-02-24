@@ -321,7 +321,7 @@ let Account = {
     achivements: [],
     usersBestList: exerciseList,
     GoalDetails:{
-      type: null, //type of 
+      type: "", //type of 
       // [calories burnt, distance covered, weight lifted, time streching or exercises logged]
       startDate: new Date(),
       endDate: new Date(),// the date they enter in the form
@@ -341,6 +341,7 @@ function addFavExercise(exerciseGroup,exerciseName){
   let currentUser = userList[loggedInUser];
   currentUser.favoriteExercises.push([exerciseGroup,exerciseName]);
 }
+
 function removeFavExercise(exerciseGroup,exerciseName){
   let currentUser = userList[loggedInUser];
   let arrayFavExercises = currentUser.favoriteExercises;
@@ -376,7 +377,7 @@ function checkGoal(){
     tempObject.completeDate=new Date();
     currentUser.completedGoals.push(tempObject);
 
-    Goal.type = null;
+    Goal.type = "";
     Goal.startDate = null;
     Goal.endDate=null;
     Goal.goalTarget= null;
@@ -387,7 +388,7 @@ function checkGoal(){
     Object.assign(tempObject,Goal);
     currentUser.missedGoals.push(tempObject);
 
-    Goal.type = null;
+    Goal.type = "";
     Goal.startDate = null;
     Goal.endDate=null;
     Goal.goalTarget= null;
@@ -648,6 +649,38 @@ function addExercise(exerciseGroup,exerciseName){
     }
   currentUser.exercisesComplete.push([exerciseObj,new Date]);
 };
+
+// function userToFullDetails(){
+// let currentuser = userList[loggedInUser]
+// let name= currentuser.firstName;
+// let surname = currentuser.surname;
+// let email = currentuser.userEmail;
+// let phoneNumber = currentuser.userPhoneNumber;
+// let Height = currentuser.height;
+// let weight = currentuser.weight;
+// // weight log to gragh
+// let usersBests = currentuser.usersBestsList//lots of work here , inverse of the exercise input
+// // current goal graph
+// let completedGoals = currentuser.completedGoals;
+// let missedGoals = currentuser.missedGoals;
+
+// let missedGoalsHtmlOut= document.createElement(`Section class="MissedGoals"`)
+// for (let i = 0 ; i<missedGoals.length;++i){
+// let Content =  document.createElement('p class="MissedGoalData')
+// switch(missedGoals.type){
+//   case 
+// Content.innerHTML+=`<H3>${missedGoals.type}</H3> \n <p>Target: ${goalTarget}</p>`
+// }
+// Content.innerHtml+=`<p>Start Date: ${missedGoals[i].startDate.getDate()+'/'+missedGoals[i].startDate.getMonth()+1+"/"+missedGoals[i].startDate.getYear()}</p>`
+// Content.innerHTML+=`<p>Cut Off Date: ${missedGoals[i].endDate.getDate()+'/'+missedGoals[i].endDate.getMonth()+1+"/"+missedGoals[i].endDate.getYear()}</p>`
+
+
+
+
+
+// }
+// };
+
 
 function exerciseTypeToOptionsList(exerciseGroup){
   let outString='';
