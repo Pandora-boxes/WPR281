@@ -729,9 +729,9 @@ function loadIndex(){
         <div class="logo">
             <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
-        <div class="menu">
-            <a id="Login"><span>Login in</span></a>
-        </div>
+        <button class="login-button">
+           Login in
+        </button>
     </header>
 
     <section class="hero">
