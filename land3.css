@@ -121,6 +121,7 @@
         font-size: 2vw;   
         font-weight: bold;
         color: #2f33b8;
+        cursor: pointer;
     }
     .logo {
         display: flex;
