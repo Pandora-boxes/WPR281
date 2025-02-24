@@ -706,12 +706,56 @@ usersBestsbodyWeightExercises.forEach(element=>{
           string = `<div class="usersBestResultsContainer">
           <p><h2>${exerciseName}<h2></p>
           <p>Time:           ${element.time} minutes</p>
-          <p>Max Hold Time:  ${element.maxReps} reps</p>
-          <p>Hold Time:      ${element.reps} reps </p>
+          <p>Max Hold Time:  ${element.maxHoldTime} seconds</p>
+          <p>Hold Time:      ${element.holdTime} seconds </p>
           </div>`   
         break;
       }
+      bestArray.push(string);
+
     })
+usersBestweightedLifts.forEach(element=>{
+  string = `<div class="usersBestResultsContainer">
+          <p><h2>${exerciseName}<h2></p>
+          <p>Time:           ${element.time} minutes</p>
+          <p>Weight:         ${element.weight}kg</p>
+          <p>Max Reps:       ${element.maxReps} reps</p>
+          <p>Rep:            ${element.reps} reps </p>
+          </div>`   
+        bestArray.push(string);
+        });
+
+usersBeststretches.array.forEach(element => {
+  let exerciseName=element.name;
+  switch(exerciseName){
+    case "FoamRollingQuads":
+      string = `<div class="usersBestResultsContainer">
+      <p><h2>${exerciseName}<h2></p>
+      <p>Time:           ${element.time} minutes</p>
+      <p>Max Duration:  ${element.maxHoldTime} seconds</p>
+      <p>Duration:      ${element.holdTime} seconds </p>
+      </div>`  
+      break
+    case "TaiChiSlowMovements":
+      string = `<div class="usersBestResultsContainer">
+      <p><h2>${exerciseName}<h2></p>
+      <p>Time:           ${element.time} minutes</p>
+      <p>Max Reps:  ${element.maxHoldTime} reps</p>
+      <p>Reps:      ${element.holdTime} reps </p>
+      </div>`  
+      break
+    default:
+      string = `<div class="usersBestResultsContainer">
+          <p><h2>${exerciseName}<h2></p>
+          <p>Time:           ${element.time} minutes</p>
+          <p>Max Hold Time:  ${element.maxHoldTime} seconds</p>
+          <p>Hold Time:      ${element.holdTime} seconds </p>
+          </div>`  
+      break;
+  }  
+  bestArray.push(string);
+});
+
 //lots of work here , inverse of the exercise input
 // current goal graph
 let completedGoals = currentuser.completedGoals;
@@ -800,6 +844,8 @@ outContainer.innerHTML+=`<p>Email:        ${email}</p>          <button id="Upda
 outContainer.innerHTML+=`<p>Phone Number: ${phoneNumber}</p>    <button id="UpdatePhoneBtn">Update</button>  <input type="tel" id="TelInput" name="name" placeholder="Jon" required>\n`
 outContainer.innerHTML+=`<p>Height:       ${height}</p>         <button id="UpdateHeightBtn">Update</button> <input type="number" id="HeightInput" name="name" placeholder="Jon" required>\n`
 outContainer.innerHTML+=`<p>Weight:       ${weight}</p>         <button id="UpdateWeightBtn">Update</button> <input type="number" id="WeightInput" name="name" placeholder="Jon" required>\n`
+if(bestArray.length>0)
+  outContainer.innerHTML+=`${bestArray.join(`\n`)}\n`
 if(currentuser.completedGoals.length>0)
 outContainer.innerHTML+=completedGoalsHtmlOut.innerHTML+`\n`;
 if(currentuser.missedGoals.length>0)
