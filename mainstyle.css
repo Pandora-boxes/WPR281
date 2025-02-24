@@ -9,7 +9,7 @@
   --white: #ffffff;
   --gradient-1: linear-gradient(to right, #7ded9f, #2f33b8, #e0e0e2);
   --gradient-2: linear-gradient(to right, #4fcb51, #28a4a9, #7ed6d8);
-  --max-width: 1200px;
+  --max-width: 75rem; 
 }
 
 * {
@@ -21,7 +21,7 @@
 .section__container {
   max-width: var(--max-width);
   margin: auto;
-  padding: 500% 100%;
+  padding: 10% 2%;
 }
 
 .section__header {
@@ -29,12 +29,12 @@
   isolation: isolate;
   font-size: 200%;
   line-height: 275%;
-  max-width: 2500%;
+  max-width: 50%;
 }
 
 .section__header::before {
   position: absolute;
-  top: -3rem;
+  top: -15%;
   width: max-content;
   font-size: 6rem;
   font-weight: 800;
@@ -50,7 +50,7 @@
   font-size: 1rem;
   color: var(--white);
   background-color: var(--text-dark);
-  border-radius: 5px;
+  border-radius: 0.3125rem; 
   transition: 0.3s;
   cursor: pointer;
 }
@@ -80,6 +80,7 @@ body {
 
 body {
   font-family: "Poppins", sans-serif;
+  /* background-color: #020617; */
 }
 
 header {
@@ -104,7 +105,7 @@ nav {
 }
 
 .nav__logo img {
-  max-width: 175px;
+  max-width: 10.9375rem; 
 }
 
 .nav__logo .logo-dark {
@@ -231,8 +232,6 @@ nav {
   z-index: -1;
 }
 
-
-
 .jump__content .section__header::before {
   content: "Jump Back In!";
 }
@@ -270,7 +269,7 @@ nav {
   font-size: 2rem;
   font-weight: 800;
   -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 1px var(--white);
+  -webkit-text-stroke: 0.0625rem var(--white); 
   opacity: 0.75;
 }
 
@@ -308,13 +307,13 @@ nav {
   display: flex;
   align-items: center;
   gap: 1rem;
-  border: 1px solid var(--extra-light);
-  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.05);
+  border: 0.0625rem solid var(--extra-light); 
+  box-shadow: 0.3125rem 0.3125rem 1.25rem rgba(0, 0, 0, 0.05); 
   transition: 0.3s;
 }
 
 .report__card:hover {
-  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0.3125rem 0.3125rem 1.25rem rgba(0, 0, 0, 0.1);
 }
 
 .report__card div {
@@ -322,7 +321,7 @@ nav {
 }
 
 .report__card h4 {
-  margin-bottom: 5px;
+  margin-bottom: 0.3125rem;
   font-size: 1.2rem;
   font-weight: 700;
   color: var(--text-dark);
@@ -336,7 +335,7 @@ nav {
 }
 
 .report__card:hover span {
-  transform: translateX(10px);
+  transform: translateX(0.625rem);
 }
 
 .report__card p {
@@ -461,7 +460,7 @@ nav {
 
 .footer__logo img {
   margin-bottom: 2rem;
-  max-width: 250px;
+  max-width: 15.625rem; 
 }
 
 .footer__col h4 {
@@ -486,7 +485,7 @@ nav {
 
 .footer__links a span {
   font-size: 1.2rem;
-  margin-right: 10px;
+  margin-right: 0.625rem; 
 }
 
 .footer__bar {
@@ -494,7 +493,7 @@ nav {
   font-size: 0.9rem;
   color: var(--text-light);
   text-align: center;
-  border-top: 1px solid var(--text-light);
+  border-top: 0.0625rem solid var(--text-light); 
 }
 
 @media (width > 540px) {
@@ -551,7 +550,7 @@ nav {
   }
 
   .nav__logo img {
-    max-width: 200px;
+    max-width: 12.5rem; 
   }
 
   .nav__logo .logo-dark {
