@@ -1800,7 +1800,7 @@ function populateAdminAccount() {
 
   let adminUser = userList[loggedInUser];
   
-  adminUser.usersBestList=t exerciseList = [
+  adminUser.usersBestList= [
     cardio= [
       {
         name: "Jogging",
@@ -2096,7 +2096,7 @@ function populateAdminAccount() {
         exerciseGroup: "Stretches"
       }
     ]
-
+  ]
 
 
  
