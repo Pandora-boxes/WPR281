@@ -1043,7 +1043,7 @@ function loadIndex(){
             <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
         <button class="login-button" id="Login">
-           Login in
+           Login 
         </button>
     </header>
 
@@ -1145,7 +1145,7 @@ function loadLanding2(){
             <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
         <button class="login-button" id="Login">
-           Login in
+           Login
         </button>
     </header>
 
@@ -1214,7 +1214,7 @@ function loadLanding3(){
             <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
         <button class="login-button" id="Login">
-           Login in
+           Login 
         </button>
     </header>
 
@@ -1276,7 +1276,7 @@ function loadLanding4(){
             <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
         <button class="login-button" id="Login">
-           Login in
+           Login 
         </button>
     </header>
     <h1>Last few details</h1>
@@ -1390,7 +1390,7 @@ function loadLanding5(){
             <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
         <button class="login-button" id="Login">
-           Login in
+           Login 
         </button>
     </header>
     <h1>Finally you must create a username and a password</h1>
@@ -1507,12 +1507,12 @@ function loadMainBone(){
     <!-- They can see their excercises, and can choose to resume -->
      <!-- Called it jump because they can jump right back in, dont blame me (i see you) -->
     <div class="jump" id="jump">
-      <div class="section__container jump__container" id="jump__container">
+      <div class="section__container jump__container">
         <div class="jump__image" id="quoteDisplay">
          <p id="generateQuote"></p>  
          <!-- generates a random quote -->
         </div>
-        <div class="jump__content">
+        <div class="jump__content" id="jump__content">
           <h2 class="section__header">Your Exercises</h2>
           <p>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam reprehenderit nesciunt quaer
@@ -1541,7 +1541,7 @@ function loadMainBone(){
             <p>
               Improves cardiovascular endurance, burns calories, strengthens leg muscles, and boosts mental health.
             </p>
-            <button class="btn" id="add__btn" value="Cardio">Add</button>
+            <button class="btn add_Ex_btn" id="add__btn" value="Cardio">Add</button>
           </div>
           <div class="service__card">
             <span>02</span>
@@ -1549,7 +1549,7 @@ function loadMainBone(){
             <p>
               Increases muscle strength and mass, improves bone density, and enhances metabolism.
             </p>
-            <button class="btn" id="add__btn" value="Lifting">Add</button>
+            <button class="btn add_Ex_btn" id="add__btn" value="Lifting">Add</button>
           </div>
           <div class="service__card">
             <span>03</span>
@@ -1557,7 +1557,7 @@ function loadMainBone(){
             <p>
               Builds upper body strength (chest, shoulders, triceps), engages the core, and enhances endurance.
             </p>
-            <button class="btn" id="add__btn" value="Body-Weight-Exercises">Add</button>
+            <button class="btn add_Ex_btn" id="add__btn" value="Body-Weight-Exercises">Add</button>
           </div>
           <div class="service__card">
             <span>04</span>
@@ -1565,7 +1565,7 @@ function loadMainBone(){
             <p>
               A full-body workout that boosts cardio fitness, burns fat, builds strength, and improves agility.
             </p>
-            <button class="btn" id="add__btn" value="Stretches">Add</button>  
+            <button class="btn add_Ex_btn" id="add__btn" value="Stretches">Add</button>  
           </div>
           <div class="service__image">
             <img src="images/duderunning.jpg" alt="service" />
@@ -1731,6 +1731,12 @@ navLinks.addEventListener("click", (e) => {
   menuBtnIcon.setAttribute("class", "ri-menu-line");
 });
 
+document.querySelectorAll('.add_Ex_btn').forEach(item => {
+  item.addEventListener('click', event => {
+    console.log(item.value)
+    LoadExerciseForm(item.value)
+  })
+})
 
 // defining animation setting
 const scrollRevealOption = {
@@ -1820,7 +1826,7 @@ document.addEventListener("DOMContentLoaded", function () {
   setInterval(getRandomQuote, 8000);
 });
 
-LoadExerciseForm("BodyWeight")
+
 function LoadExerciseForm(exerciseGroupInput) {
 
   let container = document.createElement('div')
@@ -1873,7 +1879,7 @@ function LoadExerciseForm(exerciseGroupInput) {
   // taking user input and storing it based off the exercise the user has chosen
   // also checking for achievements and user personal bests
   switch (exerciseGroupInput){
-    case "cardio":
+    case "Cardio":
       head.textContent= "Cardio"
       form.setAttribute('id','cardioForm')
       exerciseInput1Label.textContent = "Time (min)";
@@ -1893,7 +1899,7 @@ function LoadExerciseForm(exerciseGroupInput) {
       form.appendChild(exerciseInput4)
       break;
     
-    case "BodyWeight":
+    case "Body-Weight-Exercises":
       head.textContent = "Body Weight Exercises"
     form.setAttribute('id','bodyWeightForm')
     exerciseInput1Label.textContent = "Time (min)";
@@ -1912,7 +1918,7 @@ function LoadExerciseForm(exerciseGroupInput) {
       form.appendChild(exerciseInput4Label)
       form.appendChild(exerciseInput4)
       break;
-    case "WeightedLifts":
+    case "Lifting":
       
     head.textContent = "Weight Lifting"
     form.setAttribute('id','weightLiftForm')
@@ -1966,10 +1972,9 @@ function LoadExerciseForm(exerciseGroupInput) {
     form.appendChild(button)
     container.appendChild(form)
 
-  let jump = document.getElementById('jump')
-  let jumpcontain = document.getElementById('jump__container')
-    jump.replaceChild(container, jumpcontain)
-
+  let jumpcontain = document.getElementById('jump__content')
+  jumpcontain.innerHTML = "" 
+    jumpcontain.appendChild(container)
 
 
  }
@@ -2386,10 +2391,31 @@ function populateAdminAccount() {
 
 
  
-  loggedInUser = -1;
-
-  console.log("Admin account populated with data.");
 }
 
 
 populateAdminAccount();
+
+
+function updateAdminDetails() {
+ 
+  loggedInUser = 0; 
+
+  
+  let adminUser = userList[loggedInUser];
+
+  adminUser.firstName = "Admin";
+  adminUser.lastName = "User";
+  adminUser.userEmail = "admin@momentum.com";
+  adminUser.userPhoneNumber = "123-456-7890";
+  adminUser.height = 180; 
+  adminUser.weight = 75; 
+  adminUser.age = 30; 
+
+  loggedInUser = -1;
+
+  console.log("Admin details updated successfully.");
+}
+
+updateAdminDetails();
+
