@@ -342,6 +342,7 @@ function addFavExercise(exerciseGroup,exerciseName){
   let currentUser = userList[loggedInUser];
   currentUser.favoriteExercises.push([exerciseGroup,exerciseName]);
 }
+
 function removeFavExercise(exerciseGroup,exerciseName){
   let currentUser = userList[loggedInUser];
   let arrayFavExercises = currentUser.favoriteExercises;
@@ -377,7 +378,7 @@ function checkGoal(){
     tempObject.completeDate=new Date();
     currentUser.completedGoals.push(tempObject);
 
-    Goal.type = null;
+    Goal.type = "";
     Goal.startDate = null;
     Goal.endDate=null;
     Goal.goalTarget= null;
@@ -388,7 +389,7 @@ function checkGoal(){
     Object.assign(tempObject,Goal);
     currentUser.missedGoals.push(tempObject);
 
-    Goal.type = null;
+    Goal.type = "";
     Goal.startDate = null;
     Goal.endDate=null;
     Goal.goalTarget= null;
@@ -650,6 +651,246 @@ function addExercise(exerciseGroup,exerciseName){
   currentUser.exercisesComplete.push([exerciseObj,new Date]);
 };
 
+function userToFullDetails(){
+
+  document.getElementById("ReportOutputDiv").innerHTML='';
+
+let currentuser = userList[loggedInUser]
+let name= currentuser.firstName;
+let surname = currentuser.lastName;
+let email = currentuser.userEmail;
+let phoneNumber = currentuser.userPhoneNumber;
+let height = currentuser.height;
+let weight = currentuser.weight;
+// weight log to graph
+let usersBestsCardio = currentuser.usersBestsList[0].filter(element=>element.caloriesBurned>0||element.speed>0);
+let usersBestsbodyWeightExercises =currentuser.usersBestsList[1].filter(element=>element.caloriesBurned>0||element.time>0);
+let usersBestweightedLifts=currentuser.usersBestsList[2].filter(element=>element.caloriesBurned>0||element.weight>0);
+let usersBeststretches= currentuser.usersBestList[3].filter(element=>element.time>0);
+let bestArray = [];
+let string = '';
+usersBestsCardio.forEach(element=>{
+  let exerciseName=element.name;
+  switch(exerciseName){
+    case "Jogging"||"Cycling"||"Rowing"||"Swimming"||"StairClimbing"||"Sprints 100m"||"Sprints 200m"||"Sprints 400m":
+    string = `<div class="usersBestResultsContainer">
+            <p><h2>${exerciseName}<h2></p>
+            <p>Time:      ${element.time} seconds</p>
+            <p>Distance:  ${element.distance} meters</p>
+            <p>Speed:     ${element.speed.toFixed(2)} m/s </p>
+            </div>`
+    break;
+    case "JumpRope":
+      string = `<div class="usersBestResultsContainer">
+      <p><h2>${exerciseName}<h2></p>
+      <p>Time:      ${element.time} seconds</p>
+      <p>Jumps:  ${element.reps} jumps</p>
+      <p>Speed:     ${element.speed.toFixed(2)} jumps/s </p>
+      </div>`     
+      break;
+    }
+    bestArray.push(string);
+})
+usersBestsbodyWeightExercises.forEach(element=>{
+  let exerciseName=element.name;
+  switch(exerciseName){
+    case "PushUps"||"PullUps"||"Squats"||"Lunges"||"Dips"||"SitUps"||"Burpees":
+      string = `<div class="usersBestResultsContainer">
+                <p><h2>${exerciseName}<h2></p>
+                <p>Time:      ${element.time} minutes</p>
+                <p>Max Reps:  ${element.maxReps} reps</p>
+                <p>Rep:       ${element.reps} reps </p>
+                </div>`     
+          break;
+
+        case "Plank":
+          string = `<div class="usersBestResultsContainer">
+          <p><h2>${exerciseName}<h2></p>
+          <p>Time:           ${element.time} minutes</p>
+          <p>Max Hold Time:  ${element.maxHoldTime} seconds</p>
+          <p>Hold Time:      ${element.holdTime} seconds </p>
+          </div>`   
+        break;
+      }
+      bestArray.push(string);
+
+    })
+usersBestweightedLifts.forEach(element=>{
+  string = `<div class="usersBestResultsContainer">
+          <p><h2>${exerciseName}<h2></p>
+          <p>Time:           ${element.time} minutes</p>
+          <p>Weight:         ${element.weight}kg</p>
+          <p>Max Reps:       ${element.maxReps} reps</p>
+          <p>Rep:            ${element.reps} reps </p>
+          </div>`   
+        bestArray.push(string);
+        });
+
+usersBeststretches.array.forEach(element => {
+  let exerciseName=element.name;
+  switch(exerciseName){
+    case "FoamRollingQuads":
+      string = `<div class="usersBestResultsContainer">
+      <p><h2>${exerciseName}<h2></p>
+      <p>Time:           ${element.time} minutes</p>
+      <p>Max Duration:  ${element.maxHoldTime} seconds</p>
+      <p>Duration:      ${element.holdTime} seconds </p>
+      </div>`  
+      break
+    case "TaiChiSlowMovements":
+      string = `<div class="usersBestResultsContainer">
+      <p><h2>${exerciseName}<h2></p>
+      <p>Time:           ${element.time} minutes</p>
+      <p>Max Reps:  ${element.maxHoldTime} reps</p>
+      <p>Reps:      ${element.holdTime} reps </p>
+      </div>`  
+      break
+    default:
+      string = `<div class="usersBestResultsContainer">
+          <p><h2>${exerciseName}<h2></p>
+          <p>Time:           ${element.time} minutes</p>
+          <p>Max Hold Time:  ${element.maxHoldTime} seconds</p>
+          <p>Hold Time:      ${element.holdTime} seconds </p>
+          </div>`  
+      break;
+  }  
+  bestArray.push(string);
+});
+
+//lots of work here , inverse of the exercise input
+// current goal graph
+let completedGoals = currentuser.completedGoals;
+let missedGoals = currentuser.missedGoals;
+
+let completedGoalsHtmlOut= document.createElement(`Section`)
+completedGoalsHtmlOut.setAttribute('class',"CompletedGoals")
+for (let i = 0 ; i<missedGoals.length;++i){
+let Content =  document.createElement('p')
+Content.setAttribute('class',"CompletedGoalData")
+switch(completedGoals.type){
+  case "calories burnt":
+  Content.innerHTML+=`<H3>${completedGoals.type}</H3> \n <p>Target: ${completedGoals.goalTarget} calories</p>`
+  break;
+
+  case "distance covered":
+  Content.innerHTML+=`<H3>${completedGoals.type}</H3> \n <p>Target: ${completedGoals.goalTarget} m</p>`
+  break;
+
+  case "weight lifted":
+  Content.innerHTML+=`<H3>${completedGoals.type}</H3> \n <p>Target: ${completedGoals.goalTarget} kg's</p>`
+  break;
+
+  case "time streching":
+  Content.innerHTML+=`<H3>${completedGoals.type}</H3> \n <p>Target: ${completedGoals.goalTarget} minutes</p>`
+  break;
+
+  case "exercises logged":
+  Content.innerHTML+=`<H3>${completedGoals.type}</H3> \n <p>Target: ${completedGoals.goalTarget} exercises</p>`
+  break;
+
+  default:
+  break
+}
+let completionPercent =((missedGoals.endDate-completedGoals.completeDate)/(missedGoals.endDate-completedGoals.startDate)*100).toFixed(1);
+Content.innerHtml+=`<p>Start Date: ${completedGoals[i].startDate.getDate()+'/'+completedGoals[i].startDate.getMonth()+1+"/"+completedGoals[i].startDate.getYear()}</p>`
+Content.innerHTML+=`<p>Cut Off Date: ${completedGoals[i].endDate.getDate()+'/'+completedGoals[i].endDate.getMonth()+1+"/"+completedGoals[i].endDate.getYear()}</p>`
+Content.innerHTML+=`<p>Completed within  ${completionPercent}% of the alocated time</p>`
+
+missedGoalsHtmlOut.appendChild(Content)
+}
+
+let missedGoalsHtmlOut= document.createElement(`Section`)
+missedGoalsHtmlOut.setAttribute('class',"missedGoals")
+for (let i = 0 ; i<missedGoals.length;++i){
+let Content =  document.createElement('p')
+Content.setAttribute('class',"MissedGoalData")
+switch(missedGoals.type){
+  case "calories burnt":
+  Content.innerHTML+=`<H3>${missedGoals.type}</H3> \n <p>Target: ${missedGoals.goalTarget} calories</p>`
+  break;
+
+  case "distance covered":
+  Content.innerHTML+=`<H3>${missedGoals.type}</H3> \n <p>Target: ${missedGoals.goalTarget} m</p>`
+  break;
+
+  case "weight lifted":
+  Content.innerHTML+=`<H3>${missedGoals.type}</H3> \n <p>Target: ${missedGoals.goalTarget} kg's</p>`
+  break;
+
+  case "time streching":
+  Content.innerHTML+=`<H3>${missedGoals.type}</H3> \n <p>Target: ${missedGoals.goalTarget} minutes</p>`
+  break;
+
+  case "exercises logged":
+  Content.innerHTML+=`<H3>${missedGoals.type}</H3> \n <p>Target: ${missedGoals.goalTarget} exercises</p>`
+  break;
+
+  default:
+  break
+}
+let completionPercent =(missedGoals.goalCounter/missedGoals.goalTarget*100).toFixed(1);
+Content.innerHTML+=`<p>Completion %: ${completionPercent}%</p>`
+Content.innerHtml+=`<p>Start Date: ${missedGoals[i].startDate.getDate()+'/'+missedGoals[i].startDate.getMonth()+1+"/"+missedGoals[i].startDate.getYear()}</p>`
+Content.innerHTML+=`<p>Cut Off Date: ${missedGoals[i].endDate.getDate()+'/'+missedGoals[i].endDate.getMonth()+1+"/"+missedGoals[i].endDate.getYear()}</p>`
+
+missedGoalsHtmlOut.appendChild(Content)
+}
+
+let outContainer = document.createElement(`div`)
+outContainer.setAttribute('class',"UserFullDetailsOutPut");
+
+outContainer.innerHTML+=`<p>Name:         ${name}</p>\n`
+outContainer.innerHTML+=`<p>Surname:      ${surname}</p>\n`
+outContainer.innerHTML+=`<p>Email:        ${email}</p>          <button id="UpdateEmailBtn">Update</button>  <input type="emailInput" id="EmailInput" name="name" placeholder="Jon" required>\n`
+outContainer.innerHTML+=`<p>Phone Number: ${phoneNumber}</p>    <button id="UpdatePhoneBtn">Update</button>  <input type="tel" id="TelInput" name="name" placeholder="Jon" required>\n`
+outContainer.innerHTML+=`<p>Height:       ${height}</p>         <button id="UpdateHeightBtn">Update</button> <input type="number" id="HeightInput" name="name" placeholder="Jon" required>\n`
+outContainer.innerHTML+=`<p>Weight:       ${weight}</p>         <button id="UpdateWeightBtn">Update</button> <input type="number" id="WeightInput" name="name" placeholder="Jon" required>\n`
+if(bestArray.length>0)
+  outContainer.innerHTML+=`${bestArray.join(`\n`)}\n`
+if(currentuser.completedGoals.length>0)
+outContainer.innerHTML+=completedGoalsHtmlOut.innerHTML+`\n`;
+if(currentuser.missedGoals.length>0)
+outContainer.innerHTML+=missedGoals.innerHTML;
+
+document.getElementById("ReportOutputDiv").appendChild(outContainer)
+
+let button = document.getElementById('UpdateEmailBtn')
+let input = document.getElementById('EmailInput')
+button.addEventListener('click',e=>{
+  if (input!=null&&input.value.length>0){
+    currentuser.userEmail=input.value;
+    userToFullDetails();
+  }
+})
+let button1 = document.getElementById('UpdatePhoneBtn')
+let input1 = document.getElementById('TelInput')
+button1.addEventListener('click',e=>{
+  if (input1!=null&&input1.value.length>0){
+    currentuser.userPhoneNumber=input1.value;
+    userToFullDetails();
+  }
+})
+let button2 = document.getElementById('UpdateHeightBtn')
+let input2 = document.getElementById('HeightInput')
+button2.addEventListener('click',e=>{
+  if (input2!=null&&input2.value>0){
+    currentuser.height=input2.value;
+    userToFullDetails();
+  }
+})
+let button3 = document.getElementById('UpdateWeightBtn')
+let input3 = document.getElementById('WeightInput')
+button3.addEventListener('click',e=>{
+  if (input3!=null&&input3.value>0){
+    updateWeight(input3.value)
+    userToFullDetails();
+  }
+})
+console.log(currentuser)
+
+};
+
+
 function exerciseTypeToOptionsList(exerciseGroup){
   let outString='';
 let arrayOptions = exerciseList.filter(e=>e[0].exerciseGroup==exerciseGroup);
@@ -712,7 +953,8 @@ function addUser(fusername,fUserPassword){
     userList.push(PopulateUser(fusername,fUserPassword,usertemp.firstName,usertemp.lastName,usertemp.height,usertemp.weight,usertemp.age,usertemp.userEmail,usertemp.userPhoneNumber));
         loggedInUser =-1;
 }
-userList.push(PopulateUser('admin','admin','','','','','','',''));
+
+userList.push(PopulateUser('admin','admin','Admin','Admin','','','','',''));
 window.addEventListener('load',loadIndex);
 
 // for all load{page Name here} we take the html of a page as a string components
@@ -731,9 +973,9 @@ function loadIndex(){
         <div class="logo">
             <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
-        <div class="menu">
-            <a id="Login"><span>Login in</span></a>
-        </div>
+        <button class="login-button" id="Login">
+           Login in
+        </button>
     </header>
 
     <section class="hero">
@@ -833,9 +1075,9 @@ function loadLanding2(){
         <div class="logo">
             <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
-        <div class="menu">
-            <a id="Login"><span>Login in</span></a>
-        </div>
+        <button class="login-button" id="Login">
+           Login in
+        </button>
     </header>
 
     <div class="container">
@@ -902,9 +1144,9 @@ function loadLanding3(){
         <div class="logo">
             <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
-        <div class="menu">
-            <a id="Login"><span>Login in</span></a>
-        </div>
+        <button class="login-button" id="Login">
+           Login in
+        </button>
     </header>
 
     <div class="container">
@@ -964,9 +1206,9 @@ function loadLanding4(){
         <div class="logo">
             <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
-        <div class="menu">
-            <a id="Login"><span>Login in</span></a>
-        </div>
+        <button class="login-button" id="Login">
+           Login in
+        </button>
     </header>
     <h1>Last few details</h1>
 
@@ -1078,9 +1320,9 @@ function loadLanding5(){
         <div class="logo">
             <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
-        <div class="menu">
-            <a id="Login"><span>Login in</span></a>
-        </div>
+        <button class="login-button" id="Login">
+           Login in
+        </button>
     </header>
     <h1>Finally you must create a username and a password</h1>
 
@@ -1292,12 +1534,14 @@ function loadMainBone(){
               <p>See your full report since your journey with us</p>
             </div>
             <span>
-              <button class="fullReport"><i class="ri-arrow-right-fill"></i></button>
+              <button class="fullReport" id="FullReportButton"><i class="ri-arrow-right-fill"></i></button>
             </span>
           </div>
           
         </div>
       </div>
+      <div id="ReportOutputDiv">
+      <div>
     </section>
 
 
@@ -1390,6 +1634,8 @@ function loadMainBone(){
     
     checkGoal();
 
+    let fullReportButton =document.getElementById("FullReportButton")
+    fullReportButton.addEventListener('click',userToFullDetails)
     let logOutButton = document.querySelector("#logOut");
     logOutButton.addEventListener('click', e=>{
         loggedInUser=-1;
@@ -1665,9 +1911,7 @@ function loadLogin(){
         <div class="logo">
             <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
-        <div class="menu">
-            <a ><span>Login in</span></a>
-        </div>
+        
     </header>
     <h1>Enter your username and your password</h1>
 
@@ -1746,3 +1990,317 @@ function loadLogin(){
     });
 };
 
+
+function populateAdminAccount() {
+
+  loggedInUser = 0; 
+
+  let adminUser = userList[loggedInUser];
+  
+  adminUser.usersBestList= [
+    cardio= [
+      {
+        name: "Jogging",
+        time: 0,
+        distance: 0,
+        speed: 0,
+        caloriesBurned: 0,
+        intensity: "Moderate",
+        exerciseGroup: "Cardio"
+      },
+      {
+        name: "Cycling",
+        time: 0,
+        distance: 0,
+        speed: 0,
+        caloriesBurned: 0,
+        intensity: "High",
+        exerciseGroup: "Cardio"
+      },
+      {
+        name: "JumpRope",
+        time: 0,
+        reps: 0,
+        speed: 0,
+        caloriesBurned: 0,
+        intensity: "High",
+        exerciseGroup: "Cardio"
+      },
+      {
+        name: "Rowing",
+        time: 0,
+        distance: 0,
+        speed: 0,
+        caloriesBurned: 0,
+        intensity: "Moderate",
+        exerciseGroup: "Cardio"
+      },
+      {
+        name: "Swimming",
+        time: 0,
+        distance: 0,
+        speed: 0,
+        caloriesBurned: 0 ,
+        intensity: "High",
+        exerciseGroup: "Cardio"
+      },
+      {
+        name: "StairClimbing",
+        time: 0,
+        distance: 0,
+        speed: 0,
+        caloriesBurned: 200,
+        intensity: "Moderate",
+        exerciseGroup: "Cardio"
+      },
+      {
+        name: "Sprints 100m",
+        time: 0,
+        distance: 100,
+        speed: 0,
+        caloriesBurned: 0,
+        intensity: "Max",
+        exerciseGroup: "Cardio"
+      },
+      {
+        name: "Sprints 200m",
+        time: 0,
+        distance: 200,
+        speed: 0,
+        caloriesBurned: 0,
+        intensity: "Max",
+        exerciseGroup: "Cardio"
+      },
+      {
+        name: "Sprints 400m",
+        time: 0,
+        distance: 400,
+        speed: 0,
+        caloriesBurned: 0,
+        intensity: "Max",
+        exerciseGroup: "Cardio"
+      }
+    ],
+    bodyWeightExercises= [
+      {
+        name: "PushUps",
+        time: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "Moderate",
+        exerciseGroup: "BodyWeight"
+      },
+      {
+        name: "PullUps",
+        time: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "High",
+        exerciseGroup: "BodyWeight"
+      },
+      {
+        name: "Squats",
+        time: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "Moderate",
+        exerciseGroup: "BodyWeight"
+      },
+      {
+        name: "Lunges",
+        time: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "Moderate",
+        exerciseGroup: "BodyWeight"
+      },
+      {
+        name: "Dips",
+        time: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "High",
+        exerciseGroup: "BodyWeight"
+      },
+      {
+        name: "Plank",
+        time: 0,
+        holdTime: 0,
+        maxHoldTime: 0,
+        caloriesBurned: 0,
+        intensity: "Moderate",
+        exerciseGroup: "BodyWeight"
+      },
+      {
+        name: "SitUps",
+        time: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "Moderate",
+        exerciseGroup: "BodyWeight"
+      },
+      {
+        name: "Burpees",
+        time: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "High",
+        exerciseGroup: "BodyWeight"
+      }
+    ],
+    weightedLifts= [
+      {
+        name: "Deadlifts",
+        time: 0,
+        weight: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "High",
+        exerciseGroup: "WeightedLifts"
+      },
+      {
+        name: "BenchPress",
+        time: 0,
+        weight: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "High",
+        exerciseGroup: "WeightedLifts"
+      },
+      {
+        name: "OverheadPress",
+        time: 0,
+        weight: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "Moderate",
+        exerciseGroup: "WeightedLifts"
+      },
+      {
+        name: "Squats",
+        time: 0,
+        weight: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "High",
+        exerciseGroup: "WeightedLifts"
+      },
+      {
+        name: "BicepCurls",
+        time: 0,
+        weight: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "Moderate",
+        exerciseGroup: "WeightedLifts"
+      },
+      {
+        name: "KettlebellSwings",
+        time: 0,
+        weight: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "High",
+        exerciseGroup: "WeightedLifts"
+      },
+      {
+        name: "TireFlips",
+        time: 0,
+        weight: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "High",
+        exerciseGroup: "WeightedLifts"
+      }
+    ],
+    stretches= [
+      {
+        name: "StaticHamstringStretch",
+        time: 0,
+        holdTime: 0,
+        maxHoldTime: 0,
+        flexibilityGain: "Moderate",
+        exerciseGroup: "Stretches"
+      },
+      {
+        name: "DynamicHipFlexorStretch",
+        time: 0,
+        reps: 0,
+        maxHoldTime: 0,
+        flexibilityGain: "High",
+        exerciseGroup: "Stretches"
+      },
+      {
+        name: "ShoulderStretch",
+        time: 0,
+        holdTime: 0,
+        maxHoldTime: 0,
+        flexibilityGain: "Low",
+        exerciseGroup: "Stretches"
+      },
+      {
+        name: "YogaPoseDownwardDog",
+        time: 0,
+        holdTime: 0,
+        maxHoldTime: 0,
+        flexibilityGain: "High",
+        exerciseGroup: "Stretches"
+      },
+      {
+        name: "FoamRollingQuads",
+        time: 0,
+        duration: 0,
+        maxDuration: 0,
+        flexibilityGain: "Moderate",
+        exerciseGroup: "Stretches"
+      },
+      {
+        name: "TaiChiSlowMovements",
+        time: 0,
+        reps: 0,
+        maxReps: 0,
+        flexibilityGain: "High",
+        exerciseGroup: "Stretches"
+      },
+      {
+        name: "WallChestStretch",
+        time: 0,
+        holdTime: 0,
+        maxHoldTime: 0 ,
+        flexibilityGain: "Moderate",
+        exerciseGroup: "Stretches"
+      },
+      {
+        name: "SeatedForwardFold",
+        time: 0,
+        holdTime: 0,
+        maxHoldTime: 0,
+        flexibilityGain: "High",
+        exerciseGroup: "Stretches"
+      }
+    ]
+  ]
+
+
+ 
+  loggedInUser = -1;
+
+  console.log("Admin account populated with data.");
+}
+
+
+populateAdminAccount();

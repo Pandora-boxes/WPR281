@@ -7,9 +7,49 @@
     --white: #ffffff;
     --gradient-1: linear-gradient(to right, #7ded9f, #2f33b8, #e0e0e2);
     --gradient-2: linear-gradient(to right, #4fcb51, #28a4a9, #7ed6d8);
-    --max-width: 1200px;
+    --max-width: 100vw; 
 }
-  html, body {
+
+.login-button {
+    padding: 1vw 2vw;
+    border: 0.2vw solid #2c2c2c;   
+    background-color: #1a1a1a;
+    color: #ffffff;
+    font-size: 1.2rem;  
+    cursor: pointer;
+    border-radius: 3vw;   
+    transition: all 0.4s ease;
+    outline: none;
+    position: relative;
+    overflow: hidden;
+    font-weight: bold;
+}
+
+.login-button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.25) 0%,
+        rgba(255, 255, 255, 0) 70%);
+    transform: scale(0);
+    transition: transform 0.5s ease;
+}
+
+.login-button:hover::after {
+    transform: scale(4);
+}
+
+.login-button:hover {
+    border-color: #666666;
+    background: #292929;
+}
+
+html, body {
     min-height: 100vh;
     margin: 0;
     padding: 0;
@@ -22,6 +62,7 @@ body {
     color: rgb(255, 255, 255);
     text-align: center;
 }
+
 body {
     background-image: url('images/Background.jpg');
     background-size: cover;
@@ -32,6 +73,7 @@ body {
     padding: 0;
     position: relative;
 }
+
 body::before {
     content: '';
     position: absolute;
@@ -46,73 +88,77 @@ body::before {
 header {
     display: flex;
     justify-content: space-between;
-    padding: 1vh;
+    padding: 1vh;   
     background: rgb(0, 0, 0);
 }
+
 header, section {
     position: relative;
     z-index: 1;
 }
-.mom{
-    font-size: 2rem;
+
+.mom {
+    font-size: 2vw;   
     font-weight: bold;
     color: #2f33b8;
+    cursor: pointer;
 }
+
 .logo {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 1vw;   
     color: white;
 }
+
 .logo img {
-    height: 10vh;
+    height: 10vh;   
     width: auto;
     vertical-align: middle;
 }
+
 .menu {
     display: flex;
     align-items: center;
 }
 
 .mid {
-    margin: 3.125rem 0;
+    margin: 3.125vh 0;   
 }
 
-h1{
-    font-size: 3rem;
+h1 {
+    font-size: 3vw;    
 }
-
-
 
 .container {
     text-align: left;
     background: #222;
-    padding: 20px;
-    border-radius: 10px;
-    width: 300px;
+    padding: 3vw;   
+    border-radius: 1vw;            
+    width: 30vw;             
 }
-    
+
 h2 {
-    font-size: 22px;
-    margin-bottom: 10px;
+    font-size: 2.2vw;   
+    margin-bottom: 1vw;   
 }
-    
+
 .input-container {
     display: flex;
     flex-direction: column;
-    margin-bottom: 15px;
+    margin-bottom: 1.5vw;   
 }
-    
+
 input {
     background: #333;
     color: white;
     border: none;
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 5px;
+    padding: 1.25vw;   
+    font-size: 1vw;   
+    border-radius: 0.5vw;  
     outline: none;
 }
-    
+
 input::placeholder {
     color: #888;
 }
@@ -120,18 +166,19 @@ input::placeholder {
 .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    max-width: 1200px;
+    gap: 2vw;   
+    max-width: 100vw;  
     margin: 0 auto;
-    padding: 20px;
+    padding: 2vw;   
 }
+
 .form {
     background: rgb(75, 75, 75);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 2vw;  
+    border-radius: 1vw;  
+    box-shadow: 0 0.2vw 0.4vw rgba(0, 0, 0, 0.1);   
 }
-    
+
 .button {
     position: relative;
     left: 50%;
@@ -141,19 +188,20 @@ input::placeholder {
     background-color: #00eeff;
     color: rgb(0, 0, 0);
     border: none;
-    padding: 20px;
-    font-size: 16px;
-    border-radius: 5px;
+    padding: 2vw;   
+    font-size: 1vw;   
+    border-radius: 0.5vw;   
     cursor: pointer;
-    width: 30vw;
+    width: 30vw;   
     opacity: 0.7;
     font-weight: bold;
 }
+
 .continue-btn.enabled {
     opacity: 1;
     cursor: pointer;
 }
-    
+
 .continue-btn:hover:enabled {
     background-color: #2f33b8;
     opacity: 1;
@@ -164,25 +212,743 @@ input::placeholder {
 
 /* Footer styles */
 .logo2 img {
-    width: 3vw;
+    width: 3vw;   
     height: auto;
 }
+
 .logo2 {
     display: flex;
     align-items: center;
 }
+
 footer {
     background-color: #1a1a1a;
     width: 100%;
     position: relative;
 }
+
 .footer-content {
-    max-width: 75rem;
+    max-width: 75vw;  
     margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 1.25rem;
+    padding: 2vw;   
 }
 
-   
+
+
+/* Extra Large */
+@media (min-width: 62.5vw) {
+    :root {
+        --max-width: 100vw; 
+    }
+    
+    .login-button {
+        padding: 1vw 2vw;
+        border: 0.2vw solid #2c2c2c;   
+        font-size: 1.2rem;  
+        border-radius: 3vw;   
+    }
+    
+    .login-button::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%; 
+        transform: scale(0);
+    }
+    
+    .login-button:hover::after {
+        transform: scale(4);
+    }
+
+    
+    html, body {
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
+    
+    body {
+        margin: 0;
+    }
+    
+    body {
+        margin: 0;
+        padding: 0;
+        position: relative;
+    }
+    
+    body::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    
+    header {
+        padding: 1vh;   
+    }
+    
+    .mom {
+        font-size: 2vw;   
+    }
+    
+    .logo {
+        gap: 1vw;   
+    }
+    
+    .logo img {
+        height: 10vh;   
+        width: auto;
+        vertical-align: middle;
+    }
+    
+    .mid {
+        margin: 3.125vh 0;   
+    }
+    
+    h1 {
+        font-size: 3vw;    
+    }
+    
+    .container {
+        padding: 3vw;   
+        border-radius: 1vw;            
+        width: 30vw;             
+    }
+    
+    h2 {
+        font-size: 2.2vw;   
+        margin-bottom: 1vw;   
+    }
+    
+    .input-container {
+        margin-bottom: 1.5vw;   
+    }
+    
+    input {
+        padding: 1.25vw;   
+        font-size: 1vw;   
+        border-radius: 0.5vw;  
+    }
+    
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2vw;   
+        max-width: 100vw;  
+        margin: 0 auto;
+        padding: 2vw;   
+    }
+    
+    .form {
+        padding: 2vw;  
+        border-radius: 1vw;  
+        box-shadow: 0 0.2vw 0.4vw rgba(0, 0, 0, 0.1);   
+    }
+    
+    .button {
+        left: 50%;
+    }
+    
+    .continue-btn {
+        padding: 2vw;   
+        font-size: 1vw;   
+        border-radius: 0.5vw;   
+        width: 30vw;   
+    }
+    
+    /* Footer styles */
+    .logo2 img {
+        width: 3vw;   
+        height: auto;
+    }
+    
+    footer {
+        width: 100%;
+    }
+    
+    .footer-content {
+        max-width: 75vw;  
+        padding: 2vw;   
+    }
+    
+}
+
+/* Large  */
+@media (max-width: 62.45vw) {
+    :root {
+        --max-width: 100vw; 
+    }
+    
+    .login-button {
+        padding: 1vw 2vw;
+        border: 0.2vw solid #2c2c2c;   
+        font-size: 1.2rem;  
+        border-radius: 3vw;   
+    }
+    
+    .login-button::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%; 
+        transform: scale(0);
+    }
+    
+    .login-button:hover::after {
+        transform: scale(4);
+    }
+
+    
+    html, body {
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
+    
+    body {
+        margin: 0;
+    }
+    
+    body {
+        margin: 0;
+        padding: 0;
+        position: relative;
+    }
+    
+    body::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    
+    header {
+        padding: 1vh;   
+    }
+    
+    .mom {
+        font-size: 2vw;   
+    }
+    
+    .logo {
+        gap: 1vw;   
+    }
+    
+    .logo img {
+        height: 10vh;   
+        width: auto;
+        vertical-align: middle;
+    }
+    
+    .mid {
+        margin: 3.125vh 0;   
+    }
+    
+    h1 {
+        font-size: 3vw;    
+    }
+    
+    .container {
+        padding: 3vw;   
+        border-radius: 1vw;            
+        width: 30vw;             
+    }
+    
+    h2 {
+        font-size: 2.2vw;   
+        margin-bottom: 1vw;   
+    }
+    
+    .input-container {
+        margin-bottom: 1.5vw;   
+    }
+    
+    input {
+        padding: 1.25vw;   
+        font-size: 1vw;   
+        border-radius: 0.5vw;  
+    }
+    
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2vw;   
+        max-width: 100vw;  
+        margin: 0 auto;
+        padding: 2vw;   
+    }
+    
+    .form {
+        padding: 2vw;  
+        border-radius: 1vw;  
+        box-shadow: 0 0.2vw 0.4vw rgba(0, 0, 0, 0.1);   
+    }
+    
+    .button {
+        left: 50%;
+    }
+    
+    .continue-btn {
+        padding: 2vw;   
+        font-size: 1vw;   
+        border-radius: 0.5vw;   
+        width: 30vw;   
+    }
+    
+    /* Footer styles */
+    .logo2 img {
+        width: 3vw;   
+        height: auto;
+    }
+    
+    footer {
+        width: 100%;
+    }
+    
+    .footer-content {
+        max-width: 75vw;  
+        padding: 2vw;   
+    }
+    
+}
+
+/* Medium  */
+@media (max-width: 51.61vw) {
+    :root {
+        --max-width: 100vw; 
+    }
+    
+    .login-button {
+        padding: 1vw 2vw;
+        border: 0.2vw solid #2c2c2c;   
+        font-size: 1.2rem;  
+        border-radius: 3vw;   
+    }
+    
+    .login-button::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%; 
+        transform: scale(0);
+    }
+    
+    .login-button:hover::after {
+        transform: scale(4);
+    }
+
+    
+    html, body {
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
+    
+    body {
+        margin: 0;
+    }
+    
+    body {
+        margin: 0;
+        padding: 0;
+        position: relative;
+    }
+    
+    body::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    
+    header {
+        padding: 1vh;   
+    }
+    
+    .mom {
+        font-size: 2vw;   
+    }
+    
+    .logo {
+        gap: 1vw;   
+    }
+    
+    .logo img {
+        height: 10vh;   
+        width: auto;
+        vertical-align: middle;
+    }
+    
+    .mid {
+        margin: 3.125vh 0;   
+    }
+    
+    h1 {
+        font-size: 3vw;    
+    }
+    
+    .container {
+        padding: 3vw;   
+        border-radius: 1vw;            
+        width: 30vw;             
+    }
+    
+    h2 {
+        font-size: 2.2vw;   
+        margin-bottom: 1vw;   
+    }
+    
+    .input-container {
+        margin-bottom: 1.5vw;   
+    }
+    
+    input {
+        padding: 1.25vw;   
+        font-size: 1vw;   
+        border-radius: 0.5vw;  
+    }
+    
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2vw;   
+        max-width: 100vw;  
+        margin: 0 auto;
+        padding: 2vw;   
+    }
+    
+    .form {
+        padding: 2vw;  
+        border-radius: 1vw;  
+        box-shadow: 0 0.2vw 0.4vw rgba(0, 0, 0, 0.1);   
+    }
+    
+    .button {
+        left: 50%;
+    }
+    
+    .continue-btn {
+        padding: 2vw;   
+        font-size: 1vw;   
+        border-radius: 0.5vw;   
+        width: 30vw;   
+    }
+    
+    /* Footer styles */
+    .logo2 img {
+        width: 3vw;   
+        height: auto;
+    }
+    
+    footer {
+        width: 100%;
+    }
+    
+    .footer-content {
+        max-width: 75vw;  
+        padding: 2vw;   
+    }
+    
+}
+
+/* Small  */
+@media (max-width: 39.95vw) {
+    :root {
+        --max-width: 100vw; 
+    }
+    
+    .login-button {
+        padding: 1vw 2vw;
+        border: 0.2vw solid #2c2c2c;   
+        font-size: 1.2rem;  
+        border-radius: 3vw;   
+    }
+    
+    .login-button::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%; 
+        transform: scale(0);
+    }
+    
+    .login-button:hover::after {
+        transform: scale(4);
+    }
+
+    
+    html, body {
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
+    
+    body {
+        margin: 0;
+    }
+    
+    body {
+        margin: 0;
+        padding: 0;
+        position: relative;
+    }
+    
+    body::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    
+    header {
+        padding: 1vh;   
+    }
+    
+    .mom {
+        font-size: 2vw;   
+    }
+    
+    .logo {
+        gap: 1vw;   
+    }
+    
+    .logo img {
+        height: 10vh;   
+        width: auto;
+        vertical-align: middle;
+    }
+    
+    .mid {
+        margin: 3.125vh 0;   
+    }
+    
+    h1 {
+        font-size: 3vw;    
+    }
+    
+    .container {
+        padding: 3vw;   
+        border-radius: 1vw;            
+        width: 30vw;             
+    }
+    
+    h2 {
+        font-size: 2.2vw;   
+        margin-bottom: 1vw;   
+    }
+    
+    .input-container {
+        margin-bottom: 1.5vw;   
+    }
+    
+    input {
+        padding: 1.25vw;   
+        font-size: 1vw;   
+        border-radius: 0.5vw;  
+    }
+    
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2vw;   
+        max-width: 100vw;  
+        margin: 0 auto;
+        padding: 2vw;   
+    }
+    
+    .form {
+        padding: 2vw;  
+        border-radius: 1vw;  
+        box-shadow: 0 0.2vw 0.4vw rgba(0, 0, 0, 0.1);   
+    }
+    
+    .button {
+        left: 50%;
+    }
+    
+    .continue-btn {
+        padding: 2vw;   
+        font-size: 1vw;   
+        border-radius: 0.5vw;   
+        width: 30vw;   
+    }
+    
+    /* Footer styles */
+    .logo2 img {
+        width: 3vw;   
+        height: auto;
+    }
+    
+    footer {
+        width: 100%;
+    }
+    
+    .footer-content {
+        max-width: 75vw;  
+        padding: 2vw;   
+    }
+    
+}
+
+/* Extra Small  */
+@media (max-width: 25vw) {
+    :root {
+        --max-width: 100vw; 
+    }
+    
+    .login-button {
+        padding: 1vw 2vw;
+        border: 0.2vw solid #2c2c2c;   
+        font-size: 1.2rem;  
+        border-radius: 3vw;   
+    }
+    
+    .login-button::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%; 
+        transform: scale(0);
+    }
+    
+    .login-button:hover::after {
+        transform: scale(4);
+    }
+
+    
+    html, body {
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
+    
+    body {
+        margin: 0;
+    }
+    
+    body {
+        margin: 0;
+        padding: 0;
+        position: relative;
+    }
+    
+    body::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    
+    header {
+        padding: 1vh;   
+    }
+    
+    .mom {
+        font-size: 2vw;   
+    }
+    
+    .logo {
+        gap: 1vw;   
+    }
+    
+    .logo img {
+        height: 10vh;   
+        width: auto;
+        vertical-align: middle;
+    }
+    
+    .mid {
+        margin: 3.125vh 0;   
+    }
+    
+    h1 {
+        font-size: 3vw;    
+    }
+    
+    .container {
+        padding: 3vw;   
+        border-radius: 1vw;            
+        width: 30vw;             
+    }
+    
+    h2 {
+        font-size: 2.2vw;   
+        margin-bottom: 1vw;   
+    }
+    
+    .input-container {
+        margin-bottom: 1.5vw;   
+    }
+    
+    input {
+        padding: 1.25vw;   
+        font-size: 1vw;   
+        border-radius: 0.5vw;  
+    }
+    
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2vw;   
+        max-width: 100vw;  
+        margin: 0 auto;
+        padding: 2vw;   
+    }
+    
+    .form {
+        padding: 2vw;  
+        border-radius: 1vw;  
+        box-shadow: 0 0.2vw 0.4vw rgba(0, 0, 0, 0.1);   
+    }
+    
+    .button {
+        left: 50%;
+    }
+    
+    .continue-btn {
+        padding: 2vw;   
+        font-size: 1vw;   
+        border-radius: 0.5vw;   
+        width: 30vw;   
+    }
+    
+    /* Footer styles */
+    .logo2 img {
+        width: 3vw;   
+        height: auto;
+    }
+    
+    footer {
+        width: 100%;
+    }
+    
+    .footer-content {
+        max-width: 75vw;  
+        padding: 2vw;   
+    }
+    
+}
