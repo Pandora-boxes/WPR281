@@ -1,3 +1,4 @@
+
 let usertemp = {};
 let loggedInUser = -1;
 let userList=[];
@@ -323,8 +324,8 @@ let Account = {
     usersBestList: exerciseList,
     GoalDetails:{
       type: "", //type of 
-      type: "", //type of 
       // [calories burnt, distance covered, weight lifted, time streching or exercises logged]
+      updatesList:[[0,0,new Date()]],
       startDate: new Date(),
       endDate: new Date(),// the date they enter in the form
       goalTarget:0, // end goal
@@ -350,18 +351,21 @@ function removeFavExercise(exerciseGroup,exerciseName){
   arrayFavExercises=arrayFavExercises.filter((e)=>e!=[exerciseGroup,exerciseName])
   currentUser.favoriteExercises=arrayFavExercises;
 }
+
 function addGoal(){
   let currentUser= userList[loggedInUser]
   let Goal = currentUser.GoalDetails
   let goalType = null // get user to input from the listed types
   let goalEndDate = Date.setDate(new Date()+ null ) //user inputted amount of days takes the place of the null
   let GoalTarget = null // get from user input
+
   
   if (GoalTarget>0 && Goal.type.length==0){
     Goal.type = goalType;
     Goal.startDate = new Date();
     Goal.endDate=goalEndDate;
     Goal.goalTarget= GoalTarget;
+    Goal.updatesList=[[0,0,new Date()]],
     Goal.goalCounter = 0;
   }
 };
@@ -372,7 +376,7 @@ function checkGoal(){
   if(Goal.type.length<=0){
     // dont do anything if there is no goal set
   }
-  else if (Goal.goalCounter>goalTarget){
+  else if (Goal.goalCounter>Goal.goalTarget){
     //goal Achieved inform user
     let tempObject={};
     Object.assign(tempObject,Goal);
@@ -384,6 +388,7 @@ function checkGoal(){
     Goal.endDate=null;
     Goal.goalTarget= null;
     Goal.goalCounter = null;
+    Goal.updatesList=[[0,0,new Date()]]
   }else if((Goal.goalEndDate-new Date())<0){
     //goal failed inform user 
     let tempObject={};
@@ -395,9 +400,50 @@ function checkGoal(){
     Goal.endDate=null;
     Goal.goalTarget= null;
     Goal.goalCounter = null;
+    Goal.updatesList=[[0,0,new Date()]]
   }
 }
 
+function createGraphOfUserGoal(elementID){
+  
+  let currentUser = userList[loggedInUser];
+  let GoalOBJ = currentUser.GoalDetails;
+ let labels = GoalOBJ.updatesList.map(e=>`${e[2].getMonth()+1}/${e[2].getDate()}`);
+ console.log(labels)
+ let target = []
+
+ let data = GoalOBJ.updatesList.map(e=> e[0])
+ console.log(data)
+ data.forEach(element=>{
+  target.push(GoalOBJ.goalTarget)
+ }
+ )
+ if(GoalOBJ.goalTarget>0&&GoalOBJ.goalTarget!=null){
+
+  let chart = document.getElementById(elementID)
+ new Chart(chart,{
+  type: "line",
+  data:{
+    labels:labels,
+    datasets:[{
+      label:"progress",
+      data:data,
+      fill: false,
+      borderColor: 'rgb(38, 217, 38)',
+      tension: 0.1
+      
+    },
+    {
+      fill: false,
+      borderColor: 'rgb(255, 4, 0)',
+      tension: 0.1,
+      label:"Target",
+      data:target
+    }]
+  }
+ })}
+
+}
 
 function addExercise(exerciseGroup,exerciseName){
   let currentUser = userList[loggedInUser];
@@ -410,14 +456,16 @@ function addExercise(exerciseGroup,exerciseName){
   filteredArray = filteredArray.filter((e)=>e.name == exerciseName);
   let i=0;
   let ii = 0;
-
+  let index1=i;
+  let index2=ii;
   //loop throught the users stored pbs for the one that represents the current exercise
   for (i;i<currentUser.usersBestList.length;++i){
     if(currentUser.usersBestList[i][0].exerciseGroup == exerciseGroup){
-    for (ii;ii<currentUser.usersBestList[i].length;++ii){
+    
+      for (ii;ii<currentUser.usersBestList[i].length;++ii){
       if(currentUser.userList[i][ii].name==exerciseName){
-        let index1=i;
-        let index2=ii;
+        index1=i;
+        index2=ii;
         break;
       }
     }
@@ -447,7 +495,10 @@ function addExercise(exerciseGroup,exerciseName){
       if(exerciseName=="JumpRope"){exerciseObj.reps=inputValue3}
       else{
         //updating goal details
-        if(currentUser.GoalDetails.type == "distance covered"){currentUser.GoalDetails.goalCounter+=inputValue1}
+        if(currentUser.GoalDetails.type == "distance covered"){
+          currentUser.GoalDetails.goalCounter+=inputValue2
+          currentUser.GoalDetails.updatesList.push([currentUser.GoalDetails.goalCounter,inputValue2,new Date()])
+        }
   
         exerciseObj.speed=inputValue3
       }
@@ -561,7 +612,10 @@ function addExercise(exerciseGroup,exerciseName){
       exerciseObj.caloriesBurned= inputValue4;
       exerciseObj.weight=inputValue5;
       //updating goal details
-      if(currentUser.GoalDetails.type == "weight lifted"){currentUser.GoalDetails.goalCounter+=inputValue1}
+      if(currentUser.GoalDetails.type == "weight lifted"){
+        currentUser.GoalDetails.goalCounter+=inputValue5
+        currentUser.GoalDetails.updatesList.push([currentUser.GoalDetails.goalCounter,inputValue5,new Date()])
+      }
   
 
       // checking for user best
@@ -596,7 +650,10 @@ function addExercise(exerciseGroup,exerciseName){
           break;
       }
       //updating goal details
-      if(currentUser.GoalDetails.type == "time streching"){currentUser.GoalDetails.goalCounter+=inputValue1}
+      if(currentUser.GoalDetails.type == "time streching"){
+        currentUser.GoalDetails.goalCounter+=inputValue1
+        currentUser.GoalDetails.updatesList.push([currentUser.GoalDetails.goalCounter,inputValue1,new Date()])
+      }
   
       // checking for user best
       switch(exerciseName){
@@ -638,8 +695,14 @@ function addExercise(exerciseGroup,exerciseName){
   }
   
   // rewarding the user and updating goals
-  if(currentUser.GoalDetails.type == "exercises logged"){currentUser.GoalDetails.goalCounter+=1}
-  else if(currentUser.GoalDetails.type == "calories burnt"&&exerciseGroup!="Stretches"){currentUser.GoalDetails.goalCounter+=exerciseObj.caloriesBurned}
+  if(currentUser.GoalDetails.type == "exercises logged"){
+    currentUser.GoalDetails.goalCounter+=1
+    currentUser.GoalDetails.updatesList.push([currentUser.GoalDetails.goalCounter,1,new Date()])
+  }
+  else if(currentUser.GoalDetails.type == "calories burnt"&&exerciseGroup!="Stretches"){
+    currentUser.GoalDetails.goalCounter+=exerciseObj.caloriesBurned
+    currentUser.GoalDetails.updatesList.push([currentUser.GoalDetails.goalCounter,exerciseObj.caloriesBurned,new Date()])
+  }
   checkGoal();
   if (isUserBest){
       // maybe play an animation for now alert 
@@ -914,7 +977,6 @@ arrayOptions.forEach(e => {
   }
  });
  outlist.forEach(e => outString += e);
-console.log(outString);
 return outString;
 };
 
@@ -1434,8 +1496,10 @@ function loadMainBone(){
             <button class="btn">More</button>
           </div> -->
         </div>
-        <div class="header__image">
-          <img src="" alt="header" />
+        <div class="header__content">
+          <canvas id="GoalChart" >
+
+          </canvas>
         </div>
       </div>
     </header>
@@ -1640,6 +1704,7 @@ function loadMainBone(){
     documentBody.innerHTML = newpagebody;
     
     checkGoal();
+    createGraphOfUserGoal("GoalChart")
 
     let fullReportButton =document.getElementById("FullReportButton")
     fullReportButton.addEventListener('click',userToFullDetails)
@@ -2304,8 +2369,20 @@ function populateAdminAccount() {
         flexibilityGain: "High",
         exerciseGroup: "Stretches"
       }
-    ]
-  ]
+    ]]
+
+    adminUser.GoalDetails={
+      type: "distance covered", //type of 
+      // [calories burnt, distance covered, weight lifted, time streching or exercises logged]
+      updatesList:[[0,0,new Date('2025/01/20')],[1000,1000,new Date('2025/01/25')],[2010,1010,new Date('2025/01/30')],[2500,490,new Date('2025/02/4')],[5000,2500,new Date('2025/02/10')],[6400,1400,new Date('2025/02/14')],[7000,600,new Date('2025/02/20')],[7700,700,new Date('2025/02/25')]],
+      startDate: new Date('2025/01/20'),
+      endDate: new Date('2025/03/01'),// the date they enter in the form
+      goalTarget:10000, // end goal
+      goalCounter:7700 //running total 
+    },
+    adminUser.completedGoals=[],
+    adminUser.missedGoals=[]
+  
 
 
  

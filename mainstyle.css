@@ -803,3 +803,7 @@ input {
   width: 100%;
   max-width: 300px;
 }
+/* Style the graph field*/
+div.ChartContainer{
+  width: 60%;
+}
