@@ -2308,10 +2308,28 @@ function populateAdminAccount() {
 
 
  
-  loggedInUser = -1;
-
-  console.log("Admin account populated with data.");
 }
 
 
-populateAdminAccount();
+function updateAdminDetails() {
+ 
+  loggedInUser = 0; 
+
+  
+  let adminUser = userList[loggedInUser];
+
+  adminUser.firstName = "Admin";
+  adminUser.lastName = "User";
+  adminUser.userEmail = "admin@momentum.com";
+  adminUser.userPhoneNumber = "123-456-7890";
+  adminUser.height = 180; 
+  adminUser.weight = 75; 
+  adminUser.age = 30; 
+
+  loggedInUser = -1;
+
+  console.log("Admin details updated successfully.");
+}
+
+updateAdminDetails();
+
