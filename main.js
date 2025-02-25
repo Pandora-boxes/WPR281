@@ -906,8 +906,7 @@ arrayOptions.forEach(e => {
     outlist.push(`<option value="${e.name}">${e.name}</option>\n`)
   }
  });
-
- arrayOptions.forEach(e => outString += e);
+ outlist.forEach(e => outString += e);
 console.log(outString);
 return outString;
 };
@@ -1749,7 +1748,7 @@ document.addEventListener("DOMContentLoaded", function () {
   setInterval(getRandomQuote, 8000);
 });
 
-LoadExerciseForm("cardio")
+LoadExerciseForm("BodyWeight")
 function LoadExerciseForm(exerciseGroupInput) {
 
   let container = document.createElement('div')
@@ -1759,6 +1758,9 @@ function LoadExerciseForm(exerciseGroupInput) {
   let form = document.createElement('form')
   container.appendChild(head)
   let select = document.createElement('select')
+  select.setAttribute('id', "exerciseName")
+  select.setAttribute('name', "exerciseName")
+  select.setAttribute('title',"exerciseName")
   let optionString;  
 
   let exerciseInput1Label = document.createElement('label')
@@ -1828,8 +1830,7 @@ function LoadExerciseForm(exerciseGroupInput) {
     exerciseInput4Label.textContent = "Calories you burned"
     optionString = exerciseTypeToOptionsList("BodyWeight")
     select.innerHTML = optionString
-
-    select.appendChild(options).innerHTML
+    form.appendChild(select)
       form.appendChild(exerciseInput1Label)
       form.appendChild(exerciseInput1)
       form.appendChild(exerciseInput2Label)
@@ -1838,6 +1839,7 @@ function LoadExerciseForm(exerciseGroupInput) {
       form.appendChild(exerciseInput3)
       form.appendChild(exerciseInput4Label)
       form.appendChild(exerciseInput4)
+      break;
     case "WeightedLifts":
       
     head.textContent = "Weight Lifting"
@@ -1863,6 +1865,7 @@ function LoadExerciseForm(exerciseGroupInput) {
       form.appendChild(exerciseInput4)
       form.appendChild(exerciseInput5Label)
       form.appendChild(exerciseInput5)
+      break;
     
     case "Stretches":
 
@@ -1894,6 +1897,7 @@ function LoadExerciseForm(exerciseGroupInput) {
   let jump = document.getElementById('jump')
   let jumpcontain = document.getElementById('jump__container')
     jump.replaceChild(container, jumpcontain)
+
 
 
  }
