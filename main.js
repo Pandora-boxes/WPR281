@@ -981,7 +981,7 @@ function loadIndex(){
             <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
         <button class="login-button" id="Login">
-           Login in
+           Login 
         </button>
     </header>
 
@@ -1083,7 +1083,7 @@ function loadLanding2(){
             <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
         <button class="login-button" id="Login">
-           Login in
+           Login
         </button>
     </header>
 
@@ -1152,7 +1152,7 @@ function loadLanding3(){
             <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
         <button class="login-button" id="Login">
-           Login in
+           Login 
         </button>
     </header>
 
@@ -1214,7 +1214,7 @@ function loadLanding4(){
             <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
         <button class="login-button" id="Login">
-           Login in
+           Login 
         </button>
     </header>
     <h1>Last few details</h1>
@@ -1328,7 +1328,7 @@ function loadLanding5(){
             <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
         <button class="login-button" id="Login">
-           Login in
+           Login 
         </button>
     </header>
     <h1>Finally you must create a username and a password</h1>
