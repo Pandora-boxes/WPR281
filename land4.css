@@ -800,7 +800,14 @@ footer {
     }
     
     footer {
+        /* width: 100%; */
+        background-color: #1a1a1a;
         width: 100%;
+        position: relative;
+        bottom: 0;
+        left: 0;
+        text-align: center;
+        padding: 1vw 0;
     }
     
     .footer-content {
@@ -811,7 +818,7 @@ footer {
 }
 
 /* Extra Small  */
-@media (max-width: 25vw) {
+@media (max-width: 768px) {
     :root {
         --max-width: 100vw; 
     }
@@ -837,11 +844,16 @@ footer {
         transform: scale(4);
     }
 
-    
+    /* we apply flexbox */
     html, body {
-        min-height: 100vh;
+        /* min-height: 100vh;
+        margin: 0;
+        padding: 0; */
+        height: 100%;
         margin: 0;
         padding: 0;
+        display: flex;
+        flex-direction: column;
     }
     
     body {
@@ -904,19 +916,28 @@ footer {
         margin-bottom: 1.5vw;   
     }
     
+    /* made text bigger for input */
     input {
         padding: 1.25vw;   
-        font-size: 1vw;   
+        font-size: 0.7rem;   
         border-radius: 0.5vw;  
     }
     
+    /* make grid push footer downnnnn */
     .grid {
-        display: grid;
+        /* display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 2vw;   
         max-width: 100vw;  
         margin: 0 auto;
-        padding: 2vw;   
+        padding: 2vw;    */
+        flex: 1;  /* Makes it take up remaining space */
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2vw;
+        max-width: 100vw;
+        margin: 0 auto;
+        padding: 2vw;
     }
     
     .form {
@@ -929,9 +950,10 @@ footer {
         left: 50%;
     }
     
+    /* text for btn BIGGER */
     .continue-btn {
         padding: 2vw;   
-        font-size: 1vw;   
+        font-size: 0.7rem;   
         border-radius: 0.5vw;   
         width: 30vw;   
     }
@@ -943,7 +965,14 @@ footer {
     }
     
     footer {
+        /* width: 100%; */
+        background-color: #1a1a1a;
         width: 100%;
+        position: relative;
+        bottom: 0;
+        left: 0;
+        text-align: center;
+        padding: 1vw 0;
     }
     
     .footer-content {
