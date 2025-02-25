@@ -481,6 +481,7 @@ footer {
     }
     footer {
         width: 100vw;
+        height: 10vh;
     }
     .footer-content {
         max-width: 120vw;

@@ -981,7 +981,7 @@ function loadIndex(){
             <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
         <button class="login-button" id="Login">
-           Login in
+           Login 
         </button>
     </header>
 
@@ -1083,7 +1083,7 @@ function loadLanding2(){
             <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
         <button class="login-button" id="Login">
-           Login in
+           Login
         </button>
     </header>
 
@@ -1152,7 +1152,7 @@ function loadLanding3(){
             <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
         <button class="login-button" id="Login">
-           Login in
+           Login 
         </button>
     </header>
 
@@ -1214,7 +1214,7 @@ function loadLanding4(){
             <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
         <button class="login-button" id="Login">
-           Login in
+           Login 
         </button>
     </header>
     <h1>Last few details</h1>
@@ -1328,7 +1328,7 @@ function loadLanding5(){
             <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
         <button class="login-button" id="Login">
-           Login in
+           Login 
         </button>
     </header>
     <h1>Finally you must create a username and a password</h1>
@@ -1443,12 +1443,12 @@ function loadMainBone(){
     <!-- They can see their excercises, and can choose to resume -->
      <!-- Called it jump because they can jump right back in, dont blame me (i see you) -->
     <div class="jump" id="jump">
-      <div class="section__container jump__container" id="jump__container">
+      <div class="section__container jump__container">
         <div class="jump__image" id="quoteDisplay">
          <p id="generateQuote"></p>  
          <!-- generates a random quote -->
         </div>
-        <div class="jump__content">
+        <div class="jump__content" id="jump__content">
           <h2 class="section__header">Your Exercises</h2>
           <p>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam reprehenderit nesciunt quaer
@@ -1901,10 +1901,9 @@ function LoadExerciseForm(exerciseGroupInput) {
     form.appendChild(button)
     container.appendChild(form)
 
-  let jump = document.getElementById('jump')
-  let jumpcontain = document.getElementById('jump__container')
-    jump.replaceChild(container, jumpcontain)
-
+  let jumpcontain = document.getElementById('jump__content')
+  jumpcontain.innerHTML = "" 
+    jumpcontain.appendChild(container)
 
 
  }
@@ -2309,17 +2308,31 @@ function populateAdminAccount() {
 
 
  
-  loggedInUser = -1;
-
-  console.log("Admin account populated with data.");
 }
 
 
 populateAdminAccount();
 
-// function openGoalForm() {
+
+function updateAdminDetails() {
+ 
+  loggedInUser = 0; 
+
   
-//   localStorage.setItem("showGoalForm", "true");
-  
-//   window.location.href = "addGoal.html";
-// }
+  let adminUser = userList[loggedInUser];
+
+  adminUser.firstName = "Admin";
+  adminUser.lastName = "User";
+  adminUser.userEmail = "admin@momentum.com";
+  adminUser.userPhoneNumber = "123-456-7890";
+  adminUser.height = 180; 
+  adminUser.weight = 75; 
+  adminUser.age = 30; 
+
+  loggedInUser = -1;
+
+  console.log("Admin details updated successfully.");
+}
+
+updateAdminDetails();
+
