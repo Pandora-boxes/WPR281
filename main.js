@@ -57,7 +57,7 @@ let exerciseList = [
       time: 0,
       distance: 0,
       speed: 0,
-      caloriesBurned: 200,
+      caloriesBurned: 0,
       intensity: "Moderate",
       exerciseGroup: "Cardio"
     },
@@ -662,12 +662,17 @@ let phoneNumber = currentuser.userPhoneNumber;
 let height = currentuser.height;
 let weight = currentuser.weight;
 // weight log to graph
-console.log(currentuser.usersBestList[0][0]);
-let usersBestList = currentuser.usersBestsList;
-let usersBestsCardio = usersBestList[0].filter(element=>{element.caloriesBurned>0||element.speed>0});
-let usersBestsbodyWeightExercises =usersBestList[1].filter(element=>element.caloriesBurned>0||element.time>0);
-let usersBestweightedLifts=usersBestList[2].filter(element=>element.caloriesBurned>0||element.weight>0);
-let usersBeststretches= usersBestList[3].filter(element=>element.time>0);
+console.log(currentuser.usersBestList[0]);
+
+let userBestList = currentuser.usersBestList[0];
+
+let usersBestsCardio = userBestList.filter(element=>{element.caloriesBurned>0||element.speed>0});
+userBestList = currentuser.usersBestList[1]
+ let usersBestsbodyWeightExercises =userBestList.filter(element=>element.caloriesBurned>0||element.time>0);
+ userBestList = currentuser.usersBestList[2]
+ let usersBestweightedLifts=userBestList.filter(element=>element.caloriesBurned>0||element.weight>0);
+ userBestList = currentuser.usersBestList[3]
+ let usersBeststretches= userBestList.filter(element=>element.time>0);
 let bestArray = [];
 let string = '';
 usersBestsCardio.forEach(element=>{
@@ -675,7 +680,7 @@ usersBestsCardio.forEach(element=>{
   switch(exerciseName){
     case "Jogging"||"Cycling"||"Rowing"||"Swimming"||"StairClimbing"||"Sprints 100m"||"Sprints 200m"||"Sprints 400m":
     string = `<div class="usersBestResultsContainer">
-            <p><h2>${exerciseName}<h2></p>
+            <p><h2>${element.name}<h2></p>
             <p>Time:      ${element.time} seconds</p>
             <p>Distance:  ${element.distance} meters</p>
             <p>Speed:     ${element.speed.toFixed(2)} m/s </p>
@@ -683,7 +688,7 @@ usersBestsCardio.forEach(element=>{
     break;
     case "JumpRope":
       string = `<div class="usersBestResultsContainer">
-      <p><h2>${exerciseName}<h2></p>
+      <p><h2>${element.name}<h2></p>
       <p>Time:      ${element.time} seconds</p>
       <p>Jumps:  ${element.reps} jumps</p>
       <p>Speed:     ${element.speed.toFixed(2)} jumps/s </p>
@@ -694,7 +699,7 @@ usersBestsCardio.forEach(element=>{
 })
 usersBestsbodyWeightExercises.forEach(element=>{
   let exerciseName=element.name;
-  switch(exerciseName){
+  switch(element.name){
     case "PushUps"||"PullUps"||"Squats"||"Lunges"||"Dips"||"SitUps"||"Burpees":
       string = `<div class="usersBestResultsContainer">
                 <p><h2>${exerciseName}<h2></p>
@@ -706,7 +711,7 @@ usersBestsbodyWeightExercises.forEach(element=>{
 
         case "Plank":
           string = `<div class="usersBestResultsContainer">
-          <p><h2>${exerciseName}<h2></p>
+          <p><h2>${element.name}<h2></p>
           <p>Time:           ${element.time} minutes</p>
           <p>Max Hold Time:  ${element.maxHoldTime} seconds</p>
           <p>Hold Time:      ${element.holdTime} seconds </p>
@@ -717,8 +722,8 @@ usersBestsbodyWeightExercises.forEach(element=>{
 
     })
 usersBestweightedLifts.forEach(element=>{
-  string = `<div class="usersBestResultsContainer">
-          <p><h2>${exerciseName}<h2></p>
+        string = `<div class="usersBestResultsContainer">
+          <p><h2>${element.name}<h2></p>
           <p>Time:           ${element.time} minutes</p>
           <p>Weight:         ${element.weight}kg</p>
           <p>Max Reps:       ${element.maxReps} reps</p>
@@ -727,12 +732,12 @@ usersBestweightedLifts.forEach(element=>{
         bestArray.push(string);
         });
 
-usersBeststretches.array.forEach(element => {
+usersBeststretches.forEach(element => {
   let exerciseName=element.name;
   switch(exerciseName){
     case "FoamRollingQuads":
       string = `<div class="usersBestResultsContainer">
-      <p><h2>${exerciseName}<h2></p>
+      <p><h2>${element.name}<h2></p>
       <p>Time:           ${element.time} minutes</p>
       <p>Max Duration:  ${element.maxHoldTime} seconds</p>
       <p>Duration:      ${element.holdTime} seconds </p>
@@ -740,7 +745,7 @@ usersBeststretches.array.forEach(element => {
       break
     case "TaiChiSlowMovements":
       string = `<div class="usersBestResultsContainer">
-      <p><h2>${exerciseName}<h2></p>
+      <p><h2>${element.name}<h2></p>
       <p>Time:           ${element.time} minutes</p>
       <p>Max Reps:  ${element.maxHoldTime} reps</p>
       <p>Reps:      ${element.holdTime} reps </p>
@@ -748,7 +753,7 @@ usersBeststretches.array.forEach(element => {
       break
     default:
       string = `<div class="usersBestResultsContainer">
-          <p><h2>${exerciseName}<h2></p>
+          <p><h2>${element.name}<h2></p>
           <p>Time:           ${element.time} minutes</p>
           <p>Max Hold Time:  ${element.maxHoldTime} seconds</p>
           <p>Hold Time:      ${element.holdTime} seconds </p>
