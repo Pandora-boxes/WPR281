@@ -1194,7 +1194,7 @@ function loadMainBone(){
     <!-- They can see their excercises, and can choose to resume -->
      <!-- Called it jump because they can jump right back in, dont blame me (i see you) -->
     <div class="jump" id="jump">
-      <div class="section__container jump__container">
+      <div class="section__container jump__container" id="jump__container">
         <div class="jump__image" id="quoteDisplay">
          <p id="generateQuote"></p>  
          <!-- generates a random quote -->
@@ -1505,7 +1505,6 @@ document.addEventListener("DOMContentLoaded", function () {
 LoadExerciseForm("cardio")
 function LoadExerciseForm(exerciseGroupInput) {
 
-
   let container = document.createElement('div')
   container.setAttribute("class", "form-container show")
 
@@ -1513,7 +1512,7 @@ function LoadExerciseForm(exerciseGroupInput) {
   let form = document.createElement('form')
   container.appendChild(head)
   let select = document.createElement('select')
-
+  let optionString;  
 
   let exerciseInput1Label = document.createElement('label')
       exerciseInput1Label.setAttribute('for', "ExerciseInputValue1")
@@ -1560,9 +1559,8 @@ function LoadExerciseForm(exerciseGroupInput) {
       exerciseInput2Label.textContent = "Distance you ran"
       exerciseInput3Label.textContent = "Reps or speed"
       exerciseInput4Label.textContent = "Calories you burned"
-
-      select.appendChild(exerciseTypeToOptionsList("cardio"))
-      console.log(select.innerHTML)
+      optionString = exerciseTypeToOptionsList("Cardio")
+      select.innerHTML = optionString
       form.appendChild(select)
       form.appendChild(exerciseInput1Label)
       form.appendChild(exerciseInput1)
@@ -1581,8 +1579,10 @@ function LoadExerciseForm(exerciseGroupInput) {
     exerciseInput2Label.textContent = "Reps/Hold time"
     exerciseInput3Label.textContent = "Max reps/Max Hold Time"
     exerciseInput4Label.textContent = "Calories you burned"
-      select.appendChild(exerciseTypeToOptionsList("bodyWeightExercises"))
-      form.appendChild(select)
+    optionString = exerciseTypeToOptionsList("BodyWeight")
+    select.innerHTML = optionString
+
+    select.appendChild(options).innerHTML
       form.appendChild(exerciseInput1Label)
       form.appendChild(exerciseInput1)
       form.appendChild(exerciseInput2Label)
@@ -1601,7 +1601,9 @@ function LoadExerciseForm(exerciseGroupInput) {
     exerciseInput4Label.textContent = "Calories you burned"
     exerciseInput5Label.textContent = "Weight in kg"
 
-      select.appendChild(exerciseTypeToOptionsList("weightedLifts"))
+      optionString = exerciseTypeToOptionsList("WeightedLifts")
+      select.innerHTML = optionString
+
       form.appendChild(select)
 
       form.appendChild(exerciseInput1Label)
@@ -1622,9 +1624,11 @@ function LoadExerciseForm(exerciseGroupInput) {
     exerciseInput1Label.textContent = "Time (min)";
     exerciseInput2Label.textContent = "Duration/Reps/HoldTime"
     exerciseInput3Label.textContent = "Max Duration/Max Reps/ Max HoldTime"
-      select.appendChild(exerciseTypeToOptionsList("stretches"))
+      optionString = exerciseTypeToOptionsList("Stretches");
+      select.innerHTML = optionString
 
       form.appendChild(select)
+
       form.appendChild(exerciseInput1Label)
       form.appendChild(exerciseInput1)
       form.appendChild(exerciseInput2Label)
@@ -1635,13 +1639,14 @@ function LoadExerciseForm(exerciseGroupInput) {
     }
     let button = document.createElement('button')
     button.setAttribute('type', "submit")
+    button.setAttribute('class', 'btn')
+    button.textContent = "Submit";
     form.appendChild(button)
-    
-    function clearcontent() {
-     document.getElementByClassName(`jump`).innerHTML = "";
-  }
-  clearcontent()
-  jumpContiner.appendChild(container);
+    container.appendChild(form)
+
+  let jump = document.getElementById('jump')
+  let jumpcontain = document.getElementById('jump__container')
+    jump.replaceChild(container, jumpcontain)
 
 
  }
