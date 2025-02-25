@@ -1477,7 +1477,7 @@ function loadMainBone(){
             <p>
               Improves cardiovascular endurance, burns calories, strengthens leg muscles, and boosts mental health.
             </p>
-            <button class="btn" id="add__btn" value="Cardio">Add</button>
+            <button class="btn add_Ex_btn" id="add__btn" value="Cardio">Add</button>
           </div>
           <div class="service__card">
             <span>02</span>
@@ -1485,7 +1485,7 @@ function loadMainBone(){
             <p>
               Increases muscle strength and mass, improves bone density, and enhances metabolism.
             </p>
-            <button class="btn" id="add__btn" value="Lifting">Add</button>
+            <button class="btn add_Ex_btn" id="add__btn" value="Lifting">Add</button>
           </div>
           <div class="service__card">
             <span>03</span>
@@ -1493,7 +1493,7 @@ function loadMainBone(){
             <p>
               Builds upper body strength (chest, shoulders, triceps), engages the core, and enhances endurance.
             </p>
-            <button class="btn" id="add__btn" value="Body-Weight-Exercises">Add</button>
+            <button class="btn add_Ex_btn" id="add__btn" value="Body-Weight-Exercises">Add</button>
           </div>
           <div class="service__card">
             <span>04</span>
@@ -1501,7 +1501,7 @@ function loadMainBone(){
             <p>
               A full-body workout that boosts cardio fitness, burns fat, builds strength, and improves agility.
             </p>
-            <button class="btn" id="add__btn" value="Stretches">Add</button>  
+            <button class="btn add_Ex_btn" id="add__btn" value="Stretches">Add</button>  
           </div>
           <div class="service__image">
             <img src="images/duderunning.jpg" alt="service" />
@@ -1666,6 +1666,12 @@ navLinks.addEventListener("click", (e) => {
   menuBtnIcon.setAttribute("class", "ri-menu-line");
 });
 
+document.querySelectorAll('.add_Ex_btn').forEach(item => {
+  item.addEventListener('click', event => {
+    console.log(item.value)
+    LoadExerciseForm(item.value)
+  })
+})
 
 // defining animation setting
 const scrollRevealOption = {
@@ -1755,7 +1761,7 @@ document.addEventListener("DOMContentLoaded", function () {
   setInterval(getRandomQuote, 8000);
 });
 
-LoadExerciseForm("BodyWeight")
+
 function LoadExerciseForm(exerciseGroupInput) {
 
   let container = document.createElement('div')
@@ -1808,7 +1814,7 @@ function LoadExerciseForm(exerciseGroupInput) {
   // taking user input and storing it based off the exercise the user has chosen
   // also checking for achievements and user personal bests
   switch (exerciseGroupInput){
-    case "cardio":
+    case "Cardio":
       head.textContent= "Cardio"
       form.setAttribute('id','cardioForm')
       exerciseInput1Label.textContent = "Time (min)";
@@ -1828,7 +1834,7 @@ function LoadExerciseForm(exerciseGroupInput) {
       form.appendChild(exerciseInput4)
       break;
     
-    case "BodyWeight":
+    case "Body-Weight-Exercises":
       head.textContent = "Body Weight Exercises"
     form.setAttribute('id','bodyWeightForm')
     exerciseInput1Label.textContent = "Time (min)";
@@ -1847,7 +1853,7 @@ function LoadExerciseForm(exerciseGroupInput) {
       form.appendChild(exerciseInput4Label)
       form.appendChild(exerciseInput4)
       break;
-    case "WeightedLifts":
+    case "Lifting":
       
     head.textContent = "Weight Lifting"
     form.setAttribute('id','weightLiftForm')
