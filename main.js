@@ -2316,3 +2316,10 @@ function populateAdminAccount() {
 
 
 populateAdminAccount();
+
+// function openGoalForm() {
+  
+//   localStorage.setItem("showGoalForm", "true");
+  
+//   window.location.href = "addGoal.html";
+// }
