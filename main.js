@@ -302,7 +302,8 @@ let exerciseList = [
     }
   ]
 ]
-  
+
+
 
 let Account = {
     userName : "",
@@ -322,11 +323,12 @@ let Account = {
     usersBestList: exerciseList,
     GoalDetails:{
       type: "", //type of 
+      type: "", //type of 
       // [calories burnt, distance covered, weight lifted, time streching or exercises logged]
       startDate: new Date(),
       endDate: new Date(),// the date they enter in the form
-      goalTarget:null, // end goal
-      goalCounter:null //running total 
+      goalTarget:0, // end goal
+      goalCounter:0 //running total 
     },
     completedGoals:[],
     missedGoals:[]
@@ -662,7 +664,101 @@ let phoneNumber = currentuser.userPhoneNumber;
 let height = currentuser.height;
 let weight = currentuser.weight;
 // weight log to graph
-let usersBests = currentuser.usersBestsList//lots of work here , inverse of the exercise input
+let usersBestsCardio = currentuser.usersBestsList[0].filter(element=>element.caloriesBurned>0||element.speed>0);
+let usersBestsbodyWeightExercises =currentuser.usersBestsList[1].filter(element=>element.caloriesBurned>0||element.time>0);
+let usersBestweightedLifts=currentuser.usersBestsList[2].filter(element=>element.caloriesBurned>0||element.weight>0);
+let usersBeststretches= currentuser.usersBestList[3].filter(element=>element.time>0);
+let bestArray = [];
+let string = '';
+usersBestsCardio.forEach(element=>{
+  let exerciseName=element.name;
+  switch(exerciseName){
+    case "Jogging"||"Cycling"||"Rowing"||"Swimming"||"StairClimbing"||"Sprints 100m"||"Sprints 200m"||"Sprints 400m":
+    string = `<div class="usersBestResultsContainer">
+            <p><h2>${exerciseName}<h2></p>
+            <p>Time:      ${element.time} seconds</p>
+            <p>Distance:  ${element.distance} meters</p>
+            <p>Speed:     ${element.speed.toFixed(2)} m/s </p>
+            </div>`
+    break;
+    case "JumpRope":
+      string = `<div class="usersBestResultsContainer">
+      <p><h2>${exerciseName}<h2></p>
+      <p>Time:      ${element.time} seconds</p>
+      <p>Jumps:  ${element.reps} jumps</p>
+      <p>Speed:     ${element.speed.toFixed(2)} jumps/s </p>
+      </div>`     
+      break;
+    }
+    bestArray.push(string);
+})
+usersBestsbodyWeightExercises.forEach(element=>{
+  let exerciseName=element.name;
+  switch(exerciseName){
+    case "PushUps"||"PullUps"||"Squats"||"Lunges"||"Dips"||"SitUps"||"Burpees":
+      string = `<div class="usersBestResultsContainer">
+                <p><h2>${exerciseName}<h2></p>
+                <p>Time:      ${element.time} minutes</p>
+                <p>Max Reps:  ${element.maxReps} reps</p>
+                <p>Rep:       ${element.reps} reps </p>
+                </div>`     
+          break;
+
+        case "Plank":
+          string = `<div class="usersBestResultsContainer">
+          <p><h2>${exerciseName}<h2></p>
+          <p>Time:           ${element.time} minutes</p>
+          <p>Max Hold Time:  ${element.maxHoldTime} seconds</p>
+          <p>Hold Time:      ${element.holdTime} seconds </p>
+          </div>`   
+        break;
+      }
+      bestArray.push(string);
+
+    })
+usersBestweightedLifts.forEach(element=>{
+  string = `<div class="usersBestResultsContainer">
+          <p><h2>${exerciseName}<h2></p>
+          <p>Time:           ${element.time} minutes</p>
+          <p>Weight:         ${element.weight}kg</p>
+          <p>Max Reps:       ${element.maxReps} reps</p>
+          <p>Rep:            ${element.reps} reps </p>
+          </div>`   
+        bestArray.push(string);
+        });
+
+usersBeststretches.array.forEach(element => {
+  let exerciseName=element.name;
+  switch(exerciseName){
+    case "FoamRollingQuads":
+      string = `<div class="usersBestResultsContainer">
+      <p><h2>${exerciseName}<h2></p>
+      <p>Time:           ${element.time} minutes</p>
+      <p>Max Duration:  ${element.maxHoldTime} seconds</p>
+      <p>Duration:      ${element.holdTime} seconds </p>
+      </div>`  
+      break
+    case "TaiChiSlowMovements":
+      string = `<div class="usersBestResultsContainer">
+      <p><h2>${exerciseName}<h2></p>
+      <p>Time:           ${element.time} minutes</p>
+      <p>Max Reps:  ${element.maxHoldTime} reps</p>
+      <p>Reps:      ${element.holdTime} reps </p>
+      </div>`  
+      break
+    default:
+      string = `<div class="usersBestResultsContainer">
+          <p><h2>${exerciseName}<h2></p>
+          <p>Time:           ${element.time} minutes</p>
+          <p>Max Hold Time:  ${element.maxHoldTime} seconds</p>
+          <p>Hold Time:      ${element.holdTime} seconds </p>
+          </div>`  
+      break;
+  }  
+  bestArray.push(string);
+});
+
+//lots of work here , inverse of the exercise input
 // current goal graph
 let completedGoals = currentuser.completedGoals;
 let missedGoals = currentuser.missedGoals;
@@ -750,12 +846,47 @@ outContainer.innerHTML+=`<p>Email:        ${email}</p>          <button id="Upda
 outContainer.innerHTML+=`<p>Phone Number: ${phoneNumber}</p>    <button id="UpdatePhoneBtn">Update</button>  <input type="tel" id="TelInput" name="name" placeholder="Jon" required>\n`
 outContainer.innerHTML+=`<p>Height:       ${height}</p>         <button id="UpdateHeightBtn">Update</button> <input type="number" id="HeightInput" name="name" placeholder="Jon" required>\n`
 outContainer.innerHTML+=`<p>Weight:       ${weight}</p>         <button id="UpdateWeightBtn">Update</button> <input type="number" id="WeightInput" name="name" placeholder="Jon" required>\n`
-if(currentuser.completedGoals)
+if(bestArray.length>0)
+  outContainer.innerHTML+=`${bestArray.join(`\n`)}\n`
+if(currentuser.completedGoals.length>0)
 outContainer.innerHTML+=completedGoalsHtmlOut.innerHTML+`\n`;
+if(currentuser.missedGoals.length>0)
 outContainer.innerHTML+=missedGoals.innerHTML;
 
 document.getElementById("ReportOutputDiv").appendChild(outContainer)
 
+let button = document.getElementById('UpdateEmailBtn')
+let input = document.getElementById('EmailInput')
+button.addEventListener('click',e=>{
+  if (input!=null&&input.value.length>0){
+    currentuser.userEmail=input.value;
+    userToFullDetails();
+  }
+})
+let button1 = document.getElementById('UpdatePhoneBtn')
+let input1 = document.getElementById('TelInput')
+button1.addEventListener('click',e=>{
+  if (input1!=null&&input1.value.length>0){
+    currentuser.userPhoneNumber=input1.value;
+    userToFullDetails();
+  }
+})
+let button2 = document.getElementById('UpdateHeightBtn')
+let input2 = document.getElementById('HeightInput')
+button2.addEventListener('click',e=>{
+  if (input2!=null&&input2.value>0){
+    currentuser.height=input2.value;
+    userToFullDetails();
+  }
+})
+let button3 = document.getElementById('UpdateWeightBtn')
+let input3 = document.getElementById('WeightInput')
+button3.addEventListener('click',e=>{
+  if (input3!=null&&input3.value>0){
+    updateWeight(input3.value)
+    userToFullDetails();
+  }
+})
 console.log(currentuser)
 
 };
@@ -775,8 +906,7 @@ arrayOptions.forEach(e => {
     outlist.push(`<option value="${e.name}">${e.name}</option>\n`)
   }
  });
-
- arrayOptions.forEach(e => outString += e);
+ outlist.forEach(e => outString += e);
 console.log(outString);
 return outString;
 };
@@ -1306,7 +1436,7 @@ function loadMainBone(){
     <!-- They can see their excercises, and can choose to resume -->
      <!-- Called it jump because they can jump right back in, dont blame me (i see you) -->
     <div class="jump" id="jump">
-      <div class="section__container jump__container">
+      <div class="section__container jump__container" id="jump__container">
         <div class="jump__image" id="quoteDisplay">
          <p id="generateQuote"></p>  
          <!-- generates a random quote -->
@@ -1340,7 +1470,7 @@ function loadMainBone(){
             <p>
               Improves cardiovascular endurance, burns calories, strengthens leg muscles, and boosts mental health.
             </p>
-            <button class="btn" id="add__btn">Add</button>
+            <button class="btn" id="add__btn" value="Cardio">Add</button>
           </div>
           <div class="service__card">
             <span>02</span>
@@ -1348,7 +1478,7 @@ function loadMainBone(){
             <p>
               Increases muscle strength and mass, improves bone density, and enhances metabolism.
             </p>
-            <button class="btn" id="add__btn">Add</button>
+            <button class="btn" id="add__btn" value="Lifting">Add</button>
           </div>
           <div class="service__card">
             <span>03</span>
@@ -1356,7 +1486,7 @@ function loadMainBone(){
             <p>
               Builds upper body strength (chest, shoulders, triceps), engages the core, and enhances endurance.
             </p>
-            <button class="btn" id="add__btn">Add</button>
+            <button class="btn" id="add__btn" value="Body-Weight-Exercises">Add</button>
           </div>
           <div class="service__card">
             <span>04</span>
@@ -1364,7 +1494,7 @@ function loadMainBone(){
             <p>
               A full-body workout that boosts cardio fitness, burns fat, builds strength, and improves agility.
             </p>
-            <button class="btn" id="add__btn">Add</button>  
+            <button class="btn" id="add__btn" value="Stretches">Add</button>  
           </div>
           <div class="service__image">
             <img src="images/duderunning.jpg" alt="service" />
@@ -1617,7 +1747,162 @@ document.addEventListener("DOMContentLoaded", function () {
   getRandomQuote(); // Show a random quote on page load
   setInterval(getRandomQuote, 8000);
 });
+
+LoadExerciseForm("BodyWeight")
+function LoadExerciseForm(exerciseGroupInput) {
+
+  let container = document.createElement('div')
+  container.setAttribute("class", "form-container show")
+
+  let head = document.createElement('h3')
+  let form = document.createElement('form')
+  container.appendChild(head)
+  let select = document.createElement('select')
+  select.setAttribute('id', "exerciseName")
+  select.setAttribute('name', "exerciseName")
+  select.setAttribute('title',"exerciseName")
+  let optionString;  
+
+  let exerciseInput1Label = document.createElement('label')
+      exerciseInput1Label.setAttribute('for', "ExerciseInputValue1")
+      let exerciseInput1 = document.createElement('input')
+      exerciseInput1.setAttribute('type', 'number')
+      exerciseInput1.setAttribute('id', 'ExerciseInputValue1')
+      exerciseInput1.setAttribute("required", '')
+
+      let exerciseInput2Label = document.createElement('label')
+      exerciseInput2Label.setAttribute('for', "ExerciseInputValue2")
+      let exerciseInput2 = document.createElement('input')
+      exerciseInput2.setAttribute('type', 'number')
+      exerciseInput2.setAttribute('id', 'ExerciseInputValue2')
+      exerciseInput2.setAttribute("required", '')
+
+      let exerciseInput3Label = document.createElement('label')
+      exerciseInput3Label.setAttribute('for', "ExerciseInputValue3")
+      let exerciseInput3 = document.createElement('input')
+      exerciseInput3.setAttribute('type', 'number')
+      exerciseInput3.setAttribute('id', 'ExerciseInputValue3')
+      exerciseInput3.setAttribute("required", '')
+
+      let exerciseInput4Label = document.createElement('label')
+      exerciseInput4Label.setAttribute('for', "ExerciseInputValue4")
+      let exerciseInput4 = document.createElement('input')
+      exerciseInput4.setAttribute('type', 'number')
+      exerciseInput4.setAttribute('id', 'ExerciseInputValue4')
+      exerciseInput4.setAttribute("required", '')
+
+      let exerciseInput5Label = document.createElement('label')
+      exerciseInput5Label.setAttribute('for', "ExerciseInputValue5")
+      let exerciseInput5 = document.createElement('input')
+      exerciseInput5.setAttribute('type', 'number')
+      exerciseInput5.setAttribute('id', 'ExerciseInputValue5')
+      exerciseInput5.setAttribute("required", '')
+
+  // taking user input and storing it based off the exercise the user has chosen
+  // also checking for achievements and user personal bests
+  switch (exerciseGroupInput){
+    case "cardio":
+      head.textContent= "Cardio"
+      form.setAttribute('id','cardioForm')
+      exerciseInput1Label.textContent = "Time (min)";
+      exerciseInput2Label.textContent = "Distance you ran"
+      exerciseInput3Label.textContent = "Reps or speed"
+      exerciseInput4Label.textContent = "Calories you burned"
+      optionString = exerciseTypeToOptionsList("Cardio")
+      select.innerHTML = optionString
+      form.appendChild(select)
+      form.appendChild(exerciseInput1Label)
+      form.appendChild(exerciseInput1)
+      form.appendChild(exerciseInput2Label)
+      form.appendChild(exerciseInput2)
+      form.appendChild(exerciseInput3Label)
+      form.appendChild(exerciseInput3)
+      form.appendChild(exerciseInput4Label)
+      form.appendChild(exerciseInput4)
+      break;
+    
+    case "BodyWeight":
+      head.textContent = "Body Weight Exercises"
+    form.setAttribute('id','bodyWeightForm')
+    exerciseInput1Label.textContent = "Time (min)";
+    exerciseInput2Label.textContent = "Reps/Hold time"
+    exerciseInput3Label.textContent = "Max reps/Max Hold Time"
+    exerciseInput4Label.textContent = "Calories you burned"
+    optionString = exerciseTypeToOptionsList("BodyWeight")
+    select.innerHTML = optionString
+    form.appendChild(select)
+      form.appendChild(exerciseInput1Label)
+      form.appendChild(exerciseInput1)
+      form.appendChild(exerciseInput2Label)
+      form.appendChild(exerciseInput2)
+      form.appendChild(exerciseInput3Label)
+      form.appendChild(exerciseInput3)
+      form.appendChild(exerciseInput4Label)
+      form.appendChild(exerciseInput4)
+      break;
+    case "WeightedLifts":
+      
+    head.textContent = "Weight Lifting"
+    form.setAttribute('id','weightLiftForm')
+    exerciseInput1Label.textContent = "Time (min)";
+    exerciseInput2Label.textContent = "Reps"
+    exerciseInput3Label.textContent = "Max reps"
+    exerciseInput4Label.textContent = "Calories you burned"
+    exerciseInput5Label.textContent = "Weight in kg"
+
+      optionString = exerciseTypeToOptionsList("WeightedLifts")
+      select.innerHTML = optionString
+
+      form.appendChild(select)
+
+      form.appendChild(exerciseInput1Label)
+      form.appendChild(exerciseInput1)
+      form.appendChild(exerciseInput2Label)
+      form.appendChild(exerciseInput2)
+      form.appendChild(exerciseInput3Label)
+      form.appendChild(exerciseInput3)
+      form.appendChild(exerciseInput4Label)
+      form.appendChild(exerciseInput4)
+      form.appendChild(exerciseInput5Label)
+      form.appendChild(exerciseInput5)
+      break;
+    
+    case "Stretches":
+
+    head.textContent = "Streches"
+    form.setAttribute('id','stretchesForm')
+    exerciseInput1Label.textContent = "Time (min)";
+    exerciseInput2Label.textContent = "Duration/Reps/HoldTime"
+    exerciseInput3Label.textContent = "Max Duration/Max Reps/ Max HoldTime"
+      optionString = exerciseTypeToOptionsList("Stretches");
+      select.innerHTML = optionString
+
+      form.appendChild(select)
+
+      form.appendChild(exerciseInput1Label)
+      form.appendChild(exerciseInput1)
+      form.appendChild(exerciseInput2Label)
+      form.appendChild(exerciseInput2)
+      form.appendChild(exerciseInput3Label)
+      form.appendChild(exerciseInput3)
+    break;
+    }
+    let button = document.createElement('button')
+    button.setAttribute('type', "submit")
+    button.setAttribute('class', 'btn')
+    button.textContent = "Submit";
+    form.appendChild(button)
+    container.appendChild(form)
+
+  let jump = document.getElementById('jump')
+  let jumpcontain = document.getElementById('jump__container')
+    jump.replaceChild(container, jumpcontain)
+
+
+
+ }
 };
+
 
 function loadLogin(){
     console.log(userList);
@@ -1631,9 +1916,7 @@ function loadLogin(){
         <div class="logo">
             <img src="images/Logp.png" id="logo" alt="Momentum Logo">  <span class="mom">Momentum</span>
         </div>
-        <div class="menu">
-            <a ><span>Login in</span></a>
-        </div>
+        
     </header>
     <h1>Enter your username and your password</h1>
 
@@ -1712,3 +1995,317 @@ function loadLogin(){
     });
 };
 
+
+function populateAdminAccount() {
+
+  loggedInUser = 0; 
+
+  let adminUser = userList[loggedInUser];
+  
+  adminUser.usersBestList= [
+    cardio= [
+      {
+        name: "Jogging",
+        time: 0,
+        distance: 0,
+        speed: 0,
+        caloriesBurned: 0,
+        intensity: "Moderate",
+        exerciseGroup: "Cardio"
+      },
+      {
+        name: "Cycling",
+        time: 0,
+        distance: 0,
+        speed: 0,
+        caloriesBurned: 0,
+        intensity: "High",
+        exerciseGroup: "Cardio"
+      },
+      {
+        name: "JumpRope",
+        time: 0,
+        reps: 0,
+        speed: 0,
+        caloriesBurned: 0,
+        intensity: "High",
+        exerciseGroup: "Cardio"
+      },
+      {
+        name: "Rowing",
+        time: 0,
+        distance: 0,
+        speed: 0,
+        caloriesBurned: 0,
+        intensity: "Moderate",
+        exerciseGroup: "Cardio"
+      },
+      {
+        name: "Swimming",
+        time: 0,
+        distance: 0,
+        speed: 0,
+        caloriesBurned: 0 ,
+        intensity: "High",
+        exerciseGroup: "Cardio"
+      },
+      {
+        name: "StairClimbing",
+        time: 0,
+        distance: 0,
+        speed: 0,
+        caloriesBurned: 200,
+        intensity: "Moderate",
+        exerciseGroup: "Cardio"
+      },
+      {
+        name: "Sprints 100m",
+        time: 0,
+        distance: 100,
+        speed: 0,
+        caloriesBurned: 0,
+        intensity: "Max",
+        exerciseGroup: "Cardio"
+      },
+      {
+        name: "Sprints 200m",
+        time: 0,
+        distance: 200,
+        speed: 0,
+        caloriesBurned: 0,
+        intensity: "Max",
+        exerciseGroup: "Cardio"
+      },
+      {
+        name: "Sprints 400m",
+        time: 0,
+        distance: 400,
+        speed: 0,
+        caloriesBurned: 0,
+        intensity: "Max",
+        exerciseGroup: "Cardio"
+      }
+    ],
+    bodyWeightExercises= [
+      {
+        name: "PushUps",
+        time: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "Moderate",
+        exerciseGroup: "BodyWeight"
+      },
+      {
+        name: "PullUps",
+        time: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "High",
+        exerciseGroup: "BodyWeight"
+      },
+      {
+        name: "Squats",
+        time: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "Moderate",
+        exerciseGroup: "BodyWeight"
+      },
+      {
+        name: "Lunges",
+        time: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "Moderate",
+        exerciseGroup: "BodyWeight"
+      },
+      {
+        name: "Dips",
+        time: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "High",
+        exerciseGroup: "BodyWeight"
+      },
+      {
+        name: "Plank",
+        time: 0,
+        holdTime: 0,
+        maxHoldTime: 0,
+        caloriesBurned: 0,
+        intensity: "Moderate",
+        exerciseGroup: "BodyWeight"
+      },
+      {
+        name: "SitUps",
+        time: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "Moderate",
+        exerciseGroup: "BodyWeight"
+      },
+      {
+        name: "Burpees",
+        time: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "High",
+        exerciseGroup: "BodyWeight"
+      }
+    ],
+    weightedLifts= [
+      {
+        name: "Deadlifts",
+        time: 0,
+        weight: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "High",
+        exerciseGroup: "WeightedLifts"
+      },
+      {
+        name: "BenchPress",
+        time: 0,
+        weight: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "High",
+        exerciseGroup: "WeightedLifts"
+      },
+      {
+        name: "OverheadPress",
+        time: 0,
+        weight: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "Moderate",
+        exerciseGroup: "WeightedLifts"
+      },
+      {
+        name: "Squats",
+        time: 0,
+        weight: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "High",
+        exerciseGroup: "WeightedLifts"
+      },
+      {
+        name: "BicepCurls",
+        time: 0,
+        weight: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "Moderate",
+        exerciseGroup: "WeightedLifts"
+      },
+      {
+        name: "KettlebellSwings",
+        time: 0,
+        weight: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "High",
+        exerciseGroup: "WeightedLifts"
+      },
+      {
+        name: "TireFlips",
+        time: 0,
+        weight: 0,
+        reps: 0,
+        maxReps: 0,
+        caloriesBurned: 0,
+        intensity: "High",
+        exerciseGroup: "WeightedLifts"
+      }
+    ],
+    stretches= [
+      {
+        name: "StaticHamstringStretch",
+        time: 0,
+        holdTime: 0,
+        maxHoldTime: 0,
+        flexibilityGain: "Moderate",
+        exerciseGroup: "Stretches"
+      },
+      {
+        name: "DynamicHipFlexorStretch",
+        time: 0,
+        reps: 0,
+        maxHoldTime: 0,
+        flexibilityGain: "High",
+        exerciseGroup: "Stretches"
+      },
+      {
+        name: "ShoulderStretch",
+        time: 0,
+        holdTime: 0,
+        maxHoldTime: 0,
+        flexibilityGain: "Low",
+        exerciseGroup: "Stretches"
+      },
+      {
+        name: "YogaPoseDownwardDog",
+        time: 0,
+        holdTime: 0,
+        maxHoldTime: 0,
+        flexibilityGain: "High",
+        exerciseGroup: "Stretches"
+      },
+      {
+        name: "FoamRollingQuads",
+        time: 0,
+        duration: 0,
+        maxDuration: 0,
+        flexibilityGain: "Moderate",
+        exerciseGroup: "Stretches"
+      },
+      {
+        name: "TaiChiSlowMovements",
+        time: 0,
+        reps: 0,
+        maxReps: 0,
+        flexibilityGain: "High",
+        exerciseGroup: "Stretches"
+      },
+      {
+        name: "WallChestStretch",
+        time: 0,
+        holdTime: 0,
+        maxHoldTime: 0 ,
+        flexibilityGain: "Moderate",
+        exerciseGroup: "Stretches"
+      },
+      {
+        name: "SeatedForwardFold",
+        time: 0,
+        holdTime: 0,
+        maxHoldTime: 0,
+        flexibilityGain: "High",
+        exerciseGroup: "Stretches"
+      }
+    ]
+  ]
+
+
+ 
+  loggedInUser = -1;
+
+  console.log("Admin account populated with data.");
+}
+
+
+populateAdminAccount();
