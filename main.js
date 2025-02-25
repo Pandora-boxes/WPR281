@@ -1443,12 +1443,12 @@ function loadMainBone(){
     <!-- They can see their excercises, and can choose to resume -->
      <!-- Called it jump because they can jump right back in, dont blame me (i see you) -->
     <div class="jump" id="jump">
-      <div class="section__container jump__container" id="jump__container">
+      <div class="section__container jump__container">
         <div class="jump__image" id="quoteDisplay">
          <p id="generateQuote"></p>  
          <!-- generates a random quote -->
         </div>
-        <div class="jump__content">
+        <div class="jump__content" id="jump__content">
           <h2 class="section__header">Your Exercises</h2>
           <p>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam reprehenderit nesciunt quaer
@@ -1901,10 +1901,9 @@ function LoadExerciseForm(exerciseGroupInput) {
     form.appendChild(button)
     container.appendChild(form)
 
-  let jump = document.getElementById('jump')
-  let jumpcontain = document.getElementById('jump__container')
-    jump.replaceChild(container, jumpcontain)
-
+  let jumpcontain = document.getElementById('jump__content')
+  jumpcontain.innerHTML = "" 
+    jumpcontain.appendChild(container)
 
 
  }
