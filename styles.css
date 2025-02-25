@@ -159,7 +159,7 @@ h1 {
     font-size: 1.18vw;
     margin-bottom: 2.34vh;
 }
-
+/* 
 .age-groups {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -167,7 +167,16 @@ h1 {
     justify-content: center;
     max-width: 75rem;
     margin: 0 auto;
-}
+} */
+.age-groups {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.08vw;
+     justify-content: center;  
+    max-width: 75rem;         
+    /* margin: 0 auto;           <-- comment or remove this line */
+    width: 50%; /* ensures the container spans the full viewport */
+  }
 
 .index-age-card {
     background: #222;
@@ -186,6 +195,8 @@ h1 {
 
 .index-age-card img {
     width: 100%;
+    max-width: 20rem; /* or whatever max size you prefer */
+    height: auto;
     border-radius: 0.65vw;
 }
 
@@ -1148,12 +1159,12 @@ footer {
     }
     
     .hero h1 {
-        font-size: 2.34vw;
+        font-size:2rem;
         margin-top: 1.56vh;
     }
     
     .hero p {
-        font-size: 1.18vw;
+        font-size: 0.95rem;
         margin-bottom: 2.34vh;
     }
     
@@ -1161,13 +1172,13 @@ footer {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
         gap: 2.08vw;
-        max-width: 75rem;
-        margin: 0 auto;
+         max-width: 50rem;
+        margin: 0 auto; 
     }
     
     .index-age-card {
         border-radius: 0.65vw;
-        padding: 0.98vw;
+        padding: 1rem;
         transition: transform 0.21s ease-in-out;
     }
     
@@ -1177,12 +1188,12 @@ footer {
     
     .index-age-card img {
         width: 100%;
-        border-radius: 0.65vw;
+        border-radius: 1rem;
     }
     
     .index-age-card p {
         margin-top: 0.65vw;
-        font-size: 1.18vw;
+        font-size: 2rem;
     }
     
     .terms-section {
@@ -1214,7 +1225,7 @@ footer {
     }
     .index-age-card p {
         margin-top: 1.04vh;
-        font-size: 1.18vw;
+        font-size: 1.5rem;
     }
     .terms-section {
         margin: 5.21vh auto;
@@ -1251,3 +1262,14 @@ footer {
     }
     
 }
+@media (max-width: 992px) {
+    .age-groups {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 576px) {
+    .age-groups {
+      grid-template-columns: 1fr;
+    }
+  }
+  
