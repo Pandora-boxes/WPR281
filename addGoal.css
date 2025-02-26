@@ -1,13 +1,5 @@
-body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f4f4f4;
-    flex-direction: column;
-}
-.modal {
+
+#createGoalsOutput .modal {
     display: flex; /* Always visible */
     position: fixed;
     top: 0;
@@ -18,7 +10,7 @@ body {
     justify-content: center;
     align-items: center;
 }
-.form-container {
+#createGoalsOutput .form-container {
     background: rgb(62, 61, 61);
     padding: 1.25rem;
     border-radius: 0.625rem;
@@ -27,14 +19,14 @@ body {
     color: white;
     text-align: center;
 }
-input, select {
+#createGoalsOutput input, select {
     width: 100%;
     padding: 0.3125rem;
     margin: 0.5rem 0;
     border: 0.0625rem solid #ccc;
     border-radius: 0.1875rem;
 }
-.form-container button {
+#createGoalsOutput .form-container button {
     width: 100%;
     margin-top: 0.625rem;
 }

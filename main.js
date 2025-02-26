@@ -353,21 +353,26 @@ function removeFavExercise(exerciseGroup, exerciseName) {
 }
 
 function addGoal() {
-  let currentUser = userList[loggedInUser]
-  let Goal = currentUser.GoalDetails
-  let goalType = null // get user to input from the listed types
-  let goalEndDate = Date.setDate(new Date() + null) //user inputted amount of days takes the place of the null
-  let GoalTarget = null // get from user input
+  let currentUser = userList[loggedInUser];
+  let Goal = currentUser.GoalDetails;
+  let goalType = document.getElementById("goalType").value;
+  let daysToAdd = parseInt(document.getElementById("goalDays").value);
+  let GoalTarget = parseInt(document.getElementById("goalTarget").value);
 
+  let goalEndDate = new Date();
+  goalEndDate.setDate(goalEndDate.getDate() + daysToAdd);
 
-  if (GoalTarget > 0 && Goal.type.length == 0) {
-    Goal.type = goalType;
-    Goal.startDate = new Date();
-    Goal.endDate = goalEndDate;
-    Goal.goalTarget = GoalTarget;
-    Goal.updatesList = [[0, 0, new Date()]],
+  if (GoalTarget > 0 && (!Goal.type || Goal.type.length == 0)) {
+      Goal.type = goalType;
+      Goal.startDate = new Date();
+      Goal.endDate = goalEndDate;
+      Goal.goalTarget = GoalTarget;
       Goal.goalCounter = 0;
+      alert("Goal set successfully!");
+  } else {
+      alert("Please enter valid details!");
   }
+  loadMainBone();
 };
 
 function checkGoal() {
@@ -478,11 +483,18 @@ function createGraphOfUserGoal(elementID) {
     }
 
     target.push(GoalOBJ.goalTarget);
+    
+
   }
 
   if (GoalOBJ.goalTarget > 0 && GoalOBJ.goalTarget != null) {
-
+    // let createGoalFormbtn = document.getElementById("createGoals")
+    // createGoalFormbtn.style.visibility='hidden'
+    // let createGoalFormOutput = document.getElementById("createGoalsOutput")
+    // createGoalFormOutput.style.visibility='hidden'
     let chart = document.getElementById(elementID)
+    let makeInvisible = document.getElementById('createGoals');
+    makeInvisible.style.display='None'
     new Chart(chart, {
       type: "line",
 
@@ -763,6 +775,7 @@ function addExercise(exerciseGroup, exerciseName) {
     alert('Well done!! thats another step to your fitness goals!! keep it up!');
   }
   currentUser.exercisesComplete.push([exerciseObj, new Date]);
+  loadMainBone();
 };
 
 function weightLogToGraph(elementID) {
@@ -1626,10 +1639,12 @@ function loadMainBone() {
             <button class="btn">More</button>
           </div> -->
         </div>
-        <div class="header__content">
+        <div class="header__content"id="createGoalsOutput">
+          <button id="createGoals">Set A Goal</button>
+         <div>
           <canvas id="GoalChart" >
-
           </canvas>
+          </div>
         </div>
       </div>
     </header>
@@ -1841,14 +1856,15 @@ function loadMainBone() {
     let chart = document.createElement('canvas');
     chart.setAttribute('id', 'caloriesDataGraphFromButton');
     outContainer.appendChild(chart)
-    //if(userList[loggedInUser].length>0){
+    if(userList[loggedInUser].length>0){
     createGraphFromCalories('caloriesDataGraphFromButton')
-    // }
-    // else{alert("Wait up there!!! maybe log some exercizes first")}
+    }
+    else{alert("Wait up there!!! maybe log some exercizes first")}
   })
-  let fullReportButton = document.getElementById("FullReportButton")
-  fullReportButton.addEventListener('click', userToFullDetails)
 
+  let fullReportButton = document.getElementById("FullReportButton")
+
+  
   let logOutButton = document.querySelector("#logOut");
   logOutButton.addEventListener('click', e => {
     loggedInUser = -1;
@@ -2154,10 +2170,47 @@ function loadMainBone() {
   }
 
   checkGoal();
+  
+  let createGoalFormbtn = document.getElementById("createGoals")
+  fullReportButton.addEventListener('click', userToFullDetails)
+
+
+  createGoalFormbtn.addEventListener("click",e=>{
+    let container = document.getElementById("createGoalsOutput")
+    container.innerHTML=`
+          <div>
+          </div>`;
+    
+    container.setAttribute("class", "form-container show")
+
+
+    let form = document.createElement('form');
+    form.setAttribute("id","goalModalForm")
+
+    form.innerHTML= `<link rel="stylesheet" href="addGoal.css">
+            <h2>Enter Goal Details</h2>
+            <label for="goalType">Goal Type:</label>
+            <select id="goalType">
+                <option value="calories burnt">Calories Burnt</option>
+                <option value="distance covered">Distance Covered</option>
+                <option value="weight lifted">Weight Lifted</option>
+                <option value="time streching'>Time Streching</option>
+                <option value="exercises logged">Exercises Logged</option>
+            </select><br><br>
+
+            <label for="goalDays">Days to Achieve Goal:</label>
+            <input type="number" id="goalDays" min="1"><br><br>
+
+            <label for="goalTarget">Goal Target:</label>
+            <input type="number" id="goalTarget" min="1"><br><br>
+            <button onclick="addGoal()">Submit</button>`
+            
+    form.style.opacity = '1'
+    container.appendChild(form)
+  })
+  
   createGraphOfUserGoal("GoalChart")
-
 };
-
 
 function loadLogin() {
   usertemp = null;
