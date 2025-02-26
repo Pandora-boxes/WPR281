@@ -378,6 +378,7 @@ function addGoal() {
 function checkGoal() {
   let currentUser = userList[loggedInUser]
   let Goal = currentUser.GoalDetails
+  console.log(Goal)
   if (Goal.type.length <= 0) {
     // dont do anything if there is no goal set
   }
@@ -552,7 +553,6 @@ function addExercise(exerciseGroup, exerciseName) {
   let filteredArray = exerciseList.filter((e) => {
     return e[0].exerciseGroup == selectedExercise
   })
-  console.log(filteredArray)
   filteredArray = Array.from(filteredArray[0]);
   filteredArray = filteredArray.filter((e) => e.name == exerciseName);
   let i = 0;
@@ -776,7 +776,7 @@ function addExercise(exerciseGroup, exerciseName) {
     alert('Well done!! thats another step to your fitness goals!! keep it up!');
   }
 
-  console.log(currentUser.exercisesComplete)
+  // console.log(currentUser.exercisesComplete)
   currentUser.exercisesComplete.push([exerciseObj, new Date]);
   loadMainBone();
 };
@@ -1051,8 +1051,8 @@ function userToFullDetails() {
     missedGoalsHtmlOut.appendChild(Content)
   }
   goalsContainer.appendChild(goalsGraph);
-  if (currentuser.completedGoals.length > 0) goalsContainer.appendChild(completedGoalsHtmlOut);
-  if (currentuser.missedGoals.length > 0) goalsContainer.appendChild(missedGoalsHtmlOut);
+  if (currentuser.completedGoals.length > 0) { goalsContainer.appendChild(completedGoalsHtmlOut)};
+  if (currentuser.missedGoals.length > 0) {goalsContainer.appendChild(missedGoalsHtmlOut)};
 
   let outContainer = document.createElement(`div`)
   outContainer.setAttribute('class', "UserFullDetailsOutPut");
@@ -1879,7 +1879,6 @@ function loadMainBone() {
   const navLinks = document.getElementById("nav-links");
   const menuBtnIcon = menuBtn.querySelector("i");
   // const exerDropdown = document.getElementById('exerciseName');
-  let currentExerFormGroup;
 
 
   menuBtn.addEventListener("click", (e) => {
@@ -1897,7 +1896,6 @@ function loadMainBone() {
   document.querySelectorAll('.add_Ex_btn').forEach(item => {
     item.addEventListener('click', event => {
       LoadExerciseForm(item.value, '')
-      currentExerFormGroup = item.value
     })
   })
 
@@ -2199,10 +2197,8 @@ function loadMainBone() {
       console.log(`${buttonExInput.value},${select.value}`);
       addExercise(buttonExInput.value,select.value)
     })
-
+    
   }
-
-  checkGoal();
   
   let createGoalFormbtn = document.getElementById("createGoals")
   fullReportButton.addEventListener('click', userToFullDetails)
@@ -2241,7 +2237,6 @@ function loadMainBone() {
     form.style.opacity = '1'
     container.appendChild(form)
   })
-  
   createGraphOfUserGoal("GoalChart")
 };
 
