@@ -540,6 +540,7 @@ function addExercise(exerciseGroup, exerciseName) {
   let filteredArray = exerciseList.filter((e) => {
     return e[0].exerciseGroup == selectedExercise
   })
+  console.log(filteredArray)
   filteredArray = Array.from(filteredArray[0]);
   filteredArray = filteredArray.filter((e) => e.name == exerciseName);
   let i = 0;
@@ -2156,9 +2157,9 @@ function loadMainBone() {
       LoadExerciseForm(currentExerFormGroup, event.target.value)
     })
 
-    // button.addEventListener("click", function(){
-    //   addExercise(form.value,select.value)
-    // })
+    button.addEventListener("click", function(){
+      addExercise(form.value,select.value)
+    })
 
   }
 
