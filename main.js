@@ -1723,6 +1723,8 @@ function loadMainBone(){
     const menuBtn = document.getElementById("menu-btn");
 const navLinks = document.getElementById("nav-links");
 const menuBtnIcon = menuBtn.querySelector("i");
+const exerDropdown = document.getElementById('exerciseName');
+let currentExerFormGroup;
 
 
 menuBtn.addEventListener("click", (e) => {
@@ -1739,10 +1741,17 @@ navLinks.addEventListener("click", (e) => {
 
 document.querySelectorAll('.add_Ex_btn').forEach(item => {
   item.addEventListener('click', event => {
-    LoadExerciseForm(item.value)
-    console.log(item.value)
+    LoadExerciseForm(item.value, '')
+    currentExerFormGroup = item.value
+    console.log(currentExerFormGroup)
   })
 })
+
+exerDropdown.addEventListener('change', event => {
+  console.log(event.target.value)
+  LoadExerciseForm(currentExerFormGroup,event.target.value)
+})
+// exerDropdown.oninput = LoadExerciseForm(currentExerFormGroup,exerDropdown.value)
 
 // defining animation setting
 const scrollRevealOption = {
@@ -1833,7 +1842,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // LoadExerciseForm("BodyWeight")
-function LoadExerciseForm(exerciseGroupInput) {
+function LoadExerciseForm(exerciseGroupInput, exeName) {
 
   let container = document.createElement('div')
   container.setAttribute("class", "form-container show")
@@ -1887,13 +1896,17 @@ function LoadExerciseForm(exerciseGroupInput) {
   switch (exerciseGroupInput){
     case "Cardio":
       head.textContent= "Cardio"
-      form.setAttribute('id','cardioForm')
+      form.setAttribute('id','exerForm Cardio')
       exerciseInput1Label.textContent = "Time (min)";
       exerciseInput2Label.textContent = "Distance you ran"
-      exerciseInput3Label.textContent = "Reps or speed"
       exerciseInput4Label.textContent = "Calories you burned"
       optionString = exerciseTypeToOptionsList("Cardio")
       select.innerHTML = optionString
+
+      if(exeName=="JumpRope"){exerciseInput3Label.textContent = "Reps:"}
+      else{
+        exerciseInput3Label.textContent = "Speed"
+      }
       form.appendChild(select)
       form.appendChild(exerciseInput1Label)
       form.appendChild(exerciseInput1)
@@ -1904,15 +1917,19 @@ function LoadExerciseForm(exerciseGroupInput) {
       form.appendChild(exerciseInput4Label)
       form.appendChild(exerciseInput4)
       break;
-    
     case "Body-Weight-Exercises":
       head.textContent = "Body Weight Exercises"
-    form.setAttribute('id','bodyWeightForm')
+    form.setAttribute('id','exerForm bodyWeightForm')
     exerciseInput1Label.textContent = "Time (min)";
-    exerciseInput2Label.textContent = "Reps/Hold time"
-    exerciseInput3Label.textContent = "Max reps/Max Hold Time"
     exerciseInput4Label.textContent = "Calories you burned"
     optionString = exerciseTypeToOptionsList("BodyWeight")
+    if (exeName!="Plank"){
+      exerciseInput2Label.textContent = "Reps"
+      exerciseInput3Label.textContent = "Max reps"
+    }else{
+      exerciseInput2Label.textContent = "Hold time";
+      exerciseInput3Label.textContent = "Max Hold Time"
+    }
     select.innerHTML = optionString
     form.appendChild(select)
       form.appendChild(exerciseInput1Label)
@@ -1927,7 +1944,7 @@ function LoadExerciseForm(exerciseGroupInput) {
     case "Lifting":
       
     head.textContent = "Weight Lifting"
-    form.setAttribute('id','weightLiftForm')
+    form.setAttribute('id','exerForm weightLiftForm')
     exerciseInput1Label.textContent = "Time (min)";
     exerciseInput2Label.textContent = "Reps"
     exerciseInput3Label.textContent = "Max reps"
@@ -1950,14 +1967,26 @@ function LoadExerciseForm(exerciseGroupInput) {
       form.appendChild(exerciseInput5Label)
       form.appendChild(exerciseInput5)
       break;
-    
     case "Stretches":
 
     head.textContent = "Streches"
-    form.setAttribute('id','stretchesForm')
+    form.setAttribute('id','exerForm stretchesForm')
     exerciseInput1Label.textContent = "Time (min)";
-    exerciseInput2Label.textContent = "Duration/Reps/HoldTime"
-    exerciseInput3Label.textContent = "Max Duration/Max Reps/ Max HoldTime"
+    switch(exeName){
+      case "FoamRollingQuads":
+        exerciseInput2Label.textContent = "Duration"
+        exerciseInput3Label.textContent = "Max Duration"
+        break
+      case "TaiChiSlowMovements":
+        exerciseInput2Label.textContent = "Reps"
+        exerciseInput3Label.textContent = "Max Reps"
+        break
+      default:
+        exerciseInput2Label.textContent = "HoldTime"
+        exerciseInput3Label.textContent = "Max HoldTime"
+        break;
+    }
+
       optionString = exerciseTypeToOptionsList("Stretches");
       select.innerHTML = optionString
 
@@ -1979,7 +2008,6 @@ function LoadExerciseForm(exerciseGroupInput) {
     container.appendChild(form)
 
   let jumpcontain = document.getElementById('jump_Ex_content')
-  console.log(jumpcontain)
   jumpcontain.innerHTML = '';
   jumpcontain.appendChild(container)
 
