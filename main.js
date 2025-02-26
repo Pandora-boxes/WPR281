@@ -564,7 +564,7 @@ function addExercise(exerciseGroup, exerciseName) {
     if (currentUser.usersBestList[i][0].exerciseGroup == exerciseGroup) {
 
       for (ii; ii < currentUser.usersBestList[i].length; ++ii) {
-        if (currentUser.userList[i][ii].name == exerciseName) {
+        if (currentUser.usersBestList[i][ii].name == exerciseName) {
           index1 = i;
           index2 = ii;
           break;
@@ -775,6 +775,8 @@ function addExercise(exerciseGroup, exerciseName) {
     //maybe play an animation for now alert
     alert('Well done!! thats another step to your fitness goals!! keep it up!');
   }
+
+  console.log(currentUser.exercisesComplete)
   currentUser.exercisesComplete.push([exerciseObj, new Date]);
   loadMainBone();
 };
@@ -1892,14 +1894,11 @@ function loadMainBone() {
     menuBtnIcon.setAttribute("class", "ri-menu-line");
   });
 
-  let exerDropdown = document.querySelectorAll('.add_Ex_btn').forEach(item => {
-    let d = item.addEventListener('click', event => {
-      var d = LoadExerciseForm(item.value, '')
+  document.querySelectorAll('.add_Ex_btn').forEach(item => {
+    item.addEventListener('click', event => {
+      LoadExerciseForm(item.value, '')
       currentExerFormGroup = item.value
-      console.log(currentExerFormGroup)
-      return d
     })
-    return d
   })
 
 
@@ -2000,12 +1999,24 @@ function loadMainBone() {
     container.setAttribute("class", "form-container show")
 
     let head = document.createElement('h3')
-    let form = document.createElement('form')
+    let exForm = document.createElement('form')
     container.appendChild(head)
+    let exNameSelectLabel = document.createElement("label")
+    exNameSelectLabel.setAttribute("for", "exerciseName")
+    exNameSelectLabel.textContent = "Exercise Name:"
     let select = document.createElement('select')
     select.setAttribute('id', "exerciseName")
     select.setAttribute('name', "exerciseName")
     select.setAttribute('title', "exerciseName")
+    select.setAttribute("required", '')
+
+    let disBtn = document.createElement('button')
+    disBtn.setAttribute("disabled",'true')
+    disBtn.setAttribute("style", "display:none;")
+    exForm.appendChild(disBtn)
+    exForm.appendChild(exNameSelectLabel)
+
+
     let optionString;
 
     let exerciseInput1Label = document.createElement('label')
@@ -2043,16 +2054,22 @@ function loadMainBone() {
     exerciseInput5.setAttribute('id', 'ExerciseInputValue5')
     exerciseInput5.setAttribute("required", '')
 
+    let buttonExInput = document.createElement('button')
+    buttonExInput.setAttribute('type', "submit")
+    buttonExInput.setAttribute('class', 'btn')
+
+    console.log(exerciseGroupInput)
     // taking user input and storing it based off the exercise the user has chosen
     // also checking for achievements and user personal bests
     switch (exerciseGroupInput) {
       case "Cardio":
         head.textContent = "Cardio"
-        form.setAttribute('id', 'exerForm Cardio')
-        form.setAttribute("value", 'Cardio')
-        exerciseInput1Label.textContent = "Time (min)";
-        exerciseInput2Label.textContent = "Distance you ran"
-        exerciseInput4Label.textContent = "Calories you burned"
+        exForm.setAttribute('id', 'exerForm Cardio')
+        buttonExInput.setAttribute('value', 'Cardio')
+
+        exerciseInput1Label.textContent = "Time (min):";
+        exerciseInput2Label.textContent = "Distance you ran:"
+        exerciseInput4Label.textContent = "Calories you burned:"
         optionString = exerciseTypeToOptionsList("Cardio")
         select.innerHTML = optionString
 
@@ -2060,20 +2077,21 @@ function loadMainBone() {
         else {
           exerciseInput3Label.textContent = "Speed"
         }
-        form.appendChild(select)
-        form.appendChild(exerciseInput1Label)
-        form.appendChild(exerciseInput1)
-        form.appendChild(exerciseInput2Label)
-        form.appendChild(exerciseInput2)
-        form.appendChild(exerciseInput3Label)
-        form.appendChild(exerciseInput3)
-        form.appendChild(exerciseInput4Label)
-        form.appendChild(exerciseInput4)
+        exForm.appendChild(select)
+        exForm.appendChild(exerciseInput1Label)
+        exForm.appendChild(exerciseInput1)
+        exForm.appendChild(exerciseInput2Label)
+        exForm.appendChild(exerciseInput2)
+        exForm.appendChild(exerciseInput3Label)
+        exForm.appendChild(exerciseInput3)
+        exForm.appendChild(exerciseInput4Label)
+        exForm.appendChild(exerciseInput4)
         break;
       case "Body-Weight-Exercises":
         head.textContent = "Body Weight Exercises"
-        form.setAttribute('id', 'exerForm bodyWeightForm')
-        form.setAttribute("value", 'BodyWeight')
+        exForm.setAttribute('id', 'exerForm bodyWeightForm')
+        buttonExInput.setAttribute('value', 'BodyWeight')
+
         exerciseInput1Label.textContent = "Time (min)";
         exerciseInput4Label.textContent = "Calories you burned"
         optionString = exerciseTypeToOptionsList("BodyWeight")
@@ -2085,21 +2103,23 @@ function loadMainBone() {
           exerciseInput3Label.textContent = "Max Hold Time"
         }
         select.innerHTML = optionString
-        form.appendChild(select)
-        form.appendChild(exerciseInput1Label)
-        form.appendChild(exerciseInput1)
-        form.appendChild(exerciseInput2Label)
-        form.appendChild(exerciseInput2)
-        form.appendChild(exerciseInput3Label)
-        form.appendChild(exerciseInput3)
-        form.appendChild(exerciseInput4Label)
-        form.appendChild(exerciseInput4)
+        
+        exForm.appendChild(select)
+        exForm.appendChild(exerciseInput1Label)
+        exForm.appendChild(exerciseInput1)
+        exForm.appendChild(exerciseInput2Label)
+        exForm.appendChild(exerciseInput2)
+        exForm.appendChild(exerciseInput3Label)
+        exForm.appendChild(exerciseInput3)
+        exForm.appendChild(exerciseInput4Label)
+        exForm.appendChild(exerciseInput4)
         break;
       case "Lifting":
 
         head.textContent = "Weight Lifting"
-        form.setAttribute('id', 'exerForm weightLiftForm')
-        form.setAttribute("value", 'WeightedLifts')
+        exForm.setAttribute('id', 'exerForm weightLiftForm')
+        buttonExInput.setAttribute('value', 'WeightedLifts')
+
         exerciseInput1Label.textContent = "Time (min)";
         exerciseInput2Label.textContent = "Reps"
         exerciseInput3Label.textContent = "Max reps"
@@ -2109,24 +2129,24 @@ function loadMainBone() {
         optionString = exerciseTypeToOptionsList("WeightedLifts")
         select.innerHTML = optionString
 
-        form.appendChild(select)
+        exForm.appendChild(select)
 
-        form.appendChild(exerciseInput1Label)
-        form.appendChild(exerciseInput1)
-        form.appendChild(exerciseInput2Label)
-        form.appendChild(exerciseInput2)
-        form.appendChild(exerciseInput3Label)
-        form.appendChild(exerciseInput3)
-        form.appendChild(exerciseInput4Label)
-        form.appendChild(exerciseInput4)
-        form.appendChild(exerciseInput5Label)
-        form.appendChild(exerciseInput5)
+        exForm.appendChild(exerciseInput1Label)
+        exForm.appendChild(exerciseInput1)
+        exForm.appendChild(exerciseInput2Label)
+        exForm.appendChild(exerciseInput2)
+        exForm.appendChild(exerciseInput3Label)
+        exForm.appendChild(exerciseInput3)
+        exForm.appendChild(exerciseInput4Label)
+        exForm.appendChild(exerciseInput4)
+        exForm.appendChild(exerciseInput5Label)
+        exForm.appendChild(exerciseInput5)
         break;
       case "Stretches":
 
         head.textContent = "Streches"
-        form.setAttribute('id', 'exerForm stretchesForm')
-        form.setAttribute("value", 'Stretches')
+        exForm.setAttribute('id', 'exerForm stretchesForm')
+        buttonExInput.setAttribute('value', 'Stretches')
 
         exerciseInput1Label.textContent = "Time (min)";
         switch (exeName) {
@@ -2147,34 +2167,37 @@ function loadMainBone() {
         optionString = exerciseTypeToOptionsList("Stretches");
         select.innerHTML = optionString
 
-        form.appendChild(select)
+        exForm.appendChild(select)
 
-        form.appendChild(exerciseInput1Label)
-        form.appendChild(exerciseInput1)
-        form.appendChild(exerciseInput2Label)
-        form.appendChild(exerciseInput2)
-        form.appendChild(exerciseInput3Label)
-        form.appendChild(exerciseInput3)
+        exForm.appendChild(exerciseInput1Label)
+        exForm.appendChild(exerciseInput1)
+        exForm.appendChild(exerciseInput2Label)
+        exForm.appendChild(exerciseInput2)
+        exForm.appendChild(exerciseInput3Label)
+        exForm.appendChild(exerciseInput3)
         break;
     }
-    let button = document.createElement('button')
-    button.setAttribute('type', "submit")
-    button.setAttribute('class', 'btn')
-    button.textContent = "Submit";
-    form.appendChild(button)
-    container.appendChild(form)
+
+    
+    buttonExInput.textContent = "Submit";
+    exForm.appendChild(buttonExInput)
+    container.appendChild(exForm)
+    select.innerHTML += "<br>"
+    exNameSelectLabel.innerHTML += "<br>"
 
     let jumpcontain = document.getElementById('jump_Ex_content')
     jumpcontain.innerHTML = '';
     jumpcontain.appendChild(container)
 
     select.addEventListener('change', event => {
-      console.log(event.target.value)
-      LoadExerciseForm(currentExerFormGroup, event.target.value)
+      console.log(select.value)
+      LoadExerciseForm(currentExerFormGroup, select.value)
     })
 
-    button.addEventListener("click", function(){
-      addExercise(form.value,select.value)
+
+    buttonExInput.addEventListener("click", (event) => {
+      console.log(`${buttonExInput.value},${select.value}`);
+      addExercise(buttonExInput.value,select.value)
     })
 
   }
