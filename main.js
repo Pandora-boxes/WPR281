@@ -404,12 +404,55 @@ function checkGoal(){
   }
 }
 
+function createGraphFromCalories(elementID){
+  let currentUser = userList[loggedInUser];
+  let exercisesList = currentUser.exercisesComplete;
+  let cardioList = exerciseList.filter(e=>{
+    e[0].exerciseGroup="Cardio"
+  })
+  let BodyWeightList = exerciseList.filter(e=>{
+    e[0].exerciseGroup="BodyWeight"
+  })
+  let WeightedLifts=exerciseList.filter(e=>{
+    e[0].exerciseGroup="WeightedLifts"
+  })
+  let cardioTotal = 0; 
+  cardioList.map(e=>cardioTotal+e[0].caloriesBurned)
+  let BodyWeightTotal = 0; 
+  BodyWeightList.map(e=>BodyWeightTotal+e[0].caloriesBurned)
+  let WeightedLiftsTotal = 0; 
+  WeightedLifts.map(e=>WeightedLiftsTotal+e[0].caloriesBurned)
+
+  let chart = document.getElementById(elementID)
+  new Chart(chart,{
+    type:"bar",
+    data:{
+      labels:["Cardio","Body Weight","Weighted Lifts","Total Burnt"],
+      datasets:[{
+        label:"Number of Calories Burnt",
+        data:[1000,2300,1400,4700],
+        backgroundColor: 'rgba(38, 217, 38, 0.7)',  // Green bars
+        borderColor: 'rgb(38, 217, 38)',
+        //data:[cardioTotal,BodyWeightTotal,WeightedLiftsTotal,cardioTotal+BodyWeightTotal+WeightedLiftsTotal],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  })
+}
+
 function createGraphOfUserGoal(elementID){
   
   let currentUser = userList[loggedInUser];
   let GoalOBJ = currentUser.GoalDetails;
-  startDate=GoalOBJ.startDate;
-  endDate=GoalOBJ.endDate;
+  startDate=new Date(GoalOBJ.startDate);
+  endDate=new Date(GoalOBJ.endDate);
   updatesList = GoalOBJ.updatesList;
   let labels = [];
   let data = []
@@ -417,7 +460,6 @@ function createGraphOfUserGoal(elementID){
   let runningTotal =0;
   let target = [];
   for(let i=startDate;i<=endDate;i.setDate(i.getDate()+1)){
-  console.log(i)
   labels.push(`${i.getMonth()+1}|${i.getDate()}`)
   let total = 0;
   updatesList.forEach(e=>{
@@ -427,16 +469,16 @@ function createGraphOfUserGoal(elementID){
     }
     
     })
-  if(i.getMonth()>=updatesList[updatesList.length-1][2].getMonth()&&i.getYear()>=updatesList[updatesList.length-1][2].getYear()&&i.getDate()>updatesList[updatesList.length-1][2].getDate()){
+  
+    data.push(runningTotal);
+    data2.push(total);
+    if(i.getMonth()>=new Date().getMonth()&&i.getYear()>=new Date().getYear()&&i.getDate()>new Date().getDate()-1){
     data.pop();
     data2.pop();
   }
-    data.push(runningTotal);
-    data2.push(total);
 
     target.push(GoalOBJ.goalTarget);
 }
- 
 
  if(GoalOBJ.goalTarget>0&&GoalOBJ.goalTarget!=null){
 
@@ -471,7 +513,7 @@ function createGraphOfUserGoal(elementID){
        
     }]},
 
-    options:{
+  options:{
       scales: {
         x: {
           ticks: {
@@ -721,6 +763,78 @@ function addExercise(exerciseGroup,exerciseName){
   currentUser.exercisesComplete.push([exerciseObj,new Date]);
 };
 
+function weightLogToGraph(elementID){
+ let outElement = document.getElementById(elementID);
+ let currentUser = userList[loggedInUser];
+ let weightlog = currentUser.weightLog;
+ let labels = [];
+ let data = []
+ let dataLowest = [];
+ let dataheighest = [];
+  let heighest = weightlog[0][0];
+  let lowest = weightlog[0][0]; 
+ let startDate = new Date(currentUser.datejoined)
+ let currentDate = new Date(); 
+ let dataPoint = -1;
+ for (let i = startDate; i <=currentDate;i.setMonth(i.getMonth()+1)){
+  labels.push(`${i.getMonth()+1}|${i.getFullYear()}`);
+  dataPoint = -1;
+  weightlog.forEach(e=>{
+    if(`${i.getMonth()}|${i.getYear()}`==`${e[1].getMonth()}|${e[1].getYear()}`){
+      dataPoint = e[0];
+    }})
+  if(dataPoint!=-1){
+    data.push(dataPoint)
+    if(dataPoint>heighest) {heighest=dataPoint} 
+    else if (dataPoint<lowest) {lowest=dataPoint}
+    dataLowest.push(lowest)
+    dataheighest.push(heighest)
+  }else{
+    data.push()
+    dataLowest.push()
+    dataheighest.push()
+  };
+  
+ }
+
+ new Chart(outElement,{
+  type:"line",
+  data:{
+    labels:labels,
+    datasets:[{
+      label:"weight",
+      data: data,
+      fill: false,
+      borderColor: 'rgb(38, 217, 38)',
+      tension: 0
+      
+    },{
+      label:"lowest weight",
+      data: dataLowest,
+      fill: false,
+      borderColor: 'rgb(231, 153, 17)',
+      tension: 0
+      
+    },{
+      label:"heighst weight",
+      data: dataheighest,
+      fill: false,
+      borderColor: 'rgb(217, 38, 38)',
+      tension: 0
+      
+    }]
+  },
+  options:{
+    scales:{
+    y:{
+      min:lowest-10,
+      max:heighest+10
+    }
+  }
+  }
+ })
+}
+
 function userToFullDetails(){
 
   document.getElementById("ReportOutputDiv").innerHTML='';
@@ -733,7 +847,8 @@ let phoneNumber = currentuser.userPhoneNumber;
 let height = currentuser.height;
 let weight = currentuser.weight;
 // weight log to graph
-console.log(currentuser.usersBestList[0]);
+let weightlogGraph = document.createElement('canvas')
+weightlogGraph.setAttribute('id','weightLogGraphForFullDetails');
 
 let userBestList = currentuser.usersBestList[0];
 
@@ -929,6 +1044,7 @@ outContainer.innerHTML+=`<p>Email:        ${email}</p>          <button id="Upda
 outContainer.innerHTML+=`<p>Phone Number: ${phoneNumber}</p>    <button id="UpdatePhoneBtn">Update</button>  <input type="tel" id="TelInput" name="name" placeholder="Jon" required>\n`
 outContainer.innerHTML+=`<p>Height:       ${height}</p>         <button id="UpdateHeightBtn">Update</button> <input type="number" id="HeightInput" name="name" placeholder="Jon" required>\n`
 outContainer.innerHTML+=`<p>Weight:       ${weight}</p>         <button id="UpdateWeightBtn">Update</button> <input type="number" id="WeightInput" name="name" placeholder="Jon" required>\n`
+outContainer.appendChild(weightlogGraph)
 if(bestArray.length>0)
   outContainer.innerHTML+=`${bestArray.join(`\n`)}\n`
 
@@ -969,6 +1085,7 @@ button3.addEventListener('click',e=>{
   }
 })
 createGraphOfUserGoal("GoalGraphForDetails")
+weightLogToGraph('weightLogGraphForFullDetails')
 };
 
 
@@ -1596,18 +1713,18 @@ function loadMainBone(){
               <p>See how much calories you have burned</p>
             </div>
             <span>
-              <button class="calorieReport"><i class="ri-arrow-right-fill"></i></button>
+              <button class="calorieReport" id="caloriesDataToGraphButton"><i class="ri-arrow-right-fill"></i></button>
             </span>
           </div>
-          <div class="report__card">
-            <div>
-              <h4>Statistics</h4>
-              <p>See your productivity displayed on a chart</p>
-            </div>
-            <span>
-              <button class="chartReport"><i class="ri-arrow-right-fill"></i></button>
-            </span>
-          </div>
+          <div class="report__card">`+
+            // <div>
+            //   <h4>Statistics</h4>
+            //   <p>See your productivity displayed on a chart</p>
+            // </div>
+            // <span>
+            //   <button class="chartReport"><i class="ri-arrow-right-fill"></i></button>
+            // </span>
+          `</div>
           
           <div class="report__card">
             <div>
@@ -1713,14 +1830,22 @@ function loadMainBone(){
     documentHead.innerHTML=newPageHeader;
     documentBody.innerHTML = newpagebody;
     
-    checkGoal();
-    createGraphOfUserGoal("GoalChart")
 
-
-    let fullReportButton =document.getElementById("FullReportButton")
-    fullReportButton.addEventListener('click',e=>{userToFullDetails()
-       createGraphOfUserGoal("GoalGraphForDetails")
+    let caloriesGraphButton = document.getElementById("caloriesDataToGraphButton")
+    caloriesGraphButton.addEventListener('click',e=>{
+      let outContainer = document.getElementById('ReportOutputDiv')
+      outContainer.innerHTML='';
+      let chart = document.createElement('canvas');
+      chart.setAttribute('id','caloriesDataGraphFromButton');
+      outContainer.appendChild(chart)
+      //if(userList[loggedInUser].length>0){
+      createGraphFromCalories('caloriesDataGraphFromButton')
+     // }
+      // else{alert("Wait up there!!! maybe log some exercizes first")}
     })
+    let fullReportButton =document.getElementById("FullReportButton")
+    fullReportButton.addEventListener('click',userToFullDetails)
+    
     let logOutButton = document.querySelector("#logOut");
     logOutButton.addEventListener('click', e=>{
         loggedInUser=-1;
@@ -1760,7 +1885,7 @@ const scrollRevealOption = {
 };
 
 //applies scrollreveal animation to head
-ScrollReveal().reveal(".header__image img", {
+ScrollReveal().reveal(".header__content canvas", {
   ...scrollRevealOption,
   origin: "right",//overrides, slide in from the right
 });
@@ -1992,11 +2117,14 @@ function LoadExerciseForm(exerciseGroupInput) {
   jumpcontain.appendChild(container)
 
  }
+
+    checkGoal();
+    createGraphOfUserGoal("GoalChart")
+
 };
 
 
 function loadLogin(){
-    console.log(userList);
     usertemp=null;
     let newPageHeader = `<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -2401,7 +2529,20 @@ function populateAdminAccount() {
     },
     adminUser.completedGoals=[],
     adminUser.missedGoals=[]
-  
+    adminUser.datejoined= new Date("2024/11/05")
+    adminUser.weight=80;
+    adminUser.weightLog=[
+      [80,new Date("2024/11/05")],
+      [75,new Date("2024/11/15")],
+      [85,new Date("2024/12/25")],
+      [86,new Date("2025/01/01")],
+      [87,new Date("2025/01/15")],
+      [84,new Date("2025/01/17")],
+      [86,new Date("2025/01/25")],
+      [86,new Date("2025/01/30")],
+      [84,new Date("2025/02/11")],
+      [80,new Date("2025/02/25")]
+    ]
 
 
  
