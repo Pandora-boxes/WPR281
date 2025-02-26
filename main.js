@@ -2,6 +2,126 @@
 let usertemp = {};
 let loggedInUser = -1;
 let userList = [];
+let achievmentsList = [
+  {
+    type:"exercises logged",
+    goal:0,
+    html:`<div class="AchivementContainer"><img src="images/medal1.jpeg" alt="medal1"height="20%"><p>You have yet to log  an exercise</p></div>`
+   },{
+  type:"exercises logged",
+  goal:1,
+  html:`<div class="AchivementContainer"><img src="images/medal2.jpeg" alt="medal2"height="20%"><p>You logged your first exercise</p></div>`
+ },{
+  type:"exercises logged",
+  goal:10,
+  html:`<div class="AchivementContainer"><img src="images/medal3.jpeg" alt="medal3"height="20%"><p>You've Logged 10 exercises!!</p></div>`
+ },{
+  type:"exercises logged",
+  goal:50,
+  html:`<div class="AchivementContainer"><img src="images/medal4.jpeg" alt="medal4"height="20%"><p>You've Logged 50 exercises!!</p></div>`
+ } ,{
+  type:"exercises logged",
+  goal:100,
+  html:`<div class="AchivementContainer"><img src="images/medal5.jpeg" alt="medal5"height="20%"><p>You've Logged 100 exercises!!</p></div>`
+ } ,{
+  type:"exercises logged",
+  goal:1000,
+  html:`<div class="AchivementContainer"><img src="images/medal6.jpeg" alt="medal6"height="20%"><p>You've Logged 1000 exercises!!</p></div>`
+ },
+ {
+  type:"Account Age",
+  goal:0,
+  html:`<div class="AchivementContainer"><img src="images/medal1.jpeg" alt="medal1" height="20%"><p>You've Just started  with Us!</p></div>`
+ } ,{
+  type:"Account Age",
+  goal:1,
+  html:`<div class="AchivementContainer"><img src="images/medal2.jpeg" alt="medal2"height="20%"><p>You've been with Us for a Day!</p></div>`
+ } ,
+ {
+  type:"Account Age",
+  goal:30,
+  html:`<div class="AchivementContainer"><img src="images/medal3.jpeg" alt="medal3"height="20%"><p>You've been with Us for a Month!</p></div>`
+ } ,
+ {
+  type:"Account Age",
+  goal:91,
+  html:`<div class="AchivementContainer"><img src="images/medal4.jpeg" alt="medal4"height="20%"><p>You've been with Us for a 3 Months!</p></div>`
+ } ,
+ {
+  type:"Account Age",
+  goal:365,
+  html:`<div class="AchivementContainer"><img src="images/medal5.jpeg" alt="medal5"height="20%"><p>You've been with Us for a year!</p></div>`
+ } ,
+ {
+  type:"Account Age",
+  goal:3650,
+  html:`<div class="AchivementContainer"><img src="images/medal6.jpeg" alt="medal6"height="20%"><p>You've been with Us for a 10 Years!</p></div>`
+ } ,
+ {
+  type:"Goals Completed",
+  goal:0,
+  html:`<div class="AchivementContainer"><img src="images/medal1.jpeg" alt="medal1"height="20%"><p>You've yet to complete a Personal Goal</p></div>`
+ }, {
+  type:"Goals Completed",
+  goal:1,
+  html:`<div class="AchivementContainer"><img src="images/medal2.jpeg" alt="medal2"height="20%"><p>You've completed a Personal Goal</p></div>`
+ },
+ {
+  type:"Goals Completed",
+  goal:5,
+  html:`<div class="AchivementContainer"><img src="images/medal3.jpeg" alt="medal3"height="20%"><p>You've completed 5 Personal Goals!</p></div>`
+ } ,
+ {
+  type:"Goals Completed",
+  goal:10,
+  html:`<div class="AchivementContainer"><img src="images/medal4.jpeg" alt="medal4"height="20%"><p>You've completed 10 Personal Goals!</p></div>`
+ } ,
+ {
+  type:"Goals Completed",
+  goal:20,
+  html:`<div class="AchivementContainer"><img src="images/medal5.jpeg" alt="medal5"height="20%"><p>You've completed 20 Personal Goals!</p></div>`
+ } ,
+ {
+  type:"Goals Completed",
+  goal:50,
+  html:`<div class="AchivementContainer"><img src="images/medal6.jpeg" alt="medal6"height="20%"><p>You've completed 50 Personal Goals!</p></div>`
+ } 
+]
+
+function checkAchievements(){
+ let currentUser =userList[loggedInUser]
+ let outArray=['','','']
+ achievmentsList.forEach(e=>{
+  let checkVar
+  switch(e.type){
+    case "Goals Completed":
+    checkVar = currentUser.completedGoals.length;
+    if (e.goal<=checkVar){
+      outArray[0]=e.html
+    }
+    break;
+    case "Account Age":
+     let miliseconds= (new Date().getTime()-currentUser.datejoined.getTime())
+      checkVar =(miliseconds/86400000)//.toFixed(0);
+      console.log(checkVar)
+      if (e.goal<=checkVar){
+      outArray[1]=e.html
+    }
+     break;
+     case'exercises logged':
+     checkVar = currentUser.exercisesComplete.length;
+     if (e.goal<=checkVar){
+      outArray[2]=e.html
+    }
+     break;
+  }
+ })
+currentUser.achievmentsList=outArray;
+let outString='';
+let outContainer=document.getElementById('badges')
+outArray.forEach(e=> outString+=e)
+outContainer.innerHTML = outString
+}
 
 // all integer inputs are required by the user 
 // all text inputs are auto filled
@@ -1772,7 +1892,6 @@ function loadMainBone() {
       <div class="inspire__content">
         <h2 class="section__header">Your Achievements</h2>
         <p id="badges">
-          Your milestones will be displayed here, and how close you are in achieving them
         </p>
     <!-- their achievements displays their badges how far they are with their goals -->
       </div>
@@ -2237,7 +2356,8 @@ function loadMainBone() {
     form.style.opacity = '1'
     container.appendChild(form)
   })
-  createGraphOfUserGoal("GoalChart")
+  createGraphOfUserGoal("GoalChart");
+  checkAchievements();
 };
 
 function loadLogin() {
@@ -2293,7 +2413,7 @@ function loadLogin() {
   documentHead.innerHTML = newPageHeader;
   documentBody.innerHTML = newpagebody;
 
-
+ 
   let landing3Button = documentBody.querySelector('#detailsForm2');
   let logoButton = documentBody.querySelector('#logo');
 
@@ -2330,7 +2450,7 @@ function loadLogin() {
   });
 };
 
-
+// just populating the admin account for demonstration purposes
 function populateAdminAccount() {
 
   loggedInUser = 0;
