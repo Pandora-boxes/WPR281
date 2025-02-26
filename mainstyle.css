@@ -44,16 +44,16 @@
 }
 
 .form-container {
-  background: rgb(62, 61, 61);
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-  width: 250px;
-  opacity: 0;
-  transform: scale(0.8);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-  color: #feffff;
-  display: grid;
+  background: white;
+padding: 0.9375rem; 
+border-radius: 0.625rem; 
+box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1); 
+width: 15.625rem; 
+opacity: 0;
+transform: scale(0.8);
+transition: opacity 0.5s ease, transform 0.5s ease;
+color: black;
+display: grid;
 }
 
 .form-container.show {
@@ -75,7 +75,7 @@ input[type="number"] {
   border: none;
   font-size: 1rem;
   color: var(--white);
-  background-color: var(--text-dark);
+  background-color:blue;
   border-radius: 0.3125rem; 
   transition: 0.3s;
   cursor: pointer;
