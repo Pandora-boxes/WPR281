@@ -807,3 +807,6 @@ input {
 div.ChartContainer{
   width: 60%;
 }
+/*#GoalGraphForDetails{
+  visibility:hidden;
+}*/ 

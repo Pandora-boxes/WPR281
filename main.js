@@ -411,12 +411,12 @@ function createGraphOfUserGoal(elementID){
   startDate=GoalOBJ.startDate;
   endDate=GoalOBJ.endDate;
   updatesList = GoalOBJ.updatesList;
- let labels = [];
- let data = []
- let data2 = []
- let runningTotal =0;
- let target = [];
-for(let i=startDate;i<=endDate;i.setDate(i.getDate()+1)){
+  let labels = [];
+  let data = []
+  let data2 = []
+  let runningTotal =0;
+  let target = [];
+  for(let i=startDate;i<=endDate;i.setDate(i.getDate()+1)){
   console.log(i)
   labels.push(`${i.getMonth()+1}|${i.getDate()}`)
   let total = 0;
@@ -426,9 +426,10 @@ for(let i=startDate;i<=endDate;i.setDate(i.getDate()+1)){
       runningTotal=e[0];
     }
     
-  })
+    })
   if(i.getMonth()>=updatesList[updatesList.length-1][2].getMonth()&&i.getYear()>=updatesList[updatesList.length-1][2].getYear()&&i.getDate()>updatesList[updatesList.length-1][2].getDate()){
-    runningTotal=0;
+    data.pop();
+    data2.pop();
   }
     data.push(runningTotal);
     data2.push(total);
@@ -451,7 +452,7 @@ for(let i=startDate;i<=endDate;i.setDate(i.getDate()+1)){
       fill: true,
       borderColor: 'rgb(38, 217, 38)',
       backgroundColor:'rgb(34, 165, 34, 0.5)',
-      tension: 0.1
+      tension: 0
       
     },
     {
@@ -876,6 +877,10 @@ usersBeststretches.forEach(element => {
 let completedGoals = currentuser.completedGoals;
 let missedGoals = currentuser.missedGoals;
 
+let goalsContainer = document.createElement(`section`)
+goalsContainer.setAttribute("class","GoalContainerInDetails")
+let goalsGraph = document.createElement('canvas');
+goalsGraph.setAttribute('id','GoalGraphForDetails');
 let completedGoalsHtmlOut= document.createElement(`Section`)
 completedGoalsHtmlOut.setAttribute('class',"CompletedGoals")
 for (let i = 0 ; i<missedGoals.length;++i){
@@ -949,6 +954,9 @@ Content.innerHTML+=`<p>Cut Off Date: ${missedGoals[i].endDate.getDate()+'/'+miss
 
 missedGoalsHtmlOut.appendChild(Content)
 }
+goalsContainer.appendChild(goalsGraph);
+if(currentuser.completedGoals.length>0)goalsContainer.appendChild(completedGoalsHtmlOut);
+if(currentuser.missedGoals.length>0)goalsContainer.appendChild(missedGoalsHtmlOut);
 
 let outContainer = document.createElement(`div`)
 outContainer.setAttribute('class',"UserFullDetailsOutPut");
@@ -961,10 +969,8 @@ outContainer.innerHTML+=`<p>Height:       ${height}</p>         <button id="Upda
 outContainer.innerHTML+=`<p>Weight:       ${weight}</p>         <button id="UpdateWeightBtn">Update</button> <input type="number" id="WeightInput" name="name" placeholder="Jon" required>\n`
 if(bestArray.length>0)
   outContainer.innerHTML+=`${bestArray.join(`\n`)}\n`
-if(currentuser.completedGoals.length>0)
-outContainer.innerHTML+=completedGoalsHtmlOut.innerHTML+`\n`;
-if(currentuser.missedGoals.length>0)
-outContainer.innerHTML+=missedGoals.innerHTML;
+
+outContainer.appendChild(goalsContainer)
 
 document.getElementById("ReportOutputDiv").appendChild(outContainer)
 
@@ -1000,8 +1006,7 @@ button3.addEventListener('click',e=>{
     userToFullDetails();
   }
 })
-console.log(currentuser)
-
+createGraphOfUserGoal("GoalGraphForDetails")
 };
 
 
@@ -1749,8 +1754,11 @@ function loadMainBone(){
     checkGoal();
     createGraphOfUserGoal("GoalChart")
 
+
     let fullReportButton =document.getElementById("FullReportButton")
-    fullReportButton.addEventListener('click',userToFullDetails)
+    fullReportButton.addEventListener('click',e=>{userToFullDetails()
+       createGraphOfUserGoal("GoalGraphForDetails")
+    })
     let logOutButton = document.querySelector("#logOut");
     logOutButton.addEventListener('click', e=>{
         loggedInUser=-1;
