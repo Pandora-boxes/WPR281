@@ -487,7 +487,7 @@ function addGoal() {
       Goal.startDate = new Date();
       Goal.endDate = goalEndDate;
       Goal.goalTarget = GoalTarget;
-      Goal.goalCounter = 0;
+      Goal.goalCounter = new Number();
       alert("Goal set successfully!");
   } else {
       alert("Please enter valid details!");
@@ -499,6 +499,7 @@ function checkGoal() {
   let currentUser = userList[loggedInUser]
   let Goal = currentUser.GoalDetails
   console.log(Goal)
+  console.log('before')
   if (Goal.type.length <= 0) {
     // dont do anything if there is no goal set
   }
@@ -528,6 +529,8 @@ function checkGoal() {
     Goal.goalCounter = null;
     Goal.updatesList = [[0, 0, new Date()]]
   }
+  console.log(Goal)
+  console.log("after")
 }
 
 function createGraphFromCalories(elementID) {
@@ -717,8 +720,11 @@ function addExercise(exerciseGroup, exerciseName) {
       else {
         //updating goal details
         if (currentUser.GoalDetails.type == "distance covered") {
-          currentUser.GoalDetails.goalCounter += inputValue2
+        
+          currentUser.GoalDetails.goalCounter += parseInt(inputValue2)
+    
           currentUser.GoalDetails.updatesList.push([currentUser.GoalDetails.goalCounter, inputValue2, new Date()])
+      
         }
 
         exerciseObj.speed = inputValue3
@@ -796,7 +802,7 @@ function addExercise(exerciseGroup, exerciseName) {
       exerciseObj.weight = inputValue5;
       //updating goal details
       if (currentUser.GoalDetails.type == "weight lifted") {
-        currentUser.GoalDetails.goalCounter += inputValue5
+        currentUser.GoalDetails.goalCounter += parseInt(inputValue5)
         currentUser.GoalDetails.updatesList.push([currentUser.GoalDetails.goalCounter, inputValue5, new Date()])
       }
 
@@ -834,7 +840,7 @@ function addExercise(exerciseGroup, exerciseName) {
       }
       //updating goal details
       if (currentUser.GoalDetails.type == "time streching") {
-        currentUser.GoalDetails.goalCounter += inputValue1
+        currentUser.GoalDetails.goalCounter += parseInt(inputValue1)
         currentUser.GoalDetails.updatesList.push([currentUser.GoalDetails.goalCounter, inputValue1, new Date()])
       }
 
@@ -898,7 +904,10 @@ function addExercise(exerciseGroup, exerciseName) {
 
   // console.log(currentUser.exercisesComplete)
   currentUser.exercisesComplete.push([exerciseObj, new Date]);
-  loadMainBone();
+  createGraphOfUserGoal("GoalChart");
+  checkAchievements();
+  document.getElementById("ReportOutputDiv").innerHTML = '';
+  
 };
 
 function weightLogToGraph(elementID) {
