@@ -538,7 +538,7 @@ function createGraphOfUserGoal(elementID) {
               color: "rgb(0, 0, 0)" // Change Y-axis label color
             }
           }
-        }
+        },
       }
     })
   }
@@ -552,6 +552,7 @@ function addExercise(exerciseGroup, exerciseName) {
   let filteredArray = exerciseList.filter((e) => {
     return e[0].exerciseGroup == selectedExercise
   })
+  console.log(filteredArray)
   filteredArray = Array.from(filteredArray[0]);
   filteredArray = filteredArray.filter((e) => e.name == exerciseName);
   let i = 0;
@@ -2048,6 +2049,7 @@ function loadMainBone() {
       case "Cardio":
         head.textContent = "Cardio"
         form.setAttribute('id', 'exerForm Cardio')
+        form.setAttribute("value", 'Cardio')
         exerciseInput1Label.textContent = "Time (min)";
         exerciseInput2Label.textContent = "Distance you ran"
         exerciseInput4Label.textContent = "Calories you burned"
@@ -2071,6 +2073,7 @@ function loadMainBone() {
       case "Body-Weight-Exercises":
         head.textContent = "Body Weight Exercises"
         form.setAttribute('id', 'exerForm bodyWeightForm')
+        form.setAttribute("value", 'BodyWeight')
         exerciseInput1Label.textContent = "Time (min)";
         exerciseInput4Label.textContent = "Calories you burned"
         optionString = exerciseTypeToOptionsList("BodyWeight")
@@ -2096,6 +2099,7 @@ function loadMainBone() {
 
         head.textContent = "Weight Lifting"
         form.setAttribute('id', 'exerForm weightLiftForm')
+        form.setAttribute("value", 'WeightedLifts')
         exerciseInput1Label.textContent = "Time (min)";
         exerciseInput2Label.textContent = "Reps"
         exerciseInput3Label.textContent = "Max reps"
@@ -2122,6 +2126,8 @@ function loadMainBone() {
 
         head.textContent = "Streches"
         form.setAttribute('id', 'exerForm stretchesForm')
+        form.setAttribute("value", 'Stretches')
+
         exerciseInput1Label.textContent = "Time (min)";
         switch (exeName) {
           case "FoamRollingQuads":
@@ -2165,6 +2171,10 @@ function loadMainBone() {
     select.addEventListener('change', event => {
       console.log(event.target.value)
       LoadExerciseForm(currentExerFormGroup, event.target.value)
+    })
+
+    button.addEventListener("click", function(){
+      addExercise(form.value,select.value)
     })
 
   }

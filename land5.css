@@ -800,9 +800,10 @@ footer {
     }
     
     html, body {
-        min-height: 100vh;
+         min-height: 100vh;
         margin: 0;
-        padding: 0;
+        padding: 0; 
+      
     }
     
     body {
@@ -877,12 +878,13 @@ footer {
     }
 
     .grid {
-        display: grid;
+         display: grid;
         grid-template-columns: repeat(1, 2fr);
         gap: 2vw;
         max-width: 40vw;
         margin: 0 auto;
-        padding: 2vw;
+        padding: 2vw; 
+    
     }
     
     .form {
@@ -928,7 +930,15 @@ footer {
     }
  
     footer {
+        /* width: 100%; */
+        background-color: #1a1a1a;
         width: 100%;
+        position: relative;
+        bottom: 0;
+        left: 0;
+        text-align: center;
+        padding: 1vw 0;
+        margin-top: auto; 
     }
     
     .footer-content {
@@ -939,7 +949,7 @@ footer {
 }
 
 /* Extra Small */
-@media (max-width: 25vw) {
+@media (max-width: 768px) {
     :root {
         --max-width: 100vw;
     }
@@ -967,10 +977,16 @@ footer {
     }
     
     html, body {
-        min-height: 100vh;
+        /* min-height: 100vh;
+        margin: 0;
+        padding: 0; */
+        height: 100%;  /* Ensures full height */
+        display: flex;
+        flex-direction: column;
         margin: 0;
         padding: 0;
     }
+    
     
     body {
         margin: 0;
@@ -1039,17 +1055,23 @@ footer {
     
     input {
         padding: 1vw;
-        font-size: 1.6vw;
+        font-size: 0.7rem;
         border-radius: 0.5vw;
     }
 
     .grid {
-        display: grid;
+        /* display: grid;
         grid-template-columns: repeat(1, 2fr);
         gap: 2vw;
         max-width: 40vw;
         margin: 0 auto;
-        padding: 2vw;
+        padding: 2vw; */
+        flex: 1;  /* Ensures that the content stretches and pushes the footer down */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        max-width: 100%;
     }
     
     .form {
@@ -1064,7 +1086,7 @@ footer {
     
     .continue-btn {
         padding: 2vw;
-        font-size: 1.6vw;
+        font-size: 0.7rem;
         border-radius: 0.5vw;
         width: 20vw;
     }
@@ -1095,7 +1117,15 @@ footer {
     }
  
     footer {
+        /* width: 100%; */
+        background-color: #1a1a1a;
         width: 100%;
+        position: relative;
+        bottom: 0;
+        left: 0;
+        text-align: center;
+        padding: 1vw 0;
+        margin-top: auto;  /* Forces footer to stick to the bottom */
     }
     
     .footer-content {
