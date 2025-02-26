@@ -2,6 +2,126 @@
 let usertemp = {};
 let loggedInUser = -1;
 let userList = [];
+let achievmentsList = [
+  {
+    type:"exercises logged",
+    goal:0,
+    html:`<div class="AchivementContainer"><img src="images/medal1.jpeg" alt="medal1"height="20%"><p>You have yet to log  an exercise</p></div>`
+   },{
+  type:"exercises logged",
+  goal:1,
+  html:`<div class="AchivementContainer"><img src="images/medal2.jpeg" alt="medal2"height="20%"><p>You logged your first exercise</p></div>`
+ },{
+  type:"exercises logged",
+  goal:10,
+  html:`<div class="AchivementContainer"><img src="images/medal3.jpeg" alt="medal3"height="20%"><p>You've Logged 10 exercises!!</p></div>`
+ },{
+  type:"exercises logged",
+  goal:50,
+  html:`<div class="AchivementContainer"><img src="images/medal4.jpeg" alt="medal4"height="20%"><p>You've Logged 50 exercises!!</p></div>`
+ } ,{
+  type:"exercises logged",
+  goal:100,
+  html:`<div class="AchivementContainer"><img src="images/medal5.jpeg" alt="medal5"height="20%"><p>You've Logged 100 exercises!!</p></div>`
+ } ,{
+  type:"exercises logged",
+  goal:1000,
+  html:`<div class="AchivementContainer"><img src="images/medal6.jpeg" alt="medal6"height="20%"><p>You've Logged 1000 exercises!!</p></div>`
+ },
+ {
+  type:"Account Age",
+  goal:0,
+  html:`<div class="AchivementContainer"><img src="images/medal1.jpeg" alt="medal1" height="20%"><p>You've Just started  with Us!</p></div>`
+ } ,{
+  type:"Account Age",
+  goal:1,
+  html:`<div class="AchivementContainer"><img src="images/medal2.jpeg" alt="medal2"height="20%"><p>You've been with Us for a Day!</p></div>`
+ } ,
+ {
+  type:"Account Age",
+  goal:30,
+  html:`<div class="AchivementContainer"><img src="images/medal3.jpeg" alt="medal3"height="20%"><p>You've been with Us for a Month!</p></div>`
+ } ,
+ {
+  type:"Account Age",
+  goal:91,
+  html:`<div class="AchivementContainer"><img src="images/medal4.jpeg" alt="medal4"height="20%"><p>You've been with Us for a 3 Months!</p></div>`
+ } ,
+ {
+  type:"Account Age",
+  goal:365,
+  html:`<div class="AchivementContainer"><img src="images/medal5.jpeg" alt="medal5"height="20%"><p>You've been with Us for a year!</p></div>`
+ } ,
+ {
+  type:"Account Age",
+  goal:3650,
+  html:`<div class="AchivementContainer"><img src="images/medal6.jpeg" alt="medal6"height="20%"><p>You've been with Us for a 10 Years!</p></div>`
+ } ,
+ {
+  type:"Goals Completed",
+  goal:0,
+  html:`<div class="AchivementContainer"><img src="images/medal1.jpeg" alt="medal1"height="20%"><p>You've yet to complete a Personal Goal</p></div>`
+ }, {
+  type:"Goals Completed",
+  goal:1,
+  html:`<div class="AchivementContainer"><img src="images/medal2.jpeg" alt="medal2"height="20%"><p>You've completed a Personal Goal</p></div>`
+ },
+ {
+  type:"Goals Completed",
+  goal:5,
+  html:`<div class="AchivementContainer"><img src="images/medal3.jpeg" alt="medal3"height="20%"><p>You've completed 5 Personal Goals!</p></div>`
+ } ,
+ {
+  type:"Goals Completed",
+  goal:10,
+  html:`<div class="AchivementContainer"><img src="images/medal4.jpeg" alt="medal4"height="20%"><p>You've completed 10 Personal Goals!</p></div>`
+ } ,
+ {
+  type:"Goals Completed",
+  goal:20,
+  html:`<div class="AchivementContainer"><img src="images/medal5.jpeg" alt="medal5"height="20%"><p>You've completed 20 Personal Goals!</p></div>`
+ } ,
+ {
+  type:"Goals Completed",
+  goal:50,
+  html:`<div class="AchivementContainer"><img src="images/medal6.jpeg" alt="medal6"height="20%"><p>You've completed 50 Personal Goals!</p></div>`
+ } 
+]
+
+function checkAchievements(){
+ let currentUser =userList[loggedInUser]
+ let outArray=['','','']
+ achievmentsList.forEach(e=>{
+  let checkVar
+  switch(e.type){
+    case "Goals Completed":
+    checkVar = currentUser.completedGoals.length;
+    if (e.goal<=checkVar){
+      outArray[0]=e.html
+    }
+    break;
+    case "Account Age":
+     let miliseconds= (new Date().getTime()-currentUser.datejoined.getTime())
+      checkVar =(miliseconds/86400000)//.toFixed(0);
+      console.log(checkVar)
+      if (e.goal<=checkVar){
+      outArray[1]=e.html
+    }
+     break;
+     case'exercises logged':
+     checkVar = currentUser.exercisesComplete.length;
+     if (e.goal<=checkVar){
+      outArray[2]=e.html
+    }
+     break;
+  }
+ })
+currentUser.achievmentsList=outArray;
+let outString='';
+let outContainer=document.getElementById('badges')
+outArray.forEach(e=> outString+=e)
+outContainer.innerHTML = outString
+}
 
 // all integer inputs are required by the user 
 // all text inputs are auto filled
@@ -353,26 +473,33 @@ function removeFavExercise(exerciseGroup, exerciseName) {
 }
 
 function addGoal() {
-  let currentUser = userList[loggedInUser]
-  let Goal = currentUser.GoalDetails
-  let goalType = null // get user to input from the listed types
-  let goalEndDate = Date.setDate(new Date() + null) //user inputted amount of days takes the place of the null
-  let GoalTarget = null // get from user input
+  let currentUser = userList[loggedInUser];
+  let Goal = currentUser.GoalDetails;
+  let goalType = document.getElementById("goalType").value;
+  let daysToAdd = parseInt(document.getElementById("goalDays").value);
+  let GoalTarget = parseInt(document.getElementById("goalTarget").value);
 
+  let goalEndDate = new Date();
+  goalEndDate.setDate(goalEndDate.getDate() + daysToAdd);
 
-  if (GoalTarget > 0 && Goal.type.length == 0) {
-    Goal.type = goalType;
-    Goal.startDate = new Date();
-    Goal.endDate = goalEndDate;
-    Goal.goalTarget = GoalTarget;
-    Goal.updatesList = [[0, 0, new Date()]],
-      Goal.goalCounter = 0;
+  if (GoalTarget > 0 && (!Goal.type || Goal.type.length == 0)) {
+      Goal.type = goalType;
+      Goal.startDate = new Date();
+      Goal.endDate = goalEndDate;
+      Goal.goalTarget = GoalTarget;
+      Goal.goalCounter = new Number();
+      alert("Goal set successfully!");
+  } else {
+      alert("Please enter valid details!");
   }
+  loadMainBone();
 };
 
 function checkGoal() {
   let currentUser = userList[loggedInUser]
   let Goal = currentUser.GoalDetails
+  console.log(Goal)
+  console.log('before')
   if (Goal.type.length <= 0) {
     // dont do anything if there is no goal set
   }
@@ -402,6 +529,8 @@ function checkGoal() {
     Goal.goalCounter = null;
     Goal.updatesList = [[0, 0, new Date()]]
   }
+  console.log(Goal)
+  console.log("after")
 }
 
 function createGraphFromCalories(elementID) {
@@ -478,11 +607,18 @@ function createGraphOfUserGoal(elementID) {
     }
 
     target.push(GoalOBJ.goalTarget);
+    
+
   }
 
   if (GoalOBJ.goalTarget > 0 && GoalOBJ.goalTarget != null) {
-
+    // let createGoalFormbtn = document.getElementById("createGoals")
+    // createGoalFormbtn.style.visibility='hidden'
+    // let createGoalFormOutput = document.getElementById("createGoalsOutput")
+    // createGoalFormOutput.style.visibility='hidden'
     let chart = document.getElementById(elementID)
+    let makeInvisible = document.getElementById('createGoals');
+    makeInvisible.style.display='None'
     new Chart(chart, {
       type: "line",
 
@@ -540,7 +676,6 @@ function addExercise(exerciseGroup, exerciseName) {
   let filteredArray = exerciseList.filter((e) => {
     return e[0].exerciseGroup == selectedExercise
   })
-  console.log(filteredArray)
   filteredArray = Array.from(filteredArray[0]);
   filteredArray = filteredArray.filter((e) => e.name == exerciseName);
   let i = 0;
@@ -552,7 +687,7 @@ function addExercise(exerciseGroup, exerciseName) {
     if (currentUser.usersBestList[i][0].exerciseGroup == exerciseGroup) {
 
       for (ii; ii < currentUser.usersBestList[i].length; ++ii) {
-        if (currentUser.userList[i][ii].name == exerciseName) {
+        if (currentUser.usersBestList[i][ii].name == exerciseName) {
           index1 = i;
           index2 = ii;
           break;
@@ -585,8 +720,11 @@ function addExercise(exerciseGroup, exerciseName) {
       else {
         //updating goal details
         if (currentUser.GoalDetails.type == "distance covered") {
-          currentUser.GoalDetails.goalCounter += inputValue2
+        
+          currentUser.GoalDetails.goalCounter += parseInt(inputValue2)
+    
           currentUser.GoalDetails.updatesList.push([currentUser.GoalDetails.goalCounter, inputValue2, new Date()])
+      
         }
 
         exerciseObj.speed = inputValue3
@@ -664,7 +802,7 @@ function addExercise(exerciseGroup, exerciseName) {
       exerciseObj.weight = inputValue5;
       //updating goal details
       if (currentUser.GoalDetails.type == "weight lifted") {
-        currentUser.GoalDetails.goalCounter += inputValue5
+        currentUser.GoalDetails.goalCounter += parseInt(inputValue5)
         currentUser.GoalDetails.updatesList.push([currentUser.GoalDetails.goalCounter, inputValue5, new Date()])
       }
 
@@ -702,7 +840,7 @@ function addExercise(exerciseGroup, exerciseName) {
       }
       //updating goal details
       if (currentUser.GoalDetails.type == "time streching") {
-        currentUser.GoalDetails.goalCounter += inputValue1
+        currentUser.GoalDetails.goalCounter += parseInt(inputValue1)
         currentUser.GoalDetails.updatesList.push([currentUser.GoalDetails.goalCounter, inputValue1, new Date()])
       }
 
@@ -763,7 +901,13 @@ function addExercise(exerciseGroup, exerciseName) {
     //maybe play an animation for now alert
     alert('Well done!! thats another step to your fitness goals!! keep it up!');
   }
+
+  // console.log(currentUser.exercisesComplete)
   currentUser.exercisesComplete.push([exerciseObj, new Date]);
+  createGraphOfUserGoal("GoalChart");
+  checkAchievements();
+  document.getElementById("ReportOutputDiv").innerHTML = '';
+  
 };
 
 function weightLogToGraph(elementID) {
@@ -1036,8 +1180,8 @@ function userToFullDetails() {
     missedGoalsHtmlOut.appendChild(Content)
   }
   goalsContainer.appendChild(goalsGraph);
-  if (currentuser.completedGoals.length > 0) goalsContainer.appendChild(completedGoalsHtmlOut);
-  if (currentuser.missedGoals.length > 0) goalsContainer.appendChild(missedGoalsHtmlOut);
+  if (currentuser.completedGoals.length > 0) { goalsContainer.appendChild(completedGoalsHtmlOut)};
+  if (currentuser.missedGoals.length > 0) {goalsContainer.appendChild(missedGoalsHtmlOut)};
 
   let outContainer = document.createElement(`div`)
   outContainer.setAttribute('class', "UserFullDetailsOutPut");
@@ -1627,10 +1771,12 @@ function loadMainBone() {
             <button class="btn">More</button>
           </div> -->
         </div>
-        <div class="header__content">
+        <div class="header__content"id="createGoalsOutput">
+          <button id="createGoals">Set A Goal</button>
+         <div>
           <canvas id="GoalChart" >
-
           </canvas>
+          </div>
         </div>
       </div>
     </header>
@@ -1755,7 +1901,6 @@ function loadMainBone() {
       <div class="inspire__content">
         <h2 class="section__header">Your Achievements</h2>
         <p id="badges">
-          Your milestones will be displayed here, and how close you are in achieving them
         </p>
     <!-- their achievements displays their badges how far they are with their goals -->
       </div>
@@ -1842,14 +1987,15 @@ function loadMainBone() {
     let chart = document.createElement('canvas');
     chart.setAttribute('id', 'caloriesDataGraphFromButton');
     outContainer.appendChild(chart)
-    //if(userList[loggedInUser].length>0){
+    if(userList[loggedInUser].length>0){
     createGraphFromCalories('caloriesDataGraphFromButton')
-    // }
-    // else{alert("Wait up there!!! maybe log some exercizes first")}
+    }
+    else{alert("Wait up there!!! maybe log some exercizes first")}
   })
-  let fullReportButton = document.getElementById("FullReportButton")
-  fullReportButton.addEventListener('click', userToFullDetails)
 
+  let fullReportButton = document.getElementById("FullReportButton")
+
+  
   let logOutButton = document.querySelector("#logOut");
   logOutButton.addEventListener('click', e => {
     loggedInUser = -1;
@@ -1861,7 +2007,6 @@ function loadMainBone() {
   const navLinks = document.getElementById("nav-links");
   const menuBtnIcon = menuBtn.querySelector("i");
   // const exerDropdown = document.getElementById('exerciseName');
-  let currentExerFormGroup;
 
 
   menuBtn.addEventListener("click", (e) => {
@@ -1876,14 +2021,10 @@ function loadMainBone() {
     menuBtnIcon.setAttribute("class", "ri-menu-line");
   });
 
-  let exerDropdown = document.querySelectorAll('.add_Ex_btn').forEach(item => {
-    let d = item.addEventListener('click', event => {
-      var d = LoadExerciseForm(item.value, '')
-      currentExerFormGroup = item.value
-      console.log(currentExerFormGroup)
-      return d
+  document.querySelectorAll('.add_Ex_btn').forEach(item => {
+    item.addEventListener('click', event => {
+      LoadExerciseForm(item.value, '')
     })
-    return d
   })
 
 
@@ -1984,12 +2125,24 @@ function loadMainBone() {
     container.setAttribute("class", "form-container show")
 
     let head = document.createElement('h3')
-    let form = document.createElement('form')
+    let exForm = document.createElement('form')
     container.appendChild(head)
+    let exNameSelectLabel = document.createElement("label")
+    exNameSelectLabel.setAttribute("for", "exerciseName")
+    exNameSelectLabel.textContent = "Exercise Name:"
     let select = document.createElement('select')
     select.setAttribute('id', "exerciseName")
     select.setAttribute('name', "exerciseName")
     select.setAttribute('title', "exerciseName")
+    select.setAttribute("required", '')
+
+    let disBtn = document.createElement('button')
+    disBtn.setAttribute("disabled",'true')
+    disBtn.setAttribute("style", "display:none;")
+    exForm.appendChild(disBtn)
+    exForm.appendChild(exNameSelectLabel)
+
+
     let optionString;
 
     let exerciseInput1Label = document.createElement('label')
@@ -2027,16 +2180,22 @@ function loadMainBone() {
     exerciseInput5.setAttribute('id', 'ExerciseInputValue5')
     exerciseInput5.setAttribute("required", '')
 
+    let buttonExInput = document.createElement('button')
+    buttonExInput.setAttribute('type', "submit")
+    buttonExInput.setAttribute('class', 'btn')
+
+    console.log(exerciseGroupInput)
     // taking user input and storing it based off the exercise the user has chosen
     // also checking for achievements and user personal bests
     switch (exerciseGroupInput) {
       case "Cardio":
         head.textContent = "Cardio"
-        form.setAttribute('id', 'exerForm Cardio')
-        form.setAttribute("value", 'Cardio')
-        exerciseInput1Label.textContent = "Time (min)";
-        exerciseInput2Label.textContent = "Distance you ran"
-        exerciseInput4Label.textContent = "Calories you burned"
+        exForm.setAttribute('id', 'exerForm Cardio')
+        buttonExInput.setAttribute('value', 'Cardio')
+
+        exerciseInput1Label.textContent = "Time (min):";
+        exerciseInput2Label.textContent = "Distance you ran:"
+        exerciseInput4Label.textContent = "Calories you burned:"
         optionString = exerciseTypeToOptionsList("Cardio")
         select.innerHTML = optionString
 
@@ -2044,20 +2203,21 @@ function loadMainBone() {
         else {
           exerciseInput3Label.textContent = "Speed"
         }
-        form.appendChild(select)
-        form.appendChild(exerciseInput1Label)
-        form.appendChild(exerciseInput1)
-        form.appendChild(exerciseInput2Label)
-        form.appendChild(exerciseInput2)
-        form.appendChild(exerciseInput3Label)
-        form.appendChild(exerciseInput3)
-        form.appendChild(exerciseInput4Label)
-        form.appendChild(exerciseInput4)
+        exForm.appendChild(select)
+        exForm.appendChild(exerciseInput1Label)
+        exForm.appendChild(exerciseInput1)
+        exForm.appendChild(exerciseInput2Label)
+        exForm.appendChild(exerciseInput2)
+        exForm.appendChild(exerciseInput3Label)
+        exForm.appendChild(exerciseInput3)
+        exForm.appendChild(exerciseInput4Label)
+        exForm.appendChild(exerciseInput4)
         break;
       case "Body-Weight-Exercises":
         head.textContent = "Body Weight Exercises"
-        form.setAttribute('id', 'exerForm bodyWeightForm')
-        form.setAttribute("value", 'BodyWeight')
+        exForm.setAttribute('id', 'exerForm bodyWeightForm')
+        buttonExInput.setAttribute('value', 'BodyWeight')
+
         exerciseInput1Label.textContent = "Time (min)";
         exerciseInput4Label.textContent = "Calories you burned"
         optionString = exerciseTypeToOptionsList("BodyWeight")
@@ -2069,21 +2229,23 @@ function loadMainBone() {
           exerciseInput3Label.textContent = "Max Hold Time"
         }
         select.innerHTML = optionString
-        form.appendChild(select)
-        form.appendChild(exerciseInput1Label)
-        form.appendChild(exerciseInput1)
-        form.appendChild(exerciseInput2Label)
-        form.appendChild(exerciseInput2)
-        form.appendChild(exerciseInput3Label)
-        form.appendChild(exerciseInput3)
-        form.appendChild(exerciseInput4Label)
-        form.appendChild(exerciseInput4)
+        
+        exForm.appendChild(select)
+        exForm.appendChild(exerciseInput1Label)
+        exForm.appendChild(exerciseInput1)
+        exForm.appendChild(exerciseInput2Label)
+        exForm.appendChild(exerciseInput2)
+        exForm.appendChild(exerciseInput3Label)
+        exForm.appendChild(exerciseInput3)
+        exForm.appendChild(exerciseInput4Label)
+        exForm.appendChild(exerciseInput4)
         break;
       case "Lifting":
 
         head.textContent = "Weight Lifting"
-        form.setAttribute('id', 'exerForm weightLiftForm')
-        form.setAttribute("value", 'WeightedLifts')
+        exForm.setAttribute('id', 'exerForm weightLiftForm')
+        buttonExInput.setAttribute('value', 'WeightedLifts')
+
         exerciseInput1Label.textContent = "Time (min)";
         exerciseInput2Label.textContent = "Reps"
         exerciseInput3Label.textContent = "Max reps"
@@ -2093,24 +2255,24 @@ function loadMainBone() {
         optionString = exerciseTypeToOptionsList("WeightedLifts")
         select.innerHTML = optionString
 
-        form.appendChild(select)
+        exForm.appendChild(select)
 
-        form.appendChild(exerciseInput1Label)
-        form.appendChild(exerciseInput1)
-        form.appendChild(exerciseInput2Label)
-        form.appendChild(exerciseInput2)
-        form.appendChild(exerciseInput3Label)
-        form.appendChild(exerciseInput3)
-        form.appendChild(exerciseInput4Label)
-        form.appendChild(exerciseInput4)
-        form.appendChild(exerciseInput5Label)
-        form.appendChild(exerciseInput5)
+        exForm.appendChild(exerciseInput1Label)
+        exForm.appendChild(exerciseInput1)
+        exForm.appendChild(exerciseInput2Label)
+        exForm.appendChild(exerciseInput2)
+        exForm.appendChild(exerciseInput3Label)
+        exForm.appendChild(exerciseInput3)
+        exForm.appendChild(exerciseInput4Label)
+        exForm.appendChild(exerciseInput4)
+        exForm.appendChild(exerciseInput5Label)
+        exForm.appendChild(exerciseInput5)
         break;
       case "Stretches":
 
         head.textContent = "Streches"
-        form.setAttribute('id', 'exerForm stretchesForm')
-        form.setAttribute("value", 'Stretches')
+        exForm.setAttribute('id', 'exerForm stretchesForm')
+        buttonExInput.setAttribute('value', 'Stretches')
 
         exerciseInput1Label.textContent = "Time (min)";
         switch (exeName) {
@@ -2131,43 +2293,81 @@ function loadMainBone() {
         optionString = exerciseTypeToOptionsList("Stretches");
         select.innerHTML = optionString
 
-        form.appendChild(select)
+        exForm.appendChild(select)
 
-        form.appendChild(exerciseInput1Label)
-        form.appendChild(exerciseInput1)
-        form.appendChild(exerciseInput2Label)
-        form.appendChild(exerciseInput2)
-        form.appendChild(exerciseInput3Label)
-        form.appendChild(exerciseInput3)
+        exForm.appendChild(exerciseInput1Label)
+        exForm.appendChild(exerciseInput1)
+        exForm.appendChild(exerciseInput2Label)
+        exForm.appendChild(exerciseInput2)
+        exForm.appendChild(exerciseInput3Label)
+        exForm.appendChild(exerciseInput3)
         break;
     }
-    let button = document.createElement('button')
-    button.setAttribute('type', "submit")
-    button.setAttribute('class', 'btn')
-    button.textContent = "Submit";
-    form.appendChild(button)
-    container.appendChild(form)
+
+    
+    buttonExInput.textContent = "Submit";
+    exForm.appendChild(buttonExInput)
+    container.appendChild(exForm)
+    select.innerHTML += "<br>"
+    exNameSelectLabel.innerHTML += "<br>"
 
     let jumpcontain = document.getElementById('jump_Ex_content')
     jumpcontain.innerHTML = '';
     jumpcontain.appendChild(container)
 
     select.addEventListener('change', event => {
-      console.log(event.target.value)
-      LoadExerciseForm(currentExerFormGroup, event.target.value)
+      console.log(select.value)
+      LoadExerciseForm(currentExerFormGroup, select.value)
     })
 
-    button.addEventListener("click", function(){
-      addExercise(form.value,select.value)
-    })
 
+    buttonExInput.addEventListener("click", (event) => {
+      console.log(`${buttonExInput.value},${select.value}`);
+      addExercise(buttonExInput.value,select.value)
+    })
+    
   }
+  
+  let createGoalFormbtn = document.getElementById("createGoals")
+  fullReportButton.addEventListener('click', userToFullDetails)
 
-  checkGoal();
-  createGraphOfUserGoal("GoalChart")
 
+  createGoalFormbtn.addEventListener("click",e=>{
+    let container = document.getElementById("createGoalsOutput")
+    container.innerHTML=`
+          <div>
+          </div>`;
+    
+    container.setAttribute("class", "form-container show")
+
+
+    let form = document.createElement('form');
+    form.setAttribute("id","goalModalForm")
+
+    form.innerHTML= `<link rel="stylesheet" href="addGoal.css">
+            <h2>Enter Goal Details</h2>
+            <label for="goalType">Goal Type:</label>
+            <select id="goalType">
+                <option value="calories burnt">Calories Burnt</option>
+                <option value="distance covered">Distance Covered</option>
+                <option value="weight lifted">Weight Lifted</option>
+                <option value="time streching'>Time Streching</option>
+                <option value="exercises logged">Exercises Logged</option>
+            </select><br><br>
+
+            <label for="goalDays">Days to Achieve Goal:</label>
+            <input type="number" id="goalDays" min="1"><br><br>
+
+            <label for="goalTarget">Goal Target:</label>
+            <input type="number" id="goalTarget" min="1"><br><br>
+            <button onclick="addGoal()">Submit</button>`
+            
+    form.style.opacity = '1'
+    container.appendChild(form)
+  })
+  createGraphOfUserGoal("GoalChart");
+  checkAchievements();
 };
-
 
 function loadLogin() {
   usertemp = null;
@@ -2222,7 +2422,7 @@ function loadLogin() {
   documentHead.innerHTML = newPageHeader;
   documentBody.innerHTML = newpagebody;
 
-
+ 
   let landing3Button = documentBody.querySelector('#detailsForm2');
   let logoButton = documentBody.querySelector('#logo');
 
@@ -2259,7 +2459,7 @@ function loadLogin() {
   });
 };
 
-
+// just populating the admin account for demonstration purposes
 function populateAdminAccount() {
 
   loggedInUser = 0;
