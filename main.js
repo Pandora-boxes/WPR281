@@ -404,89 +404,89 @@ function checkGoal(){
   }
 }
 
-function createGraphOfUserGoal(elementID){
+// function createGraphOfUserGoal(elementID){
   
-  let currentUser = userList[loggedInUser];
-  let GoalOBJ = currentUser.GoalDetails;
-  startDate=GoalOBJ.startDate;
-  endDate=GoalOBJ.endDate;
-  updatesList = GoalOBJ.updatesList;
- let labels = [];
- let data = []
- let data2 = []
- let runningTotal =0;
- let target = [];
-for(let i=startDate;i<=endDate;i.setDate(i.getDate()+1)){
-  console.log(i)
-  labels.push(`${i.getMonth()+1}|${i.getDate()}`)
-  let total = 0;
-  updatesList.forEach(e=>{
-    if(`${e[2].getDate()}/${e[2].getMonth()}/${e[2].getYear()}`==`${i.getDate()}/${i.getMonth()}/${i.getYear()}`){
-      total+=e[1]
-      runningTotal=e[0];
-    }
+//   let currentUser = userList[loggedInUser];
+//   let GoalOBJ = currentUser.GoalDetails;
+//   startDate=GoalOBJ.startDate;
+//   endDate=GoalOBJ.endDate;
+//   updatesList = GoalOBJ.updatesList;
+//  let labels = [];
+//  let data = []
+//  let data2 = []
+//  let runningTotal =0;
+//  let target = [];
+// for(let i=startDate;i<=endDate;i.setDate(i.getDate()+1)){
+//   console.log(i)
+//   labels.push(`${i.getMonth()+1}|${i.getDate()}`)
+//   let total = 0;
+//   updatesList.forEach(e=>{
+//     if(`${e[2].getDate()}/${e[2].getMonth()}/${e[2].getYear()}`==`${i.getDate()}/${i.getMonth()}/${i.getYear()}`){
+//       total+=e[1]
+//       runningTotal=e[0];
+//     }
     
-  })
-  if(i.getMonth()>=updatesList[updatesList.length-1][2].getMonth()&&i.getYear()>=updatesList[updatesList.length-1][2].getYear()&&i.getDate()>updatesList[updatesList.length-1][2].getDate()){
-    runningTotal=0;
-  }
-    data.push(runningTotal);
-    data2.push(total);
+//   })
+//   if(i.getMonth()>=updatesList[updatesList.length-1][2].getMonth()&&i.getYear()>=updatesList[updatesList.length-1][2].getYear()&&i.getDate()>updatesList[updatesList.length-1][2].getDate()){
+//     runningTotal=0;
+//   }
+//     data.push(runningTotal);
+//     data2.push(total);
 
-    target.push(GoalOBJ.goalTarget);
-}
+//     target.push(GoalOBJ.goalTarget);
+// }
  
 
- if(GoalOBJ.goalTarget>0&&GoalOBJ.goalTarget!=null){
+//  if(GoalOBJ.goalTarget>0&&GoalOBJ.goalTarget!=null){
 
-  let chart = document.getElementById(elementID)
- new Chart(chart,{
-  type: "line",
+//   let chart = document.getElementById(elementID)
+//  new Chart(chart,{
+//   type: "line",
 
-  data:{
-    labels:labels,
-    datasets:[{
-      label:"progress",
-      data:data,
-      fill: true,
-      borderColor: 'rgb(38, 217, 38)',
-      backgroundColor:'rgb(34, 165, 34, 0.5)',
-      tension: 0.1
+//   data:{
+//     labels:labels,
+//     datasets:[{
+//       label:"progress",
+//       data:data,
+//       fill: true,
+//       borderColor: 'rgb(38, 217, 38)',
+//       backgroundColor:'rgb(34, 165, 34, 0.5)',
+//       tension: 0.1
       
-    },
-    {
-      label:"day total",
-      data:data2,
-      borderColor: 'rgb(38, 50, 217)',
-      tension: 0.1
+//     },
+//     {
+//       label:"day total",
+//       data:data2,
+//       borderColor: 'rgb(38, 50, 217)',
+//       tension: 0.1
       
-    },
-    {
-      fill: false,
-      borderColor: 'rgb(255, 4, 0)',
-      tension: 0.1,
-      label:"Target",
-      data:target
+//     },
+//     {
+//       fill: false,
+//       borderColor: 'rgb(255, 4, 0)',
+//       tension: 0.1,
+//       label:"Target",
+//       data:target
        
-    }]},
+//     }]},
 
-    options:{
-      scales: {
-        x: {
-          ticks: {
-            color: "rgb(0, 0, 0)" // Change X-axis label color
-          }
-        },
-        y: {
-          ticks: {
-            color: "rgb(0, 0, 0)" // Change Y-axis label color
-          }
-        }
-      }
-    }
- })
-}
-}
+//     options:{
+//       scales: {
+//         x: {
+//           ticks: {
+//             color: "rgb(0, 0, 0)" // Change X-axis label color
+//           }
+//         },
+//         y: {
+//           ticks: {
+//             color: "rgb(0, 0, 0)" // Change Y-axis label color
+//           }
+//         }
+//       }
+//     }
+//  })
+// }
+// }
 
 function addExercise(exerciseGroup,exerciseName){
   let currentUser = userList[loggedInUser];
@@ -548,45 +548,7 @@ function addExercise(exerciseGroup,exerciseName){
       exerciseObj.caloriesBurned=inputValue4
 
       // checking for user best
-      switch(exerciseName){
-        case "Jogging"||"Cycling"||"Rowing"||"Swimming"||"StairClimbing":
-          if (exerciseObj.distance>UserbestOBJ.distance){
-            UserbestOBJ.time = inputValue1
-            UserbestOBJ.distance=inputValue2
-            UserbestOBJ.speed=inputValue2/inputValue1
-            UserbestOBJ.caloriesBurned=inputValue4
-            isUserBest=true
-          }else if(UserbestOBJ.distance==exerciseObj.distance&&exerciseObj.time<UserbestOBJ.time){
-            UserbestOBJ.time = inputValue1
-            UserbestOBJ.distance=inputValue2
-            UserbestOBJ.speed=inputValue2/inputValue1
-            UserbestOBJ.caloriesBurned=inputValue4
-            isUserBest=true
-          }
-        break;
-        case "Sprints 100m"||"Sprints 200m"||"Sprints 400m":
-        if (exerciseObj.time<UserbestOBJ.time){
-          UserbestOBJ.time = inputValue1
-          UserbestOBJ.distance=inputValue2
-          UserbestOBJ.speed=inputValue2/inputValue1
-          UserbestOBJ.caloriesBurned=inputValue4
-          isUserBest=true
-        }
-        break;
-        case "JumpRope":
-          if (exerciseObj.time>UserbestOBJ.time){
-            UserbestOBJ.time = inputValue1
-            UserbestOBJ.reps=inputValue2
-            UserbestOBJ.speed=inputValue2/inputValue1
-            UserbestOBJ.caloriesBurned=inputValue4
-            isUserBest=true
-          }
-          break;
-
-        default:
-        break;
-      }
-      break;
+      
     
     case "BodyWeight":
       
@@ -1555,7 +1517,7 @@ function loadMainBone(){
          <p id="generateQuote"></p>  
          <!-- generates a random quote -->
         </div>
-        <div class="jump__content">
+        <div class="jump__content" id="jump_Ex_content">
           <h2 class="section__header">Your Exercises</h2>
           <p>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam reprehenderit nesciunt quaer
@@ -1584,7 +1546,7 @@ function loadMainBone(){
             <p>
               Improves cardiovascular endurance, burns calories, strengthens leg muscles, and boosts mental health.
             </p>
-            <button class="btn" id="add__btn" value="Cardio">Add</button>
+            <button class="btn add_Ex_btn" id="add__btn" value="Cardio">Add</button>
           </div>
           <div class="service__card">
             <span>02</span>
@@ -1592,7 +1554,7 @@ function loadMainBone(){
             <p>
               Increases muscle strength and mass, improves bone density, and enhances metabolism.
             </p>
-            <button class="btn" id="add__btn" value="Lifting">Add</button>
+            <button class="btn add_Ex_btn" id="add__btn" value="Lifting">Add</button>
           </div>
           <div class="service__card">
             <span>03</span>
@@ -1600,7 +1562,7 @@ function loadMainBone(){
             <p>
               Builds upper body strength (chest, shoulders, triceps), engages the core, and enhances endurance.
             </p>
-            <button class="btn" id="add__btn" value="Body-Weight-Exercises">Add</button>
+            <button class="btn add_Ex_btn" id="add__btn" value="Body-Weight-Exercises">Add</button>
           </div>
           <div class="service__card">
             <span>04</span>
@@ -1608,7 +1570,7 @@ function loadMainBone(){
             <p>
               A full-body workout that boosts cardio fitness, burns fat, builds strength, and improves agility.
             </p>
-            <button class="btn" id="add__btn" value="Stretches">Add</button>  
+            <button class="btn add_Ex_btn" id="add__btn" value="Stretches">Add</button>  
           </div>
           <div class="service__image">
             <img src="images/duderunning.jpg" alt="service" />
@@ -1747,7 +1709,7 @@ function loadMainBone(){
     documentBody.innerHTML = newpagebody;
     
     checkGoal();
-    createGraphOfUserGoal("GoalChart")
+    // createGraphOfUserGoal("GoalChart")
 
     let fullReportButton =document.getElementById("FullReportButton")
     fullReportButton.addEventListener('click',userToFullDetails)
@@ -1762,6 +1724,7 @@ function loadMainBone(){
 const navLinks = document.getElementById("nav-links");
 const menuBtnIcon = menuBtn.querySelector("i");
 
+
 menuBtn.addEventListener("click", (e) => {
   navLinks.classList.toggle("open");
 
@@ -1774,6 +1737,12 @@ navLinks.addEventListener("click", (e) => {
   menuBtnIcon.setAttribute("class", "ri-menu-line");
 });
 
+document.querySelectorAll('.add_Ex_btn').forEach(item => {
+  item.addEventListener('click', event => {
+    LoadExerciseForm(item.value)
+    console.log(item.value)
+  })
+})
 
 // defining animation setting
 const scrollRevealOption = {
@@ -1863,7 +1832,7 @@ document.addEventListener("DOMContentLoaded", function () {
   setInterval(getRandomQuote, 8000);
 });
 
-LoadExerciseForm("BodyWeight")
+// LoadExerciseForm("BodyWeight")
 function LoadExerciseForm(exerciseGroupInput) {
 
   let container = document.createElement('div')
@@ -1916,7 +1885,7 @@ function LoadExerciseForm(exerciseGroupInput) {
   // taking user input and storing it based off the exercise the user has chosen
   // also checking for achievements and user personal bests
   switch (exerciseGroupInput){
-    case "cardio":
+    case "Cardio":
       head.textContent= "Cardio"
       form.setAttribute('id','cardioForm')
       exerciseInput1Label.textContent = "Time (min)";
@@ -1936,7 +1905,7 @@ function LoadExerciseForm(exerciseGroupInput) {
       form.appendChild(exerciseInput4)
       break;
     
-    case "BodyWeight":
+    case "Body-Weight-Exercises":
       head.textContent = "Body Weight Exercises"
     form.setAttribute('id','bodyWeightForm')
     exerciseInput1Label.textContent = "Time (min)";
@@ -1955,7 +1924,7 @@ function LoadExerciseForm(exerciseGroupInput) {
       form.appendChild(exerciseInput4Label)
       form.appendChild(exerciseInput4)
       break;
-    case "WeightedLifts":
+    case "Lifting":
       
     head.textContent = "Weight Lifting"
     form.setAttribute('id','weightLiftForm')
@@ -2009,11 +1978,10 @@ function LoadExerciseForm(exerciseGroupInput) {
     form.appendChild(button)
     container.appendChild(form)
 
-  let jump = document.getElementById('jump')
-  let jumpcontain = document.getElementById('jump__container')
-    jump.replaceChild(container, jumpcontain)
-
-
+  let jumpcontain = document.getElementById('jump_Ex_content')
+  console.log(jumpcontain)
+  jumpcontain.innerHTML = '';
+  jumpcontain.appendChild(container)
 
  }
 };
