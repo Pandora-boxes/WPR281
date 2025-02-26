@@ -54,6 +54,7 @@ transform: scale(0.8);
 transition: opacity 0.5s ease, transform 0.5s ease;
 color: black;
 display: grid;
+justify-content: center;
 }
 
 .form-container.show {
@@ -532,6 +533,8 @@ nav {
   border-top: 0.0625rem solid var(--text-light); 
 }
 
+
+
 @media (width > 540px) {
   .service__grid {
     grid-template-columns: repeat(2, 1fr);
@@ -548,6 +551,7 @@ nav {
   .footer__container {
     grid-template-columns: repeat(2, 1fr);
   }
+  
 }
 
 @media (width > 768px) {
@@ -699,6 +703,21 @@ nav {
   .footer__container {
     grid-template-columns: repeat(3, 1fr);
   }
+  .header__container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right; /* Push chart to the right */
+}
+
+.header__content:nth-child(2) {
+    margin-left: auto; /* Move chart to the right */
+    margin-right: 5vw; /* Adjust spacing */
+    width: 50vw; /* Slightly wider */
+   
+}
+
+
 }
 
 @media (width > 1024px) {
@@ -727,11 +746,19 @@ nav {
   .inspire__content {
     padding-inline: 4rem 1rem;
   }
+ 
 
   /* .mentor__grid {
     gap: 4rem 2rem;
   } */
+  
 }
+
+
+
+
+
+
 /* General styles for the report section */
 .report {
   display: flex;
@@ -811,16 +838,19 @@ div.ChartContainer{
   visibility:hidden;
 }*/ 
 /* Style the graph field*/
-.header__content canvas#GoalChart {
-  max-width: 44vw;  
+ .header__content canvas#GoalChart {
+  /* max-width: 44vw;  
   max-height: 44vh; 
   margin: 0 auto;    
+  display: block; */
+  max-width: 100%;  
+  max-height: 44vh; 
   display: block;
-}
+} 
 
 /* Square container styling */
-.header__content:nth-child(2) {
-  display: flex;
+ .header__content:nth-child(2) { 
+  /* display: flex;
   justify-content: center;
   align-items: center;
   width: 43vw;      
@@ -832,5 +862,19 @@ div.ChartContainer{
   margin-top: -25vh;
   margin-right: -10vw;
   border-radius: 1vw;
-  padding: 1vw;
-}
+  padding: 1vw; */
+  width: 44vw; 
+    height: auto;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 1vw;
+    padding: 1vw;
+    margin: auto; /* Default: Centered */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 50%;
+    
+
+ } 
+ 
