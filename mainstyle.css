@@ -805,8 +805,32 @@ input {
 }
 /* Style the graph field*/
 div.ChartContainer{
-  width: 60%;
+  width: 40%;
 }
 /*#GoalGraphForDetails{
   visibility:hidden;
 }*/ 
+/* Style the graph field*/
+.header__content canvas#GoalChart {
+  max-width: 44vw;  
+  max-height: 44vh; 
+  margin: 0 auto;    
+  display: block;
+}
+
+/* Square container styling */
+.header__content:nth-child(2) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 43vw;      
+  height: 43vh;    
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.8);
+  margin-left: auto; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: -25vh;
+  margin-right: -10vw;
+  border-radius: 1vw;
+  padding: 1vw;
+}
