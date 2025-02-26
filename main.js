@@ -1859,7 +1859,7 @@ function loadMainBone() {
   const menuBtn = document.getElementById("menu-btn");
   const navLinks = document.getElementById("nav-links");
   const menuBtnIcon = menuBtn.querySelector("i");
-  const exerDropdown = document.getElementById('exerciseName');
+  // const exerDropdown = document.getElementById('exerciseName');
   let currentExerFormGroup;
 
 
@@ -1875,18 +1875,17 @@ function loadMainBone() {
     menuBtnIcon.setAttribute("class", "ri-menu-line");
   });
 
-  document.querySelectorAll('.add_Ex_btn').forEach(item => {
-    item.addEventListener('click', event => {
-      LoadExerciseForm(item.value, '')
+  let exerDropdown = document.querySelectorAll('.add_Ex_btn').forEach(item => {
+    let d = item.addEventListener('click', event => {
+      var d = LoadExerciseForm(item.value, '')
       currentExerFormGroup = item.value
       console.log(currentExerFormGroup)
+      return d
     })
+    return d
   })
 
-  exerDropdown.addEventListener('change', event => {
-    console.log(event.target.value)
-    LoadExerciseForm(currentExerFormGroup, event.target.value)
-  })
+
   // exerDropdown.oninput = LoadExerciseForm(currentExerFormGroup,exerDropdown.value)
 
   // defining animation setting
@@ -2146,6 +2145,11 @@ function loadMainBone() {
     let jumpcontain = document.getElementById('jump_Ex_content')
     jumpcontain.innerHTML = '';
     jumpcontain.appendChild(container)
+
+    select.addEventListener('change', event => {
+      console.log(event.target.value)
+      LoadExerciseForm(currentExerFormGroup, event.target.value)
+    })
 
   }
 
