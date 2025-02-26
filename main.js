@@ -1,4 +1,13 @@
-
+const quotes = [
+  "Success is not final, failure is not fatal:\n It is the courage to continue that counts. - Winston Churchill",
+  "Believe you can and you're halfway there. - Theodore Roosevelt",
+  "Act as if what you do makes a difference. It does. - William James",
+  "It always seems impossible until it’s done. - Nelson Mandela",
+  "Push through the pain. Giving up hurts more.” — Vegeta, Dragon Ball Z",
+  "Hard work is worthless for those that \ndon’t believe in themselves.” — Naruto Uzumaki, Naruto",
+  "It’s not dying that frightens us. It’s \nliving without ever having done our best.” — The Elder, Castlevania",
+  "Whether You Win Or Lose...You Can Always Come Out \nAhead By Learning From The Experience. - All Might"
+]
 let usertemp = {};
 let loggedInUser = -1;
 let userList = [];
@@ -103,7 +112,6 @@ function checkAchievements(){
     case "Account Age":
      let miliseconds= (new Date().getTime()-currentUser.datejoined.getTime())
       checkVar =(miliseconds/86400000)//.toFixed(0);
-      console.log(checkVar)
       if (e.goal<=checkVar){
       outArray[1]=e.html
     }
@@ -923,7 +931,10 @@ function weightLogToGraph(elementID) {
   let startDate = new Date(currentUser.datejoined)
   let currentDate = new Date();
   let dataPoint = -1;
-  for (let i = startDate; i <= currentDate; i.setMonth(i.getMonth() + 1)) {
+  // console.log(new Date((startDate.getDate+'/'+(startDate.getMonth-1)+"/"+startDate.getFullYear)))
+  // if(startDate.getTime-new Date(+startDate.getDate+'/'+(startDate.getMonth-1)+startDate.getFullYear)<0)
+  
+  {  for (let i = startDate; i <= currentDate; i.setMonth(i.getMonth() + 1)) {
     labels.push(`${i.getMonth() + 1}|${i.getFullYear()}`);
     dataPoint = -1;
     weightlog.forEach(e => {
@@ -981,6 +992,7 @@ function weightLogToGraph(elementID) {
       }
     }
   })
+}
 }
 
 function userToFullDetails() {
@@ -1765,7 +1777,7 @@ function loadMainBone() {
           <h1>Welcome</h1>
           <h2>Let's chase some goals</h2>
           <p>
-           Lorem ipsum, dolor sit amet
+           ${getRandomQuote()}
           </p>
           <!-- <div class="header__btn">
             <button class="btn">More</button>
@@ -1800,9 +1812,9 @@ function loadMainBone() {
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur ab vel 
             ut voluptatibus iste vitae, nostrum molestiae, harum ipsam nemo temporibus quis voluptates earum, esse neque suscipit minima accusamus quidem!
           </p>
-          <div class="jump__btn">
-            <button class="btn" id="resume__btn">Resume</button>
-          </div>
+          <div class="jump__btn">`+
+           // <button class="btn" id="resume__btn">Resume</button>
+         ` </div>
         </div>
       </div>
     </div>
@@ -2097,20 +2109,20 @@ function loadMainBone() {
 
 
   //displays random quotes
-  const quotes = [
-    "Success is not final, failure is not fatal: It is the courage to continue that counts. - Winston Churchill",
-    "Believe you can and you're halfway there. - Theodore Roosevelt",
-    "Act as if what you do makes a difference. It does. - William James",
-    "It always seems impossible until it’s done. - Nelson Mandela",
-    "Push through the pain. Giving up hurts more.” — Vegeta, Dragon Ball Z",
-    "Hard work is worthless for those that don’t believe in themselves.” — Naruto Uzumaki, Naruto",
-    "It’s not dying that frightens us. It’s living without ever having done our best.” — The Elder, Castlevania",
-    "Whether You Win Or Lose...You Can Always Come Out Ahead By Learning From The Experience. - All Might"
-  ]
+  // const quotes = [
+  //   "Success is not final, failure is not fatal: It is the courage to continue that counts. - Winston Churchill",
+  //   "Believe you can and you're halfway there. - Theodore Roosevelt",
+  //   "Act as if what you do makes a difference. It does. - William James",
+  //   "It always seems impossible until it’s done. - Nelson Mandela",
+  //   "Push through the pain. Giving up hurts more.” — Vegeta, Dragon Ball Z",
+  //   "Hard work is worthless for those that don’t believe in themselves.” — Naruto Uzumaki, Naruto",
+  //   "It’s not dying that frightens us. It’s living without ever having done our best.” — The Elder, Castlevania",
+  //   "Whether You Win Or Lose...You Can Always Come Out Ahead By Learning From The Experience. - All Might"
+  // ]
 
   function getRandomQuote() {
     const randomIndex = Math.floor(Math.random() * quotes.length);
-    document.getElementById("generateQuote").innerText = quotes[randomIndex];//changes innertext to the actual text
+    return quotes[randomIndex]//changes innertext to the actual text
   }
 
   document.addEventListener("DOMContentLoaded", function () {
