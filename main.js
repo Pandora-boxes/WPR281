@@ -404,89 +404,89 @@ function checkGoal(){
   }
 }
 
-// function createGraphOfUserGoal(elementID){
+function createGraphOfUserGoal(elementID){
   
-//   let currentUser = userList[loggedInUser];
-//   let GoalOBJ = currentUser.GoalDetails;
-//   startDate=GoalOBJ.startDate;
-//   endDate=GoalOBJ.endDate;
-//   updatesList = GoalOBJ.updatesList;
-//  let labels = [];
-//  let data = []
-//  let data2 = []
-//  let runningTotal =0;
-//  let target = [];
-// for(let i=startDate;i<=endDate;i.setDate(i.getDate()+1)){
-//   console.log(i)
-//   labels.push(`${i.getMonth()+1}|${i.getDate()}`)
-//   let total = 0;
-//   updatesList.forEach(e=>{
-//     if(`${e[2].getDate()}/${e[2].getMonth()}/${e[2].getYear()}`==`${i.getDate()}/${i.getMonth()}/${i.getYear()}`){
-//       total+=e[1]
-//       runningTotal=e[0];
-//     }
+  let currentUser = userList[loggedInUser];
+  let GoalOBJ = currentUser.GoalDetails;
+  startDate=GoalOBJ.startDate;
+  endDate=GoalOBJ.endDate;
+  updatesList = GoalOBJ.updatesList;
+ let labels = [];
+ let data = []
+ let data2 = []
+ let runningTotal =0;
+ let target = [];
+for(let i=startDate;i<=endDate;i.setDate(i.getDate()+1)){
+  console.log(i)
+  labels.push(`${i.getMonth()+1}|${i.getDate()}`)
+  let total = 0;
+  updatesList.forEach(e=>{
+    if(`${e[2].getDate()}/${e[2].getMonth()}/${e[2].getYear()}`==`${i.getDate()}/${i.getMonth()}/${i.getYear()}`){
+      total+=e[1]
+      runningTotal=e[0];
+    }
     
-//   })
-//   if(i.getMonth()>=updatesList[updatesList.length-1][2].getMonth()&&i.getYear()>=updatesList[updatesList.length-1][2].getYear()&&i.getDate()>updatesList[updatesList.length-1][2].getDate()){
-//     runningTotal=0;
-//   }
-//     data.push(runningTotal);
-//     data2.push(total);
+  })
+  if(i.getMonth()>=updatesList[updatesList.length-1][2].getMonth()&&i.getYear()>=updatesList[updatesList.length-1][2].getYear()&&i.getDate()>updatesList[updatesList.length-1][2].getDate()){
+    runningTotal=0;
+  }
+    data.push(runningTotal);
+    data2.push(total);
 
-//     target.push(GoalOBJ.goalTarget);
-// }
+    target.push(GoalOBJ.goalTarget);
+}
  
 
-//  if(GoalOBJ.goalTarget>0&&GoalOBJ.goalTarget!=null){
+ if(GoalOBJ.goalTarget>0&&GoalOBJ.goalTarget!=null){
 
-//   let chart = document.getElementById(elementID)
-//  new Chart(chart,{
-//   type: "line",
+  let chart = document.getElementById(elementID)
+ new Chart(chart,{
+  type: "line",
 
-//   data:{
-//     labels:labels,
-//     datasets:[{
-//       label:"progress",
-//       data:data,
-//       fill: true,
-//       borderColor: 'rgb(38, 217, 38)',
-//       backgroundColor:'rgb(34, 165, 34, 0.5)',
-//       tension: 0.1
+  data:{
+    labels:labels,
+    datasets:[{
+      label:"progress",
+      data:data,
+      fill: true,
+      borderColor: 'rgb(38, 217, 38)',
+      backgroundColor:'rgb(34, 165, 34, 0.5)',
+      tension: 0.1
       
-//     },
-//     {
-//       label:"day total",
-//       data:data2,
-//       borderColor: 'rgb(38, 50, 217)',
-//       tension: 0.1
+    },
+    {
+      label:"day total",
+      data:data2,
+      borderColor: 'rgb(38, 50, 217)',
+      tension: 0.1
       
-//     },
-//     {
-//       fill: false,
-//       borderColor: 'rgb(255, 4, 0)',
-//       tension: 0.1,
-//       label:"Target",
-//       data:target
+    },
+    {
+      fill: false,
+      borderColor: 'rgb(255, 4, 0)',
+      tension: 0.1,
+      label:"Target",
+      data:target
        
-//     }]},
+    }]},
 
-//     options:{
-//       scales: {
-//         x: {
-//           ticks: {
-//             color: "rgb(0, 0, 0)" // Change X-axis label color
-//           }
-//         },
-//         y: {
-//           ticks: {
-//             color: "rgb(0, 0, 0)" // Change Y-axis label color
-//           }
-//         }
-//       }
-//     }
-//  })
-// }
-// }
+    options:{
+      scales: {
+        x: {
+          ticks: {
+            color: "rgb(0, 0, 0)" // Change X-axis label color
+          }
+        },
+        y: {
+          ticks: {
+            color: "rgb(0, 0, 0)" // Change Y-axis label color
+          }
+        }
+      }
+    }
+ })
+}
+}
 
 function addExercise(exerciseGroup,exerciseName){
   let currentUser = userList[loggedInUser];
@@ -1709,7 +1709,7 @@ function loadMainBone(){
     documentBody.innerHTML = newpagebody;
     
     checkGoal();
-    // createGraphOfUserGoal("GoalChart")
+    createGraphOfUserGoal("GoalChart")
 
     let fullReportButton =document.getElementById("FullReportButton")
     fullReportButton.addEventListener('click',userToFullDetails)
