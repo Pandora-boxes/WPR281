@@ -2308,22 +2308,24 @@ function loadMainBone() {
     buttonExInput.textContent = "Submit";
     exForm.appendChild(buttonExInput)
     container.appendChild(exForm)
-    select.innerHTML += "<br>"
-    exNameSelectLabel.innerHTML += "<br>"
+    // select.innerHTML += "<br>"
+    // exNameSelectLabel.innerHTML += "<br>"
 
     let jumpcontain = document.getElementById('jump_Ex_content')
     jumpcontain.innerHTML = '';
     jumpcontain.appendChild(container)
 
     select.addEventListener('change', event => {
-      console.log(select.value)
+      // console.log(select.value)
       LoadExerciseForm(currentExerFormGroup, select.value)
     })
 
 
     buttonExInput.addEventListener("click", (event) => {
-      console.log(`${buttonExInput.value},${select.value}`);
+      // console.log(`${buttonExInput.value},${select.value}`);
       addExercise(buttonExInput.value,select.value)
+      
+      LoadExerciseForm(buttonExInput.value, select.value)
     })
     
   }
