@@ -550,7 +550,7 @@ function addExercise(exerciseGroup, exerciseName) {
 
   // finding the object in the exercise list that relates to the one chosen by the user and making a new copy of it
   let filteredArray = exerciseList.filter((e) => {
-    return e[0].exerciseGroup == selectedExercise
+    e[0].exerciseGroup == selectedExercise
   })
   console.log(filteredArray)
   filteredArray = Array.from(filteredArray[0]);
