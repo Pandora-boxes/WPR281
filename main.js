@@ -1999,7 +1999,7 @@ function loadMainBone() {
     let chart = document.createElement('canvas');
     chart.setAttribute('id', 'caloriesDataGraphFromButton');
     outContainer.appendChild(chart)
-    if(userList[loggedInUser].length>0){
+    if(userList[loggedInUser].exercisesComplete.length>0){
     createGraphFromCalories('caloriesDataGraphFromButton')
     }
     else{alert("Wait up there!!! maybe log some exercizes first")}
